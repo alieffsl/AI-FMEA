@@ -5,22 +5,28 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
+    "dev:server": "npm --prefix server start",
     "build": "tsc -b && vite build",
     "preview": "vite preview --host",
     "test": "vitest run",
     "check": "npm test && npm run build && npm run check:server",
-    "check:server": "npm --prefix server exec tsc -- --noEmit",
+    "check:server": "npm --prefix server run check",
+    "install:all": "npm ci && npm --prefix server ci && npm --prefix migration ci",
     "prune:assets": "node scripts/prune_unused_assets.cjs",
     "generate:accessory-standards": "node scripts/generate_accessory_tooling_database.cjs",
     "generate:product-standards": "node scripts/regenerate_product_standards.cjs"
   },
   "dependencies": {
+    "dotenv": "^17.4.2",
     "iconv-lite": "^0.7.2",
     "lucide-react": "^0.468.0",
+    "officeparser": "^7.5.0",
     "openai": "^6.45.0",
+    "pdf-parse": "^2.4.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "recharts": "^2.15.0",
+    "unzipper": "^0.12.5",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {

@@ -2,10 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import pg from 'pg';
 import dotenv from 'dotenv';
+import path from 'path';
 import { matchChecklistEntries, matchChecklistBatch, getChecklistStats } from './checklistService';
 import { normalizeToolDescription } from './normalizeToolDescription';
 
-dotenv.config({ path: '../migration/.env' });
+dotenv.config({ path: path.resolve(__dirname, '../migration/.env') });
 
 const { Client, Pool } = pg;
 

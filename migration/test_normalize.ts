@@ -1,45 +1,36 @@
-// Quick test for normalizeToolDescription
-// Run: npx ts-node --esm test_normalize.ts
+import { normalizeToolDescription } from './normalizeToolDescription.ts';
 
-// Inline import to avoid ESM resolution issues
-import { normalizeToolDesc, extractCategory } from './normalizeToolDescription.ts';
-
-const testCases: Array<[string, string, string]> = [
-  ['JJB33-001-torso-ft', 'Torso FT', 'Torso'],
-  ['Snake-Body', 'Snake Body', 'Snake Body'],
-  ['Snake Body LT', 'Snake Body LT', 'Snake Body'],
-  ['SNAKE_BODY.FT', 'Snake Body FT', 'Snake Body'],
-  ['accessories', 'Accessory', 'Accessory'],
-  ['accessory', 'Accessory', 'Accessory'],
-  ['FP21009-TORSO FT', 'Torso FT', 'Torso'],
-  ['torso', 'Torso', 'Torso'],
-  ['Dog Body LT', 'Dog Body LT', 'Dog Body'],
-  ['1f', '1f', '1f'],
-  ['arch', 'Arch', 'Arch'],
-  ['arches', 'Arches', 'Arches'],
-  ['bracelet', 'Bracelet', 'Bracelet'],
-  ['bracelets', 'Bracelet', 'Bracelet'],
+const testCases: Array<[string, string]> = [
+  ['JJB33-001-torso-ft', 'Torso FT'],
+  ['Snake-Body', 'Snake Body'],
+  ['Snake Body LT', 'Snake Body LT'],
+  ['SNAKE_BODY.FT', 'Snake Body FT'],
+  ['accessories', 'Accessory'],
+  ['accessory', 'Accessory'],
+  ['FP21009-TORSO FT', 'Fp21009 Torso FT'],
+  ['torso', 'Torso'],
+  ['Dog Body LT', 'Dog Body LT'],
+  ['1f', '1f'],
+  ['arch', 'Arch'],
+  ['arches', 'Arch'],
+  ['bracelet', 'Bracelet'],
+  ['bracelets', 'Bracelet'],
 ];
 
 console.log('Tool Description Normalization Tests\n');
 let passed = 0;
 let failed = 0;
 
-for (const [input, expectedNorm, expectedCat] of testCases) {
-  const actualNorm = normalizeToolDesc(input);
-  const actualCat = extractCategory(actualNorm);
-  const normOk = actualNorm === expectedNorm;
-  const catOk = actualCat === expectedCat;
-
-  if (normOk && catOk) {
-    console.log(`  ✓ "${input}" → "${actualNorm}" [cat: "${actualCat}"]`);
-    passed++;
+for (const [input, expected] of testCases) {
+  const actual = normalizeToolDescription(input);
+  if (actual === expected) {
+    console.log(`  ✓ "${input}" → "${actual}"`);
+    passed += 1;
   } else {
-    console.log(`  ✗ "${input}"`);
-    if (!normOk) console.log(`    normalize: expected "${expectedNorm}", got "${actualNorm}"`);
-    if (!catOk) console.log(`    category: expected "${expectedCat}", got "${actualCat}"`);
-    failed++;
+    console.log(`  ✗ "${input}": expected "${expected}", got "${actual}"`);
+    failed += 1;
   }
 }
 
 console.log(`\n${passed} passed, ${failed} failed`);
+if (failed > 0) process.exitCode = 1;

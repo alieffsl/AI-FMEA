@@ -1,18 +1,22 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "PostgreSQL-backed API for AI FMEA Tooling Copilot",
+  "main": "index.ts",
   "scripts": {
     "start": "ts-node index.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check": "tsc --noEmit",
+    "migrate:mssql": "ts-node migrate_to_postgres.ts"
   },
-  "keywords": [],
+  "keywords": [
+    "fmea",
+    "tooling",
+    "postgresql"
+  ],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@google/generative-ai": "^0.24.1",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
