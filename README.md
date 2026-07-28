@@ -431,13 +431,22 @@ node --version
 npm --version
 ```
 
-The prepared system service expects Node at `/usr/bin/node`. Confirm with:
+Install PM2 after Node.js is available:
 
 ```bash
-command -v node
+npm install -g pm2
+pm2 --version
 ```
 
-If the command returns a different path, update `ExecStart` in `deploy/fmea.service` before installing it.
+If the global install reports a permission error and Node was installed system-wide, run `sudo npm install -g pm2`. When Node was installed with `nvm`, do not use `sudo`.
+
+If PM2 already manages SmartHost under the `ubuntu` user, do not install PM2 again and do not create another PM2 startup service. Confirm the existing processes first:
+
+```bash
+pm2 list
+```
+
+FMEA uses the separate process name `fmea-api`. Starting or reloading that name does not restart the SmartHost process.
 
 ### 2. Clone and build the application
 
@@ -457,9 +466,10 @@ Only the frontend and runtime API dependencies are required on EC2. Migration/Op
 ### 3. Create the protected API configuration
 
 ```bash
-sudo install -d -m 750 /etc/fmea
+sudo install -d -o root -g ubuntu -m 750 /etc/fmea
 sudo cp deploy/fmea.env.example /etc/fmea/fmea.env
-sudo chmod 600 /etc/fmea/fmea.env
+sudo chown root:ubuntu /etc/fmea/fmea.env
+sudo chmod 640 /etc/fmea/fmea.env
 sudo nano /etc/fmea/fmea.env
 ```
 
@@ -487,13 +497,15 @@ sudo htpasswd -c /etc/nginx/.htpasswd-fmea YOUR_USERNAME
 
 The supplied Nginx configuration requires this password. Do not remove the protection unless the site is already secured by company VPN, SSO, or another approved access layer.
 
-### 6. Install and start the API service
+### 6. Start and preserve the API with PM2
 
 ```bash
-sudo cp deploy/fmea.service /etc/systemd/system/fmea.service
-sudo systemctl daemon-reload
-sudo systemctl enable --now fmea
-sudo systemctl status fmea
+set -a
+source /etc/fmea/fmea.env
+set +a
+
+pm2 start deploy/ecosystem.config.cjs --only fmea-api --env production
+pm2 status
 ```
 
 Test the API directly on EC2:
@@ -504,12 +516,35 @@ curl http://127.0.0.1:3001/api/checklist/stats
 
 The response should report the `fmea_checklist_standard` entry count.
 
-Useful service commands:
+Make PM2 restore the API after an EC2 reboot:
 
 ```bash
-sudo systemctl restart fmea
-sudo systemctl stop fmea
-sudo journalctl -u fmea -n 100 --no-pager
+pm2 startup
+```
+
+PM2 prints one `sudo ... pm2 startup ...` command. Copy and run that exact command, then save the current process list:
+
+```bash
+pm2 save
+```
+
+When PM2 startup is already configured for SmartHost, skip `pm2 startup` and only run `pm2 save` after adding FMEA. The saved PM2 process list will then contain both SmartHost and `fmea-api`.
+
+Before starting FMEA, confirm SmartHost is not already using port `3001`:
+
+```bash
+sudo ss -ltnp | grep ':3001'
+```
+
+If port `3001` is occupied, choose another local port such as `3002` in `/etc/fmea/fmea.env` and update `proxy_pass` in `deploy/nginx-fmea.conf` to the same port.
+
+Useful PM2 commands:
+
+```bash
+pm2 status
+pm2 restart fmea-api
+pm2 stop fmea-api
+pm2 logs fmea-api --lines 100
 ```
 
 ### 7. Install the separate Nginx site
@@ -574,7 +609,7 @@ If an update fails before the service restart, the previously running applicatio
 | File | Purpose |
 |---|---|
 | `deploy/nginx-fmea.conf` | Routes `fmea.webname.com` to the frontend and API |
-| `deploy/fmea.service` | Keeps the API running and restarts it after failure |
+| `deploy/ecosystem.config.cjs` | Defines the API process managed by PM2 |
 | `deploy/fmea.env.example` | Safe example of the production runtime settings |
 | `deploy/update.sh` | Repeatable future update process |
 

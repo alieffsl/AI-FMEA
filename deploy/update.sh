@@ -16,7 +16,16 @@ sudo setfacl -m "u:www-data:x" /home/ubuntu
 sudo setfacl -R -m "u:www-data:rX" "$APP_DIR/dist"
 sudo setfacl -R -d -m "u:www-data:rX" "$APP_DIR/dist"
 
-sudo systemctl restart fmea
+set -a
+# shellcheck disable=SC1091
+source /etc/fmea/fmea.env
+set +a
+
+pm2 startOrReload "$APP_DIR/deploy/ecosystem.config.cjs" \
+  --only fmea-api \
+  --env production \
+  --update-env
+pm2 save
 
 api_ready=false
 for _ in {1..20}; do
@@ -30,7 +39,7 @@ done
 
 if [[ "$api_ready" != "true" ]]; then
   echo "FMEA API did not become ready after restart." >&2
-  sudo journalctl -u fmea -n 50 --no-pager
+  pm2 logs fmea-api --lines 50 --nostream
   exit 1
 fi
 
