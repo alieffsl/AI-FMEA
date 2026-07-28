@@ -799,7 +799,6 @@
         "title": "Wall Thickness Specifications",
         "content": "The basic wall thickness for sunglasses should be 1.5 mm (0.059 inches). For the bridge, if the width is greater than 2 mm (0.079 inches), the wall thickness should remain at 1.5 mm (0.059 inches).",
         "image_references": [
-          "Sunglasses.xlsm_image3.png",
           "Sunglasses.xlsm_image4.png"
         ],
         "type": "design_rule"
@@ -943,8 +942,7 @@
         "title": "Interference Fitting",
         "content": "Use 3 tight lines as interference fitting to ensure stability and secure attachment of components.",
         "image_references": [
-          "Doll Stand.xlsm_image5.jpg",
-          "Doll Stand.xlsm_image2.jpeg"
+          "Doll Stand.xlsm_image5.jpg"
         ],
         "type": "design_rule"
       },
@@ -1717,8 +1715,7 @@
         "title": "Heat Stake Design Overview",
         "content": "The heat stake design involves creating a joint by melting and reforming a plastic stud to hold components together. This process is commonly used in assembling plastic parts.",
         "image_references": [
-          "heat-stake.xlsm_image3.jpeg",
-          "heat-stake.xlsm_image2.jpeg"
+          "heat-stake.xlsm_image3.jpeg"
         ],
         "type": "guideline"
       },
@@ -1865,8 +1862,7 @@
         "title": "Double Lap Joint Design Standard",
         "content": "The Double Lap Joint Design Standard outlines the specifications for creating lap joints with specific dimensions and angles. The design is presented in two versions, A and B, each with distinct measurements and angles.",
         "image_references": [
-          "Lap-joint.xlsm_image4.jpeg",
-          "Lap-joint.xlsm_image2.jpeg"
+          "Lap-joint.xlsm_image4.jpeg"
         ],
         "type": "guideline"
       },
@@ -1874,8 +1870,7 @@
         "title": "Lap Joint Design Standard",
         "content": "This section provides the design specifications for lap joints, detailing the thickness and angle requirements for two versions, A and B. The designs specify different thicknesses and angles for precise application.",
         "image_references": [
-          "Lap-joint.xlsm_image3.png",
-          "Lap-joint.xlsm_image1.jpeg"
+          "Lap-joint.xlsm_image3.png"
         ],
         "type": "guideline"
       }
@@ -2070,7 +2065,6 @@
         "title": "Design Specifications",
         "content": "- The hinge should have a full radius.\n- Dimensions should be precise to ensure proper function.\n- Include a 0.020 tear rib at each end of the hinge.",
         "image_references": [
-          "PP-hinge.xlsm_image3.png",
           "PP-hinge.xlsm_image4.png"
         ],
         "type": "design_rule"
@@ -2325,9 +2319,7 @@
           "Snap-design.xlsm_image9.png",
           "Snap-design.xlsm_image8.png",
           "Snap-design.xlsm_image10.png",
-          "Snap-design.xlsm_image2.png",
           "Snap-design.xlsm_image4.png",
-          "Snap-design.xlsm_image3.png",
           "Snap-design.xlsm_image1.jpeg"
         ],
         "type": "reference"
@@ -2399,8 +2391,7 @@
         "title": "End Folding in Springs",
         "content": "Ensure that the ends of the spring are folded to avoid sharp points. This design consideration helps in preventing injuries and damage to other components.",
         "image_references": [
-          "Spring.xlsm_image2.png",
-          "Spring.xlsm_image1.png"
+          "Spring.xlsm_image2.png"
         ],
         "type": "design_rule"
       }

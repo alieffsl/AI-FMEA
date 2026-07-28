@@ -63,6 +63,31 @@ describe("MEC product standards database", () => {
     expect(imagesFor("belt-design-guidelines")).toEqual(
       expect.arrayContaining(["Belt.xlsm_image6.png", "Belt.xlsm_image4.JPG", "Belt.xlsm_image8.jpg"]),
     );
+
+    const retainedHdImages: Array<[string, string, string[]]> = [
+      ["sunglass-design-guidelines", "Sunglasses.xlsm_image4.png", ["Sunglasses.xlsm_image3.png"]],
+      ["doll-stand-design", "Doll Stand.xlsm_image5.jpg", ["Doll Stand.xlsm_image2.jpeg"]],
+      [
+        "lap-joint-design-standard",
+        "Lap-joint.xlsm_image4.jpeg",
+        ["Lap-joint.xlsm_image2.jpeg", "Lap-joint.xlsm_image1.jpeg"],
+      ],
+      ["spring-design-guidelines", "Spring.xlsm_image2.png", ["Spring.xlsm_image1.png"]],
+      ["heat-stake-design", "heat-stake.xlsm_image3.jpeg", ["heat-stake.xlsm_image2.jpeg"]],
+      ["pp-hinge-design", "PP-hinge.xlsm_image4.png", ["PP-hinge.xlsm_image3.png"]],
+      [
+        "snap-design",
+        "Snap-design.xlsm_image8.png",
+        ["Snap-design.xlsm_image2.png", "Snap-design.xlsm_image3.png"],
+      ],
+    ];
+
+    for (const [slug, retained, removed] of retainedHdImages) {
+      expect(imagesFor(slug)).toContain(retained);
+      expect(imagesFor(slug)).not.toEqual(expect.arrayContaining(removed));
+    }
+    expect(imagesFor("lap-joint-design-standard")).toContain("Lap-joint.xlsm_image3.png");
+    expect(imagesFor("snap-design")).toContain("Snap-design.xlsm_image10.png");
   });
 
   it("adapts every tooling baseline to the shared article format", () => {
