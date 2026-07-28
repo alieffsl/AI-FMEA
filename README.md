@@ -411,7 +411,7 @@ Existing website       Existing Nginx configuration
 SmartHost              Existing SmartHost configuration
 FMEA frontend          /home/ubuntu/fmea/dist
 FMEA API               127.0.0.1:3001
-FMEA address           https://fmea.webname.com
+FMEA address           https://fmea.ptmi-online.com
 ```
 
 The folder does not create the subdomain by itself. DNS sends the subdomain to EC2, and a separate Nginx configuration sends requests to the FMEA frontend and API.
@@ -558,7 +558,7 @@ sudo nginx -t
 sudo systemctl reload nginx
 ```
 
-This adds a separate `fmea.webname.com` server block. It does not replace the existing default website or SmartHost configuration.
+This adds a separate `fmea.ptmi-online.com` server block. It does not replace the existing default website or SmartHost configuration.
 
 If the real subdomain is different, edit `server_name` in `deploy/nginx-fmea.conf` before copying it.
 
@@ -567,7 +567,7 @@ If the real subdomain is different, edit `server_name` in `deploy/nginx-fmea.con
 Create a DNS `A` record:
 
 ```text
-fmea.webname.com → EC2 Elastic IP
+fmea.ptmi-online.com → EC2 Elastic IP
 ```
 
 The EC2 security group should allow:
@@ -581,14 +581,14 @@ Do not publicly open the API port `3001` or PostgreSQL port `5432`.
 After DNS resolves to EC2, install the TLS certificate:
 
 ```bash
-sudo certbot --nginx -d fmea.webname.com
+sudo certbot --nginx -d fmea.ptmi-online.com
 sudo certbot renew --dry-run
 ```
 
 Then open:
 
 ```text
-https://fmea.webname.com
+https://fmea.ptmi-online.com
 ```
 
 ### Updating the EC2 deployment
@@ -608,7 +608,7 @@ If an update fails before the service restart, the previously running applicatio
 
 | File | Purpose |
 |---|---|
-| `deploy/nginx-fmea.conf` | Routes `fmea.webname.com` to the frontend and API |
+| `deploy/nginx-fmea.conf` | Routes `fmea.ptmi-online.com` to the frontend and API |
 | `deploy/ecosystem.config.cjs` | Defines the API process managed by PM2 |
 | `deploy/fmea.env.example` | Safe example of the production runtime settings |
 | `deploy/update.sh` | Repeatable future update process |
