@@ -5,6 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "start": "ts-node index.ts",
+    "build": "tsc",
+    "start:prod": "node dist/index.js",
     "check": "tsc --noEmit",
     "migrate:mssql": "ts-node migrate_to_postgres.ts"
   },

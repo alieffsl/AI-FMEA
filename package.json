@@ -7,6 +7,8 @@
     "dev": "vite --host",
     "dev:server": "npm --prefix server start",
     "build": "tsc -b && vite build",
+    "build:server": "npm --prefix server run build",
+    "build:production": "npm run build && npm run build:server",
     "preview": "vite preview --host",
     "test": "vitest run",
     "check": "npm test && npm run build && npm run check:server",

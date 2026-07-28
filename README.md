@@ -396,6 +396,188 @@ http://localhost:3001/api/checklist/stats
 
 The `total_entries` value should match `fmea_checklist_standard`.
 
+## Deploying to Ubuntu EC2
+
+The prepared EC2 configuration uses:
+
+```text
+/home/ubuntu/fmea
+```
+
+It keeps the deployment separate from the existing website and SmartHost folder:
+
+```text
+Existing website       Existing Nginx configuration
+SmartHost              Existing SmartHost configuration
+FMEA frontend          /home/ubuntu/fmea/dist
+FMEA API               127.0.0.1:3001
+FMEA address           https://fmea.webname.com
+```
+
+The folder does not create the subdomain by itself. DNS sends the subdomain to EC2, and a separate Nginx configuration sends requests to the FMEA frontend and API.
+
+### 1. Install the required Ubuntu packages
+
+```bash
+sudo apt update
+sudo apt install -y nginx acl apache2-utils git-lfs
+git lfs install
+```
+
+Install Node.js 20 or newer if it is not already installed:
+
+```bash
+node --version
+npm --version
+```
+
+The prepared system service expects Node at `/usr/bin/node`. Confirm with:
+
+```bash
+command -v node
+```
+
+If the command returns a different path, update `ExecStart` in `deploy/fmea.service` before installing it.
+
+### 2. Clone and build the application
+
+```bash
+cd /home/ubuntu
+git clone YOUR_PRIVATE_GITHUB_REPOSITORY fmea
+cd fmea
+
+git lfs pull
+npm ci
+npm --prefix server ci
+npm run build:production
+```
+
+Only the frontend and runtime API dependencies are required on EC2. Migration/OpenAI dependencies are not required for normal Draft FMEA use.
+
+### 3. Create the protected API configuration
+
+```bash
+sudo install -d -m 750 /etc/fmea
+sudo cp deploy/fmea.env.example /etc/fmea/fmea.env
+sudo chmod 600 /etc/fmea/fmea.env
+sudo nano /etc/fmea/fmea.env
+```
+
+Replace every `CHANGE_ME` value with the production PostgreSQL settings. The runtime service does not need `OPENAI_API_KEY`.
+
+### 4. Allow Nginx to read the built frontend
+
+Nginx normally runs as `www-data`. Give it access only to the built frontend:
+
+```bash
+sudo setfacl -m u:www-data:x /home/ubuntu
+sudo setfacl -R -m u:www-data:rX /home/ubuntu/fmea/dist
+sudo setfacl -R -d -m u:www-data:rX /home/ubuntu/fmea/dist
+```
+
+Do not use `chmod -R 777`.
+
+### 5. Protect the application with a password
+
+The application does not yet have its own login page. Create an Nginx username and password before making the domain available:
+
+```bash
+sudo htpasswd -c /etc/nginx/.htpasswd-fmea YOUR_USERNAME
+```
+
+The supplied Nginx configuration requires this password. Do not remove the protection unless the site is already secured by company VPN, SSO, or another approved access layer.
+
+### 6. Install and start the API service
+
+```bash
+sudo cp deploy/fmea.service /etc/systemd/system/fmea.service
+sudo systemctl daemon-reload
+sudo systemctl enable --now fmea
+sudo systemctl status fmea
+```
+
+Test the API directly on EC2:
+
+```bash
+curl http://127.0.0.1:3001/api/checklist/stats
+```
+
+The response should report the `fmea_checklist_standard` entry count.
+
+Useful service commands:
+
+```bash
+sudo systemctl restart fmea
+sudo systemctl stop fmea
+sudo journalctl -u fmea -n 100 --no-pager
+```
+
+### 7. Install the separate Nginx site
+
+On Ubuntu:
+
+```bash
+sudo cp deploy/nginx-fmea.conf /etc/nginx/sites-available/fmea
+sudo ln -s /etc/nginx/sites-available/fmea /etc/nginx/sites-enabled/fmea
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+This adds a separate `fmea.webname.com` server block. It does not replace the existing default website or SmartHost configuration.
+
+If the real subdomain is different, edit `server_name` in `deploy/nginx-fmea.conf` before copying it.
+
+### 8. Configure DNS and HTTPS
+
+Create a DNS `A` record:
+
+```text
+fmea.webname.com → EC2 Elastic IP
+```
+
+The EC2 security group should allow:
+
+- HTTP port 80;
+- HTTPS port 443;
+- SSH port 22 only from an approved office/VPN address.
+
+Do not publicly open the API port `3001` or PostgreSQL port `5432`.
+
+After DNS resolves to EC2, install the TLS certificate:
+
+```bash
+sudo certbot --nginx -d fmea.webname.com
+sudo certbot renew --dry-run
+```
+
+Then open:
+
+```text
+https://fmea.webname.com
+```
+
+### Updating the EC2 deployment
+
+The repository includes `deploy/update.sh`. It pulls only fast-forward Git changes, downloads Git LFS files, installs locked dependencies, rebuilds the frontend and API, verifies the API, and safely reloads Nginx.
+
+Run:
+
+```bash
+cd /home/ubuntu/fmea
+bash deploy/update.sh
+```
+
+If an update fails before the service restart, the previously running application remains available. Review the error instead of forcing a Git reset.
+
+### Deployment files
+
+| File | Purpose |
+|---|---|
+| `deploy/nginx-fmea.conf` | Routes `fmea.webname.com` to the frontend and API |
+| `deploy/fmea.service` | Keeps the API running and restarts it after failure |
+| `deploy/fmea.env.example` | Safe example of the production runtime settings |
+| `deploy/update.sh` | Repeatable future update process |
+
 ## Common problems
 
 ### `vite` is not recognized

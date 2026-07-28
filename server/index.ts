@@ -6,12 +6,15 @@ import path from 'path';
 import { matchChecklistEntries, matchChecklistBatch, getChecklistStats } from './checklistService';
 import { normalizeToolDescription } from './normalizeToolDescription';
 
-dotenv.config({ path: path.resolve(__dirname, '../migration/.env') });
+dotenv.config({
+  path: process.env.FMEA_ENV_FILE || path.resolve(process.cwd(), '../migration/.env'),
+});
 
 const { Client, Pool } = pg;
 
 const app = express();
 const port = Number(process.env.PORT || 3001);
+const host = process.env.HOST || '127.0.0.1';
 
 // PostgreSQL connection pool for better performance
 let pgPool: pg.Pool | null = null;
@@ -1097,8 +1100,8 @@ console.log('  GET  /api/checklist/failure-modes');
 
 
 // Start server
-const server = app.listen(port, () => {
-  console.log(`[Server] API Backend running at http://localhost:${port}`);
+const server = app.listen(port, host, () => {
+  console.log(`[Server] API Backend running at http://${host}:${port}`);
   console.log('[Server] All endpoints registered and ready');
 });
 
