@@ -92,6 +92,36 @@ The verified generation completed on 28 July 2026 contains:
 
 The generator uses `gpt-5.6-terra` with low reasoning by default. This model was selected as a practical balance between quality and API cost. It does not use the older `gpt-4o-mini` value from `OPENAI_MODEL`.
 
+## System workflows
+
+### How the system reads project and tool information
+The application uses the `xlsx` library to parse uploaded CDI (Component Data Information) or Tool Plan workbooks.
+- **Header Detection**: It scans the first 30 rows of the "TOOL PLAN" sheet for known column headers (e.g., "tool no", "part description", "resin"), using a robust alias map to handle variations in naming.
+- **Metadata Extraction**: Project metadata (like Vendor, Project Name, and Revision) is extracted from the top section of the sheet. The parser looks for known labels and captures the values in adjacent cells or directly below them.
+- **Row Parsing**: The parser extracts each tool row based on the mapped columns until it encounters the "Existing Tool/Part" section divider.
+
+### How the system standardizes tool names
+To ensure consistent matching across different databases and checklists, tool descriptions go through a strict normalization pipeline (`normalizeToolDescription.ts`):
+1. **Strip Prefixes**: Leading tool number patterns (e.g., `JJB33-001-Torso-FT`) are removed so only the descriptive noun remains (`Torso-FT`).
+2. **Format Clean-up**: Hyphens, underscores, and periods are replaced with spaces. CamelCase and PascalCase words are split apart.
+3. **Compound Word Resolution**: Known compound words are separated correctly (e.g., `headband` becomes `Head Band`).
+4. **Pluralization Handling**: Specific plurals are confidently converted to singular nouns (e.g., `shoes` to `Shoe`, `accessories` to `Accessory`).
+5. **Position Suffix Preservation**: Positional abbreviations (like `LT`, `RT`, `FT`) are preserved in uppercase to ensure left and right parts are treated as distinct tools.
+
+### How the system finds relevant historical failure modes
+When generating a Draft FMEA, the system queries the `fmea_checklist_standard` table using a cascading matching strategy (`checklistService.ts`):
+1. **Exact Match**: The system first attempts a case-insensitive exact match between the normalized tool description and the failure mode. Global process rules (applicable to all tools) are also retrieved at this stage.
+2. **Semantic/Fuzzy Match**: If no exact match is found, it performs a fuzzy search. 
+   - It compares the input tool to all checklist entries for the same failure mode using a custom scoring function that combines word-level Jaccard similarity and character-level Levenshtein distance.
+   - **Strict Rejections**: The matcher actively prevents false positives. It rejects matches where a short word might inadvertently match a long word (e.g., "Bra" vs "Bracelet"), and it explicitly rejects matches where the only difference is a position suffix (preventing "Leg" from matching "Leg LT").
+
+### How the system builds the combined checklist using OpenAI
+The combined checklist (`fmea_checklist_standard`) is built offline using a Node.js migration script (`generate_checklist_standard.ts`). The goal is to merge MEC Product Standards and Baseline Tooling Standards with the historical Previous FMEA records:
+1. **Preservation**: Every existing historical FMEA concern and recommendation is treated as an immutable quality anchor and preserved.
+2. **AI Extraction**: The system sends the Product and Baseline Standards (along with allowed tool names and failure modes) to the OpenAI API (using `gpt-5.6-terra` with structured JSON output). The LLM is instructed to extract precise, actionable engineering controls without inventing facts, dimensions, or failure modes.
+3. **AI Merging**: For each unique tool and failure mode group, the historical checklist entries and the newly extracted standard controls are sent back to the LLM. The LLM merges them into a cohesive set. If a standard addresses the exact same physical mechanism as a historical entry, it updates the recommendation to include the standard's specific requirements (like dimensions) without creating a duplicate row.
+4. **Validation and Storage**: The output is strictly validated to ensure no duplicate pairs exist, no unsupported numbers were hallucinated, and no historical entries were lost. Finally, it generates vector embeddings for semantic search and atomically writes the result to the database.
+
 ## Project structure
 
 The most important folders are:
