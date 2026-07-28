@@ -1,0 +1,26 @@
+# Installed dependencies
+node_modules/
+server/node_modules/
+
+# Generated builds and caches
+dist/
+coverage/
+*.tsbuildinfo
+.vite/
+.cache/
+
+# Local runtime configuration and logs
+.env
+.env.*
+!.env.template
+server/.env
+*.log
+npm-debug.log*
+migration/accessory_baseline_ai_work/
+
+# OS and editor artifacts
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+~$*

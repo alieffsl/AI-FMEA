@@ -1,0 +1,2726 @@
+[
+  {
+    "slug": "ken-doll-design-guidelines",
+    "title": "Ken Doll Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Introduction to Ken Doll Design",
+        "content": "The Ken Doll design process involves multiple components and considerations to ensure quality and consistency across products. This guideline provides an overview of the dual sourcing strategy and the use of 3D models in the design process.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Dual Sourcing Strategy",
+        "content": "The Ken Doll utilizes a dual sourcing strategy involving PTMI and MCA. This approach ensures that production can continue smoothly even if one source encounters issues. Dual sourcing is critical for maintaining supply chain resilience and product availability.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "3D Model Utilization",
+        "content": "3D models are integral to the Ken Doll design process. They allow for precise visualization and modification of the doll's features before physical prototypes are created. This reduces errors and speeds up the development cycle.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Component Identification",
+        "content": "Each Ken Doll component is identified with specific codes, such as DWK47 and FNH40. These codes help in tracking and managing parts throughout the production process, ensuring that each component meets the required standards.",
+        "image_references": [],
+        "type": "reference"
+      }
+    ]
+  },
+  {
+    "slug": "chelsea-doll-design-guidelines",
+    "title": "Chelsea Doll Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Introduction to Chelsea Doll Variants",
+        "content": "The Chelsea Doll series includes several variants, each identified by unique codes such as CH-4(V3283), CH-7(V7005), and CH-6(V0573). These variants are dual-sourced from PTMI & MCA and utilize CDI for their design and manufacturing processes. Each variant is accompanied by a 3D model to aid in visualization and design refinement.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Design Specifications for Chelsea Doll Variants",
+        "content": "### CH-7-B(Y7562) and CH-6-B(X9063)\n- **Sourcing**: PTMI & MCA dual source\n- **Design Integration**: CDI\n- **3D Model Availability**: Yes\n\n### CH-1(BDG42)\n- **Sourcing**: PTMI & MCA dual source\n- **Design Integration**: CDI\n- **3D Model Availability**: Yes\n\n### V3131\n- **Sourcing**: MCA\n- **Design Integration**: CDI\n- **3D Model Availability**: Yes",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Chelsea Doll Assembly and Production",
+        "content": "The assembly of Chelsea dolls involves a combination of torsos, arms, and legs. For example, the 'Chelsea with Bodice-A' configuration includes 9 torsos, 6 arms, and 1 leg, resulting in a total of 54 dolls. In contrast, the 'Chelsea with Bodice-B' configuration includes 15 torsos, 6 arms, and 1 leg, resulting in a total of 90 dolls. This modular approach allows for efficient production scaling and customization.",
+        "image_references": [],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "collector-doll-guidelines",
+    "title": "Collector Doll Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Introduction to Collector Dolls",
+        "content": "Collector dolls are categorized into various models such as Model Muse, Holiday Doll, Pivotal Doll, Silkstone Barbie, and Uhura. Each model has unique identifiers and may be sourced from different manufacturers, indicated by codes such as B3457-dual source and W3420-PTMI.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Model Identification and Resources",
+        "content": "Each collector doll model is associated with specific codes that help in identifying the source and type of the doll. For instance, the Model Muse is identified by B3457-dual source, while the Holiday Doll is identified by W3420-PTMI. These codes are crucial for cataloging and sourcing purposes. Additionally, resources such as photos and 3D models are available for each doll model to aid in design and manufacturing processes.",
+        "image_references": [],
+        "type": "reference"
+      },
+      {
+        "title": "Design and Manufacturing Considerations",
+        "content": "When designing collector dolls, it is important to consider the availability of resources such as photos and 3D models. These resources provide detailed visual and structural information that is essential for accurate reproduction and quality control. For example, the Vintage Doll and Wonder Woman models have associated photos and 3D models that can be used to ensure design fidelity.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Special Models and Variants",
+        "content": "Special models such as the Vintage Skipper, Vintage Barbie, and themed dolls like Batman and Wonder Woman have unique identifiers and resources. These models often require special attention to detail and adherence to specific design guidelines to maintain their collectible value. For instance, the Vintage Barbie is identified by DGW46-PTMI and has associated photos and 3D models for reference.",
+        "image_references": [],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "barbie-doll-design-guidelines",
+    "title": "Barbie Doll Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Neck Connector Design",
+        "content": "The neck connector design should ensure a secure fit while allowing for smooth movement. Considerations for material selection and connector geometry are crucial to prevent wear and tear over time.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Arm Design",
+        "content": "Arm design must accommodate the insert molding process. Ensure that the connector's outer diameter is between 0.3-0.5mm to facilitate easy assembly and disassembly. This is crucial for both upper and lower arm components.",
+        "image_references": [
+          "insert-molding-guideline.xlsx_image2.jpeg",
+          "insert-molding-guideline.xlsx_image6.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Barbie Insert Arm Guideline",
+        "content": "For the Barbie arm and shoulder connector, the design should minimize insert mold issues. Ensure the connector fits snugly into the torso while allowing for rotational movement. The design should also consider the shut-off hole dimensions to maintain structural integrity.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Torso Design",
+        "content": "The torso design should integrate seamlessly with the neck and arm connectors. It must support the overall structure of the doll while allowing for flexibility and durability. Consider the use of lightweight materials to enhance playability.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Leg Plug-In Design",
+        "content": "The leg plug-in design should ensure stability and ease of assembly. The connector should be designed to prevent accidental detachment while allowing for smooth movement. The outer diameter at the connection point should be between 0.3-0.5mm.",
+        "image_references": [
+          "insert-molding-guideline.xlsx_image3.jpeg"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "barbie-general-concern",
+    "title": "Barbie Doll General Concerns",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Bonding and Welding Techniques",
+        "content": "PTMI utilizes solvent bonding for assembly, whereas MCA employs sonic welding. Each method has its own advantages and should be chosen based on the specific requirements of the toy design.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Arm Design Considerations",
+        "content": "To prevent scratching issues on the arm ball, ensure there is sufficient clearance and that the center alignment is correct. Refer to the detailed arm design specifications for precise measurements and tolerances.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Shoulder Gap Minimization",
+        "content": "Ensure there are no visible gaps at the shoulder joints. This is crucial for both aesthetic appeal and structural integrity.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Torso Design Updates",
+        "content": "For new toy developments, use the updated torso Pro-E model. This ensures compatibility with the latest design standards and improvements. Refer to the torso design documentation for detailed guidelines.",
+        "image_references": [],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "barbie-neck-connector-design",
+    "title": "Barbie Neck Connector Design",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Neck Connector Design Overview",
+        "content": "The Barbie neck connector design has evolved over time, with a transition from a long neck connector to a short version, which was phased out based on design direction. This change was implemented to improve the overall aesthetics and functionality of the Barbie doll.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Neck Connector Pin Specifications",
+        "content": "Since June 2014, the neck connector pin at the torso rear for PTMI and MCA models has been standardized to the PTMI version. This design requires a radius at the pin root area and a recess on the opposite side to secure the pin effectively. These modifications ensure a more robust connection and enhance the doll's durability during play.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Key Dimensions",
+        "content": "The key dimensions for the neck connector design are crucial for ensuring compatibility and functionality across different Barbie models. While specific measurements are not provided in the raw data, it is essential to adhere to the standardized dimensions used in the PTMI version for consistency.",
+        "image_references": [],
+        "type": "reference"
+      }
+    ]
+  },
+  {
+    "slug": "barbie-arm-design",
+    "title": "Barbie Arm Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Arm Ball and Socket Design",
+        "content": "Ensure the arm's ball and socket design minimizes the risk of scratching. This can be achieved by smoothing the edges and ensuring a snug fit between the ball and socket components.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Material and Wall Thickness Considerations",
+        "content": "The key dimensions, MCA (Material Cross-sectional Area), and PTMI (Part Thickness Minimum Indicator) should be carefully considered as they differ in wall thickness. This requires precise measurement and material selection to ensure durability and functionality.",
+        "image_references": [],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "barbie-arm-tool-design",
+    "title": "Barbie Arm Tool Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Overview",
+        "content": "This document provides comprehensive guidelines for the design of insert molding tools specifically for Barbie doll arms, hands, and legs. The focus is on ensuring precision and quality in the molding process to maintain the aesthetic and functional integrity of the doll parts.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Arm Insert Molding Guidelines",
+        "content": "- Ensure the mold design accommodates the specific dimensions and contours of the Barbie arm.\n- Consider the material flow and cooling channels to prevent defects such as warping or incomplete fills.\n- Design the mold to allow for easy ejection of the molded arm without damaging the surface finish.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Lower Arm Insert Molding Guidelines",
+        "content": "- Pay special attention to the joint areas to ensure smooth articulation.\n- Use precision shut-off surfaces to prevent flash and ensure a clean parting line.\n- Incorporate venting to avoid air traps that could lead to surface blemishes.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Hand Insert Molding Guidelines",
+        "content": "- Design the mold with detailed attention to the fingers and thumb to ensure accurate reproduction of the hand's features.\n- Implement finger shut-off landing requirements to maintain the integrity of the finger details and prevent flash.\n- Ensure the mold allows for consistent material flow to avoid defects in the hand structure.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Lower Leg Insert Molding Guidelines",
+        "content": "- Focus on the ankle and foot areas to ensure proper fit and articulation with the rest of the doll.\n- Design the mold to support the structural integrity of the leg while maintaining flexibility for movement.\n- Ensure proper alignment of mold halves to prevent misalignment and part defects.",
+        "image_references": [],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "upper-arm-insert-molding",
+    "title": "Upper Arm Insert Molding Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Objective",
+        "content": "The primary goal is to reduce flash in insert molding processes.",
+        "image_references": [],
+        "type": "goal"
+      },
+      {
+        "title": "Flash Reduction Techniques",
+        "content": "1. For insert molded hands and feet, flash often occurs at the connection bones, requiring frequent maintenance. To mitigate this, create recessed lines on both sides of the connection bone to act as a seal.\n\n2. Connection bones are typically made from Nylon or POM. Injection molding parameters significantly affect the overall dimensions of connection bones with runner frames. Critical dimensions must be controlled to ensure quality.\n\n3. Avoid placing ejector pins at the edges of inserts. Ejector pin marks on the connection bone, whether protruding or recessed, can easily lead to flash during molding.\n\n4. Ensure connection bones have a larger draft angle. This facilitates easier placement on the mold, reduces mold damage and wear, and minimizes flash occurrence. Additionally, ensure the mushroom head has sufficient engagement and is rounded to prevent breakage. When the parting line (PL) of the bone aligns with the PL of the hands or feet, increase the draft angle on the bone's rounded side to 3°-5°.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Material and Injection Considerations",
+        "content": "- For PP or PP+EVA hands, consider the water entry position:\n  - Non-gas-assist arm\n  - Gas-assist arm\n- For PVC hands, determine the appropriate water entry position to ensure optimal molding results.",
+        "image_references": [],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "lower-arm-insert-molding-guidelines",
+    "title": "Lower Arm Insert Molding Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Objective",
+        "content": "The primary goal is to reduce the occurrence of flash in insert molds for lower arms.",
+        "image_references": [],
+        "type": "goal"
+      },
+      {
+        "title": "Design Considerations for Connection Ribs",
+        "content": "When designing connection ribs, ensure that the outer diameter of the rib is 0.3mm larger than the insert to prevent flash formation at the joint.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Connection Rib and Runner Design",
+        "content": "The connection rib should be integrated with the runner using a thicker gate to maintain structural integrity and prevent deformation. This design facilitates easy placement of the rib onto the mold and prevents damage during clamping.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Material and Dimensional Control",
+        "content": "Connection ribs are typically made from Nylon or POM. Injection molding parameters significantly affect the overall dimensions of ribs with runner frames. It is crucial to control the critical dimensions provided to ensure quality and consistency.",
+        "image_references": [],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "hand-insert-mold-guidelines",
+    "title": "Hand Insert Mold Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Objective",
+        "content": "The primary goal is to reduce the flash on hand insert molds.",
+        "image_references": [],
+        "type": "goal"
+      },
+      {
+        "title": "Design Rule for Connection Bones",
+        "content": "For the palm of the insert mold, when designing the connection bones, ensure that the outer diameter of the connection bone is 0.3mm larger than the palm.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Connection Bones and Runners",
+        "content": "The connection bones should be fixed to the runner using a thicker water inlet. This design ensures that the connection bones and the runner can be considered as a single unit, reducing deformation. The aim is to facilitate easy placement of the connection bones onto the mold and prevent damage to the mold during clamping.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Material and Injection Parameters",
+        "content": "Connection bones are often made of Nylon. The injection molding parameters significantly affect the overall dimensions of connection bones with a RunnerFrame. It is crucial to provide the following critical dimensions for control.",
+        "image_references": [],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "lower-leg-insert-mold-guidelines",
+    "title": "Lower Leg Insert Mold Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Objective",
+        "content": "The primary goal is to reduce the occurrence of flash on the lower leg of insert molds.",
+        "image_references": [],
+        "type": "goal"
+      },
+      {
+        "title": "Design Considerations for Connection Ribs",
+        "content": "For the lower leg of insert molds, flash tends to occur at the connection ribs. When designing these ribs, incorporate recessed lines on both sides to act as a sealant.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Water Inlet and Runner Design",
+        "content": "Ensure that the connection ribs and runners are linked with a thicker water inlet. This design choice helps to treat them as a single unit, reducing deformation and facilitating easier placement onto the mold, thus preventing mold damage.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Material and Injection Parameters",
+        "content": "Connection ribs are often made from Nylon. Injection molding parameters significantly affect the overall dimensions of connection ribs with a Runner Frame. It is crucial to provide and control the Critical Dimensions to maintain quality.",
+        "image_references": [],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "title": "Barbie Hand Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Goal",
+        "content": "Reduce flash on the hand.",
+        "image_references": [],
+        "type": "goal"
+      },
+      {
+        "title": "Product Design",
+        "content": "Keep the fingers as close together as possible and, where possible, on the same parting-line plane. If the height difference between the fingers is too large and there is insufficient shutoff area, flash can readily occur and frequent repairs may be required.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Finger Shutoff Area",
+        "content": "The source identifies a guideline for the finger shutoff area but provides no further design criteria.",
+        "image_references": [],
+        "type": "reference"
+      },
+      {
+        "title": "Tooling Design",
+        "content": "Add a support post near the palm.",
+        "image_references": [],
+        "type": "design_rule"
+      }
+    ],
+    "slug": "barbie-hand-design-guidelines"
+  },
+  {
+    "slug": "barbie-torso-design",
+    "title": "Barbie Torso Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Updated Design Usage",
+        "content": "Ensure that the updated design is used for any new development or when building duplicated molds. This ensures consistency and adherence to the latest standards.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Standard Pro-E Model Reference",
+        "content": "The standard Pro-E model for the Barbie torso design can be found at the following network path: `\\\\Apguam06a\\CAD_ADND_PD\\ProE\\To-PE\\2 series\\24124\\0-latest`. This model should be used as the reference for all design activities.",
+        "image_references": [],
+        "type": "reference"
+      },
+      {
+        "title": "Key Dimensions and Interference Standards",
+        "content": "Adhere to the MCA 2 standard for pin and sleeve interference to ensure proper fit and function. This is critical for maintaining the integrity and performance of the Barbie torso design.",
+        "image_references": [],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "barbie-doll-mca-ptmi",
+    "title": "Barbie Doll - MCA & PTMI",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Torso Design Variations",
+        "content": "For the Barbie Doll, different tool numbers are used for common torsos that have different panty designs. These variations include dot, silo head, and none.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Leg Design Options",
+        "content": "Barbie Dolls feature several leg design options: bendable PVC legs, poseable upper and lower legs, and a lower-cost option with two halves made of ABS plastic.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Arm Design Configurations",
+        "content": "The arm designs for Barbie Dolls include a common version with an insert connector and a lower-cost version without it. Additionally, there are poseable options for the upper and lower arms, or the upper, lower, and hands.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Tooling and Cavity Number Variations",
+        "content": "The PTMI/MCA models have different tool and cavity numbers for some identical parts, indicating variations in manufacturing processes.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Standard Doll Reference",
+        "content": "For a comprehensive list of standard dolls, please refer to the MEC-3D Digital Library for Barbie High DCSH located at: \\\\Apguam06a\\cad_pe\\Productstandard\\MEC-3D-Digital-Libary-for-Barbie-High-DCSH",
+        "image_references": [],
+        "type": "reference"
+      }
+    ]
+  },
+  {
+    "slug": "barbie-leg-plug-in-design",
+    "title": "Barbie Leg Plug-in Design",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Overview",
+        "content": "The Barbie leg plug-in design focuses on ensuring secure attachment and easy assembly of the doll's legs. This guideline outlines the key design considerations and specifications for creating a robust plug-in mechanism.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Design Specifications",
+        "content": "1. **Material Selection**: Use durable, non-toxic plastics that can withstand repeated assembly and disassembly.\n2. **Plug-in Mechanism**: Design the plug-in mechanism to allow for a snug fit, preventing accidental detachment while allowing for easy manual removal.\n3. **Tolerance Levels**: Maintain tight tolerance levels to ensure consistency across production batches.\n4. **Safety Standards**: Ensure all materials and designs comply with international toy safety standards, such as ASTM F963 and EN71.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Assembly Process",
+        "content": "- **Ease of Assembly**: The design should facilitate quick and intuitive assembly by end-users, typically children.\n- **Tool-Free Design**: Ensure that no additional tools are required for assembly or disassembly of the leg components.\n- **Visual Indicators**: Incorporate visual indicators or guides to assist in the correct alignment and insertion of the leg plug.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Testing and Quality Assurance",
+        "content": "- **Durability Testing**: Conduct rigorous testing to simulate wear and tear over time, ensuring the plug-in mechanism remains functional.\n- **User Testing**: Perform user testing with a diverse group of children to ensure the design meets usability and safety expectations.\n- **Quality Checks**: Implement regular quality checks during production to maintain high standards of product integrity.",
+        "image_references": [],
+        "type": "goal"
+      }
+    ]
+  },
+  {
+    "slug": "barbie-mini-doll-design-guidelines",
+    "title": "Barbie Mini Doll Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Dimensional Specifications",
+        "content": "Ensure the dimensions of the doll parts adhere to the specified measurements. For example, the reference length should be 29.41 mm, and the minimum width should be 3.00 mm.",
+        "image_references": [
+          "Barbie-Mini-Doll-design-guideline-0701.pptx_image28.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Joint and Connection Design",
+        "content": "The joints should have a diameter of 1.90 mm with a tolerance of +/- 0.05 mm. Ensure the connection points are designed for easy assembly and disassembly.",
+        "image_references": [
+          "Barbie-Mini-Doll-design-guideline-0701.pptx_image12.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Base and Stability",
+        "content": "The base of the doll should be designed to ensure stability. The heart-shaped recess should have a depth of 2.50 mm and a diameter of 1.87 mm with a tolerance of -0.02 mm.",
+        "image_references": [
+          "Barbie-Mini-Doll-design-guideline-0701.pptx_image10.png",
+          "Barbie-Mini-Doll-design-guideline-0701.pptx_image11.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Aesthetic and Functional Design",
+        "content": "The design should balance aesthetics with functionality, ensuring the doll is visually appealing while maintaining structural integrity.",
+        "image_references": [
+          "Barbie-Mini-Doll-design-guideline-0701.pptx_image3.png",
+          "Barbie-Mini-Doll-design-guideline-0701.pptx_image4.png"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "belt-design-guidelines",
+    "title": "Belt Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Mushroom Fastener Size",
+        "content": "The recommended size for the mushroom fastener includes a 3.4mm diameter with a 0.4mm radius. The height should be 1.3mm with a 0.8mm 45° chamfer. The hole diameter is 3.0mm with a 1.5mm width and 1.6mm minimum depth. Additional height details should be added if necessary.",
+        "image_references": [
+          "Belt.xlsm_image6.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Belt Assembly Direction",
+        "content": "For easy assembly, the belt should be tight with the mushroom fastener outward. A loose belt should have the mushroom fastener inward for aesthetic purposes.",
+        "image_references": [
+          "Belt.xlsm_image4.JPG"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Pin Location and Direction",
+        "content": "Pins should be revised to point outward to facilitate dressing on the torso. The current design with pins inward is difficult to dress.",
+        "image_references": [
+          "Belt.xlsm_image8.jpg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Post Alignment",
+        "content": "Using two posts makes alignment difficult when dressing. It is suggested to use one post for easier alignment.",
+        "image_references": [
+          "Belt.xlsm_image9.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Soft Material Belt Lock Design",
+        "content": "The design should ensure that the belt lock is secure and easy to use. The GRG29-SS01 design is preferred over the CBN45-QS05 design due to better locking mechanism and ease of use.",
+        "image_references": [
+          "Belt.xlsm_image7.png"
+        ],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "bracelet-molding-guidelines",
+    "title": "Bracelet Molding Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Recommended Molding Technique",
+        "content": "The recommended technique involves ensuring the slide moves parallel to the cavity side. This alignment minimizes the risk of flash during the molding process.",
+        "image_references": [
+          "Bracelet.xlsm_image1.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Not Recommended Molding Technique",
+        "content": "Avoid having the slide move against the moving cavity side, as this can easily cause flash, leading to defects in the final product.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Trimming and Openings in Production",
+        "content": "Ensure there is an opening on the final product to accommodate the floating core. This may require additional trimming during production to achieve the desired finish.",
+        "image_references": [
+          "Bracelet.xlsm_image3.jpg"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "brush-design-standard",
+    "title": "Brush Design Standard",
+    "page_type": "technical_reference",
+    "sections": [
+      {
+        "title": "Brush Design Specifications",
+        "content": "This document provides the standard design specifications for brushes. The image illustrates the critical dimensions and guidelines to ensure optimal performance and manufacturing efficiency.",
+        "image_references": [
+          "brush-design.JPG"
+        ],
+        "type": "reference"
+      },
+      {
+        "title": "Dimensional Guidelines",
+        "content": "- The grid spacing is specified as 0.260 inches.\n- Minimum diameter for certain features is 0.060 inches.\n- Full radius (R) is required at specified locations to ensure structural integrity.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Manufacturing Considerations",
+        "content": "- Prioritize maximum material at the root to enhance strength.\n- Avoid shrinkage during the manufacturing process to maintain dimensional accuracy.\n- A maximum radius of 0.090 inches is allowed at the root for optimal performance.",
+        "image_references": [],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "crown-tiara-design-guidelines",
+    "title": "Crown/Tiara Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Sharp Edge Requirement",
+        "content": "Ensure a sharp edge inside along the slide parting line for proper fit and finish.",
+        "image_references": [
+          "Crown-Tiara.xlsm_image3.JPG"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Sharp Point Avoidance",
+        "content": "Avoid sharp point issues by maintaining a radius greater than 0.8mm.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Shut Off Holes Specification",
+        "content": "Shut off holes should be larger than a diameter of 2mm to ensure proper functionality.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Connection Strength",
+        "content": "Connections should be strong enough, with a minimum thickness greater than 1.2mm, to ensure durability.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Production Considerations",
+        "content": "Ensure openings on the final product for part holding on the floating core. Additional trimming may be required in production.",
+        "image_references": [
+          "Crown-Tiara.xlsm_image2.jpeg"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "earring-design-guidelines",
+    "title": "Earring Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Design Considerations for Earrings",
+        "content": "When designing earrings, consider the following aspects to ensure comfort, style, and functionality. Earrings should be lightweight to prevent discomfort during extended wear. The attachment mechanism, such as a post with a barb, should be secure yet easy to use. Consider the visual impact of the earring from different angles, ensuring it complements the wearer's appearance.",
+        "image_references": [
+          "Earring.xlsm_image1.png",
+          "Earring.xlsm_image2.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Technical Specifications",
+        "content": "Earrings should adhere to specific size and weight constraints to ensure comfort and safety. The post length should accommodate various ear thicknesses, and the barb should be designed to prevent accidental detachment. Materials used should be hypoallergenic to prevent skin irritation.",
+        "image_references": [
+          "Earring.xlsm_image3.jpeg"
+        ],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "headband-design-guidelines",
+    "title": "Headband Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Material and Attachment Methods",
+        "content": "Different headband designs utilize various materials and attachment methods. For instance, the BDB09 model uses a snap mechanism with PPco+PPco materials, while the BBD52 model employs glue with ABS+PVC90 materials. The BBD43 model also uses a snap mechanism but with PPco+PVC90 materials. The T7411 model uses a snap mechanism with PPco+PPco materials.",
+        "image_references": [
+          "Headband.xlsm_image8.png",
+          "Headband.xlsm_image7.png",
+          "Headband.xlsm_image6.jpeg",
+          "Headband.xlsm_image9.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Dimensional Specifications",
+        "content": "The headbands have specific dimensional requirements. One design features a width of 1.280 inches and a height of 1.200 inches, with an overall width of 1.455 inches. Another design has a width of 0.949 inches, a height of 1.199 inches, and an overall width of 1.102 inches.",
+        "image_references": [
+          "Headband.xlsm_image5.jpg",
+          "Headband.xlsm_image4.jpg"
+        ],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "necklace-design-guidelines",
+    "title": "Necklace Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "General Design Rules",
+        "content": "For necklaces with length greater than 1.5 inches, suggest an opening of 0.120 inches. The recommended material is PPCO. Ensure the shape matches the Torso's shape.",
+        "image_references": [
+          "Necklace.xlsm_image2.JPG"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Design Rule A",
+        "content": "If the length is between 0.9 and 1.5 inches, suggest an opening between 0.120 and 0.200 inches. The recommended material is PPCO. Ensure the shape matches the Torso's shape.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Design Rule B",
+        "content": "If the length is between 0.1 and 0.5 inches, suggest an opening between 0.360 and 0.400 inches when the material is ABS (not too flexible). Ensure the shape matches the Torso's shape.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Doll Necklace Design",
+        "content": "If the necklace is intended to fit a doll's neck with a length less than 0.5 inches, suggest an opening between 0.300 and 0.360 inches. The recommended material is PPCO and PVCO. Ensure the shape matches the Torso's shape.",
+        "image_references": [],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "shoe-design-guidelines",
+    "title": "Shoe Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Space Optimization in Shoe Design",
+        "content": "Cut material inside the shoe to reserve more space for the foot, enhancing comfort and fit.",
+        "image_references": [
+          "Shoes.xlsm_image4.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Logo Placement on Shoe Soles",
+        "content": "For high heels, place the logo at the heel area. For platform shoes, position the logo centrally on the sole.",
+        "image_references": [
+          "Shoes.xlsm_image3.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Material Core Out in Toe-Cap",
+        "content": "Core out material from the toe-cap to avoid flow marks and shrinkage marks, improving the aesthetic and structural integrity of the shoe.",
+        "image_references": [
+          "Shoes.xlsm_image6.jpg"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Tampo Printing Effect",
+        "content": "Utilize tampo printing to achieve detailed designs on shoe surfaces, enhancing visual appeal.",
+        "image_references": [
+          "Shoes.xlsm_image5.png"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "sunglass-design-guidelines",
+    "title": "Sunglass Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Wall Thickness Specifications",
+        "content": "The basic wall thickness for sunglasses should be 1.5 mm (0.059 inches). For the bridge, if the width is greater than 2 mm (0.079 inches), the wall thickness should remain at 1.5 mm (0.059 inches).",
+        "image_references": [
+          "Sunglasses.xlsm_image3.png",
+          "Sunglasses.xlsm_image4.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Material Considerations",
+        "content": "Sunglasses can be made from C-PPCO raw resin, which provides a suitable balance of flexibility and durability.",
+        "image_references": [
+          "Sunglasses.xlsm_image2.png"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "chelsea-hand-accessories-c-clip",
+    "title": "Chelsea Hand Accessories C-Clip",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "C-Clip Design Specifications",
+        "content": "The C-Clip is designed with specific dimensions to ensure proper functionality and compatibility with Chelsea hand accessories. The thickness of the clip is 1.5mm, providing adequate strength and durability. The internal diameter (ID) of the clip is 1.5mm, allowing it to securely hold onto the accessory. The opening of the clip measures 1.2mm, which facilitates easy attachment and detachment while maintaining a firm grip. The overall width of the clip is 1.4mm, ensuring a compact design that does not interfere with the accessory's usability.",
+        "image_references": [
+          "Chelsea Hand Accessories C-Clip.xlsm_image1.png"
+        ],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "horse-design-guidelines",
+    "title": "Horse Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Horse Rein Standard Design",
+        "content": "The design of horse reins should consider ease of assembly and durability. Option B, which features one-piece molding and a hole with a slot, is preferred for easier assembly and enhanced strength.",
+        "image_references": [
+          "Horse.xlsm_image3.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Seam Alignment",
+        "content": "Ensure proper alignment of seams during assembly to maintain aesthetic quality and structural integrity.",
+        "image_references": [
+          "Horse.xlsm_image4.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Inner Runner Design",
+        "content": "The inner runner design should facilitate efficient material flow and support structural stability. Ensure the runner paths are optimized for the mold design.",
+        "image_references": [
+          "Horse.xlsm_image5.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Hair Attachment",
+        "content": "Hair should be securely attached with appropriate width and tension to prevent detachment. Ensure the attachment points are robust and well-distributed.",
+        "image_references": [
+          "Horse.xlsm_image6.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Head Design",
+        "content": "The horse head design should maintain a smooth contour with an angle not exceeding 40 degrees to ensure aesthetic appeal and structural integrity.",
+        "image_references": [
+          "Horse.xlsm_image7.png",
+          "Horse.xlsm_image8.png"
+        ],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "spirit-horse-pony-development-guidelines",
+    "title": "Spirit Horse/Pony Development Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Deco Peel Off",
+        "content": "Ensure that the decorative elements do not peel off. Check for proper adhesion and alignment during the manufacturing process.",
+        "image_references": [
+          "Spirit-Horse-development guideline.pptx_image8.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Surface Finish",
+        "content": "Avoid loss of matte finishing or welding issues due to thick wall design. Ensure consistent wall thickness to maintain surface quality.",
+        "image_references": [
+          "Spirit-Horse-development guideline.pptx_image11.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Projection Issue",
+        "content": "To avoid projection issues, ensure the tip of the horse's ears is forward above to less than 40 degrees.",
+        "image_references": [
+          "Spirit-Horse-development guideline.pptx_image16.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Gap Between Head and Hair",
+        "content": "Maintain a consistent gap between the head and hair to ensure proper fit and aesthetic appeal.",
+        "image_references": [
+          "Spirit-Horse-development guideline.pptx_image17.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Hair Attachment",
+        "content": "Secure the hair attachment with precise hole placement to ensure stability and durability.",
+        "image_references": [
+          "Spirit-Horse-development guideline.pptx_image18.png",
+          "Spirit-Horse-development guideline.pptx_image20.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Dimensional Specifications",
+        "content": "Follow the specified dimensions for slots and hair placement to ensure proper assembly and appearance.",
+        "image_references": [
+          "Spirit-Horse-development guideline.pptx_image19.png",
+          "Spirit-Horse-development guideline.pptx_image21.png"
+        ],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "doll-stand-design",
+    "title": "Doll Stand Design",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Interference Fitting",
+        "content": "Use 3 tight lines as interference fitting to ensure stability and secure attachment of components.",
+        "image_references": [
+          "Doll Stand.xlsm_image5.jpg",
+          "Doll Stand.xlsm_image2.jpeg"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Loose Fitting",
+        "content": "Allow 0 to 0.005 inch/side for loose fitting to facilitate easy assembly and disassembly of parts.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Doll Stand Components",
+        "content": "The doll stand consists of several components including the top, bottom, post, clip, dead weight, and friction pad. Each component plays a specific role in the assembly and stability of the stand.",
+        "image_references": [
+          "Doll Stand.xlsm_image3.JPG"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Design Variations",
+        "content": "Different designs include U shape snap design and tight fit design, each offering unique benefits for specific doll types.",
+        "image_references": [
+          "Doll Stand.xlsm_image4.JPG"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "disney-fashion-doll-arm-connector-dimensions",
+    "title": "Disney Fashion Doll Arm Connector Dimensions",
+    "page_type": "technical_reference",
+    "sections": [
+      {
+        "title": "Critical Dimensions for STD B2K Arm Connector Ribs (MCA Version)",
+        "content": "The critical dimensions for the STD B2K arm connector ribs in the MCA version are specified as follows: \n- Torso Front: 0.170\" ± 0.020\"\n- Torso Rear: 0.008\"",
+        "image_references": [
+          "Disney Fashion.xlsm_image4.jpg"
+        ],
+        "type": "reference"
+      },
+      {
+        "title": "Key Dimensions for STD B2K Arm Connector Ribs (PTMI Version)",
+        "content": "The key dimensions for the STD B2K arm connector ribs in the PTMI version are specified as follows:\n- Torso Front: 0.170\" ± 0.020\"\n- Torso Rear: 0.004\"",
+        "image_references": [
+          "Disney Fashion.xlsm_image5.jpeg"
+        ],
+        "type": "reference"
+      },
+      {
+        "title": "Connector Design Guidelines",
+        "content": "1. The connector should be inserted at an angle (R=0.5mm) to ensure no stress is applied to the joint.\n2. Both sides of the connector should be aligned to ensure proper connection.\n3. Ensure the connector is securely attached.",
+        "image_references": [
+          "Disney Fashion.xlsm_image2.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Component Identification",
+        "content": "The components of the Disney fashion doll are identified as follows:\n- 2010: Head\n- 2011: Hair\n- 2014: Left Arm\n- 2015: Right Arm\n- 2016: Left Leg\n- 2017: Right Leg\n- 2020: Torso",
+        "image_references": [
+          "Disney Fashion.xlsm_image3.png"
+        ],
+        "type": "reference"
+      }
+    ]
+  },
+  {
+    "slug": "mh-fashion-doll",
+    "title": "MH Fashion Doll Assembly Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Hip Connector Gap",
+        "content": "Ensure the right hip connector has a gap of approximately 0.8mm for proper assembly.",
+        "image_references": [
+          "MH.xlsm_image5.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Connector Insertion",
+        "content": "Select the connector with an insertion radius of 0.5mm to ensure secure attachment without excessive force.",
+        "image_references": [
+          "MH.xlsm_image1.jpeg"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Arm Assembly Force",
+        "content": "For articulated arms, apply force with the palm facing downward. Over-bend the lower arm toward and across the chest until 5 lb of force is reached. Disassembly is unacceptable.",
+        "image_references": [
+          "MH.xlsm_image2.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Elbow Articulation",
+        "content": "Ensure elbows can articulate outward, upward, and backward with a force of 10 lb without detachment.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Assembly Sequence",
+        "content": "Follow the sequence shown in the images for proper assembly of the doll's limbs and torso.",
+        "image_references": [
+          "MH.xlsm_image3.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Connector Alignment",
+        "content": "Ensure connectors are aligned correctly as shown in the diagrams to avoid misalignment during assembly.",
+        "image_references": [
+          "MH.xlsm_image4.png"
+        ],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "eah-fashion-doll-design",
+    "title": "EAH Fashion Doll Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Component Assembly",
+        "content": "The EAH fashion doll consists of multiple components including hands, upper legs, and lower legs. These parts are interchangeable with other models such as BBD43 and BBD44.",
+        "image_references": [
+          "EAH.xlsm_image1.jpeg",
+          "EAH.xlsm_image2.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Connector Design",
+        "content": "The connector design includes a spherical joint with a radius of 0.5mm. This design ensures a secure fit and allows for rotational movement. The connector must be inserted at a specific angle to ensure proper assembly.",
+        "image_references": [
+          "EAH.xlsm_image3.jpeg"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Joint Alignment",
+        "content": "Proper alignment of joints is crucial for the functionality of the doll. Misalignment can lead to restricted movement or damage. Ensure that the joints are aligned according to the specified guidelines.",
+        "image_references": [
+          "EAH.xlsm_image4.png"
+        ],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "polly-doll-design-guidelines",
+    "title": "Polly Doll Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Neck Design",
+        "content": "Ensure the neck diameter is less than 8mm to maintain a secure fit.",
+        "image_references": [
+          "Polly-doll.xlsm_image2.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Clothing Fit",
+        "content": "Clothing neck diameter should not be too tight to avoid difficulty in dressing and undressing the doll, especially for long-haired dolls.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Storage Instructions",
+        "content": "Store clothing separately to avoid mixing and ensure easy access.",
+        "image_references": [
+          "Polly-doll.xlsm_image3.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Standard Dimensions",
+        "content": "Refer to the provided 3D model links for detailed dimensions of various accessories and fittings.",
+        "image_references": [
+          "Polly-doll.xlsm_image4.png"
+        ],
+        "type": "reference"
+      },
+      {
+        "title": "Common Tools",
+        "content": "Utilize the common tools chart for interchangeable parts and accessories.",
+        "image_references": [
+          "Polly-doll.xlsm_image5.png"
+        ],
+        "type": "reference"
+      },
+      {
+        "title": "Compact Design",
+        "content": "Follow the common design guidelines for compact Polly Pocket items.",
+        "image_references": [
+          "Polly-doll.xlsm_image9.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Component Dimensions",
+        "content": "Refer to the images for specific dimensions of various components such as cases and accessories.",
+        "image_references": [
+          "Polly-doll.xlsm_image7.png",
+          "Polly-doll.xlsm_image8.jpg",
+          "Polly-doll.xlsm_image10.png",
+          "Polly-doll.xlsm_image11.png"
+        ],
+        "type": "reference"
+      }
+    ]
+  },
+  {
+    "slug": "stingray-small-doll-design-guidelines",
+    "title": "Stingray Small Doll Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Overall Dimensions",
+        "content": "The total height of the Stingray small doll is 95.3mm.",
+        "image_references": [
+          "Stingray small doll-design guide line MGY version.pptx_image8.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Head and Face Design",
+        "content": "The head requires specific textures YS 1284 A. The face design should accommodate a hexagonal hole of 2.9mm diameter.",
+        "image_references": [
+          "Stingray small doll-design guide line MGY version.pptx_image2.png",
+          "Stingray small doll-design guide line MGY version.pptx_image7.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Body and Limb Textures",
+        "content": "The body and limbs require textures YS 1282 A.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Joint and Connection Specifications",
+        "content": "- Arm joint diameter: 1.56mm.\n- Leg joint diameter: 2.2mm.\n- Hip joint diameter: 2.2mm with a depth of 0.5mm.",
+        "image_references": [
+          "Stingray small doll-design guide line MGY version.pptx_image5.png",
+          "Stingray small doll-design guide line MGY version.pptx_image4.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Assembly and Fit",
+        "content": "Ensure a fit tolerance of 0.5mm for assembly. The head and hairpiece should have a clearance of 0.5mm.",
+        "image_references": [
+          "Stingray small doll-design guide line MGY version.pptx_image3.png"
+        ],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "bracelet-design-guidelines",
+    "title": "Bracelet Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Mold Design Recommendations",
+        "content": "When designing molds for bracelets, ensure that the slide mechanism is aligned with the cavity side to prevent flash. Flash occurs when the slide moves against the cavity side, leading to defects.",
+        "image_references": [
+          "Bracelet.xlsm_image1.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Trimming Considerations",
+        "content": "Design the mold to minimize openings on the final product. Openings can result in the need for extra trimming during production, especially when parts are held on a floating core.",
+        "image_references": [
+          "Bracelet.xlsm_image3.jpg"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "dress-costume-guidelines",
+    "title": "Dress/Costume Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "File Management for Dress Design",
+        "content": "Ensure to save the dress design files in an easily accessible location. Avoid storing all costume files in one directory to prevent confusion.",
+        "image_references": [
+          "Dress.xlsm_image1.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Collar Design Specification",
+        "content": "The collar width should be less than 8mm to ensure a snug fit and avoid discomfort.",
+        "image_references": [
+          "Dress.xlsm_image2.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Dress Opening Design",
+        "content": "The opening of the dress should not be too narrow to facilitate easy wearing and removal. This is particularly important for designs with back openings or longer lengths.",
+        "image_references": [],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "earring-ring-design-guidelines",
+    "title": "Earring & Ring Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Earring Design Specifications",
+        "content": "1. Earring post dimensions: 4.5mm length, 1.6mm diameter.\n2. Earring post should be straight and centered for dolls wearing on top.\n3. Post angle options: 0° or 45° as per design request.\n4. Earring hole direction on the doll head may vary slightly depending on the box width.",
+        "image_references": [
+          "Girls-Inc-earring.xlsm_image3.jpeg"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Ring Design Specifications",
+        "content": "1. Ring post diameter: 1.6mm.\n2. Ensure the ring fits securely on the doll's finger without slipping.",
+        "image_references": [
+          "Girls-Inc-earring.xlsm_image4.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Design Variations",
+        "content": "1. Various earring designs include T6986, R9879, and R4279 models.\n2. Each design offers unique aesthetic elements suitable for different styles.",
+        "image_references": [
+          "Girls-Inc-earring.xlsm_image2.png"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "hair-clip-design-guidelines",
+    "title": "Hair Clip Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Post Location and Design",
+        "content": "Ensure the post location and design are appropriate for the hair clip's functionality and aesthetics.",
+        "image_references": [
+          "Girls-Inc-hair-clip -V1.xlsm_image1.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Material Selection",
+        "content": "Use ship-position steel to ensure durability and strength of the hair clip.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Design for Manufacturing",
+        "content": "Consider the manufacturing process to ensure the hair clip can be produced efficiently and cost-effectively.",
+        "image_references": [],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "solid-pvc-animal-design",
+    "title": "Solid PVC Animal Design",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Flow Mark Improvement",
+        "content": "To avoid or improve the flow mark on the face of the PVC animal, consider separating the head at the neck or separating the head back from the head front and body. Additionally, separating the leg from the body can also be an option. Collaborate with plant TE&PE to convince designers to implement these separations and glue the parts together.",
+        "image_references": [
+          "Pet(Animal).xlsm_image1.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Dimensional Specifications",
+        "content": "Ensure the octagonal hole on the animal's head is designed with a diameter of 2.00 ± 0.02 mm. The connecting part should have a diameter of 2.05 ± 0.02 mm to ensure a snug fit.",
+        "image_references": [
+          "Pet(Animal).xlsm_image2.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Material and Design Specifications",
+        "content": "The animal should be made from PVC, while the skateboard can be made from ABS or PP. The design should include a plug and play feature with specific dimensions: the skateboard should have a thickness of 3.5 mm and a radius of 0.6 mm at the edges.",
+        "image_references": [
+          "Pet(Animal).xlsm_image3.png"
+        ],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "4-inch-minions-design-guideline",
+    "title": "4'' Minions Design Guideline",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Dimensional Specifications",
+        "content": "Ensure all components fit within the specified tolerances. For example, parts labeled GMF15 and GMF17 should adhere to a diameter tolerance of Ø4 +/- 0.03.",
+        "image_references": [
+          "4'' Minions-design-guideline-0410.pptx_image22.png",
+          "4'' Minions-design-guideline-0410.pptx_image23.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Assembly Instructions",
+        "content": "Components should be assembled according to the specified configurations. Use the slide mechanism for parts alignment as shown in the diagrams.",
+        "image_references": [
+          "4'' Minions-design-guideline-0410.pptx_image26.png",
+          "4'' Minions-design-guideline-0410.pptx_image28.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Injection Molding Gates",
+        "content": "Utilize sub gates and edge gates for the injection molding process to ensure proper material flow and part integrity.",
+        "image_references": [
+          "4'' Minions-design-guideline-0410.pptx_image27.png",
+          "4'' Minions-design-guideline-0410.pptx_image29.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Texture and Appearance",
+        "content": "Apply the 4'' scale Minion jeans texture uniformly across the designated areas to maintain visual consistency.",
+        "image_references": [
+          "4'' Minions-design-guideline-0410.pptx_image30.png"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "mega-design-guidelines",
+    "title": "MEGA Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "3D Verification",
+        "content": "Increase the ceiling of the hatched area to .060. Ceiling at .050 is only for short height block area of .125.",
+        "image_references": [
+          "MEGA-Guideline.xlsm_image9.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Rib Addition",
+        "content": "Add ribs TD03001023 because wall height is higher than .125. One pin out of two is enough.",
+        "image_references": [
+          "MEGA-Guideline.xlsm_image10.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Radius Replacement",
+        "content": "Replace the radius by a flat. For part geometry similar to a wedge, use a flat instead of a radius.",
+        "image_references": [
+          "MEGA-Guideline.xlsm_image11.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Round/Angle Block",
+        "content": "All round/angle blocks with a long and thin .015 side require a R.050 to maintain a constant look.",
+        "image_references": [
+          "MEGA-Guideline.xlsm_image12.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Part Lowering",
+        "content": "Lower the part to have a .015 flat.",
+        "image_references": [
+          "MEGA-Guideline.xlsm_image13.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Flat Creation",
+        "content": "Make a flat without draft for fit. Diameter .200 post clearance beside flat.",
+        "image_references": [
+          "MEGA-Guideline.xlsm_image14.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Post Filling",
+        "content": "Fill all posts and shell them from the core side. Refer to TD03001213.",
+        "image_references": [
+          "MEGA-Guideline.xlsm_image15.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Wall and Rib Prioritization",
+        "content": "Continue the wall up to the next rib. Prioritize wall over ribs when possible.",
+        "image_references": [
+          "MEGA-Guideline.xlsm_image16.png"
+        ],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "ttg-mini-figure-design-guidelines",
+    "title": "TTG Mini Figure Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Wall Thickness and Dimensions",
+        "content": "Ensure the majority of the material thickness is greater than 4.8mm to maintain structural integrity.",
+        "image_references": [
+          "TTG-mini figure.pptx_image34.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Angle Specifications",
+        "content": "Maintain a 60-degree angle for specific design elements to ensure proper fit and function.",
+        "image_references": [
+          "TTG-mini figure.pptx_image28.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Internal Radius",
+        "content": "The internal radius should be between R1 to R1.5 to facilitate material flow during manufacturing.",
+        "image_references": [
+          "TTG-mini figure.pptx_image37.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Hole Dimensions",
+        "content": "The hole of the cape should have dimensions of 2.9mm and 2.2mm for proper assembly.",
+        "image_references": [
+          "TTG-mini figure.pptx_image38.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Component Fit",
+        "content": "Ensure a component fit with a 2.0mm gap for secure attachment.",
+        "image_references": [
+          "TTG-mini figure.pptx_image42.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Base Dimensions",
+        "content": "The base should have dimensions of 4.0mm, 3.5mm, and 0.8x0.6mm to ensure stability.",
+        "image_references": [
+          "TTG-mini figure.pptx_image41.png"
+        ],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "battery-box-contact-plate",
+    "title": "Battery Box & Contact Plate Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Keyed Terminals",
+        "content": "The battery compartment includes keyed terminals for different battery sizes: AAA, AA, C, and D. Each terminal type is designed for positive and negative connections, as well as shorting bars.",
+        "image_references": [
+          "Battery-compartment.xlsm_image1.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Rib Design to Avoid Short Circuit",
+        "content": "Incorporate ribs within the battery compartment to prevent short circuits. These ribs ensure that the battery remains securely in place and does not contact other conductive parts.",
+        "image_references": [
+          "Battery-compartment.xlsm_image4.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Contact Plate Positioning",
+        "content": "Ensure that the contact plate does not protrude beyond the shoulder area of the housing. This prevents interference with the external structure and maintains the integrity of the design.",
+        "image_references": [
+          "Battery-compartment.xlsm_image3.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Battery Door Design",
+        "content": "The battery door should include a finger recess to facilitate easy opening. Additionally, the middle button cell should be higher than the sides to ensure proper contact and secure placement.",
+        "image_references": [
+          "Battery-compartment.xlsm_image5.png",
+          "Battery-compartment.xlsm_image6.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Battery Compartment Structure",
+        "content": "The compartment should be designed to accommodate multiple battery types and ensure secure placement. The structure should prevent movement and ensure proper electrical contact.",
+        "image_references": [
+          "Battery-compartment.xlsm_image8.png",
+          "Battery-compartment.xlsm_image9.png",
+          "Battery-compartment.xlsm_image10.png",
+          "Battery-compartment.xlsm_image11.png"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "cavity-number-guidelines",
+    "title": "Cavity Number Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Gear Clearance Calculation",
+        "content": "The clearance between gears is calculated using the formula: \\( D + C \\), where \\( D = \\frac{m(Z1 + Z2)}{2} \\). Here, \\( m \\) is the module, and \\( Z1, Z2 \\) are the number of teeth on the gears. The clearance values for different modules are specified as follows: 0.05mm for module 0.5, 0.06mm for modules 0.6 and 0.7, 0.06-0.07mm for module 0.8, 0.07mm for module 0.9, and 0.08mm for module 1.",
+        "image_references": [
+          "Cavity Number.xlsm_image4.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Cavity Number Marking",
+        "content": "It is essential to mark the cavity number on all parts, even if there is only one cavity. This ensures traceability and quality control in the manufacturing process.",
+        "image_references": [
+          "Cavity Number.xlsm_image1.jpeg",
+          "Cavity Number.xlsm_image2.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Standard for Cavity Number on Products",
+        "content": "The standard for marking cavity numbers on products such as shoes and earrings includes specific dimensions and placement. For shoes, the cavity number should be placed at a visible location with dimensions of 2.3mm. For earrings, the cavity number should be placed with dimensions of 1.0-1.7mm.",
+        "image_references": [
+          "Cavity Number.xlsm_image3.png"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "finger-trap-guidelines",
+    "title": "Finger Trap Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Finger Trap Design for Ages ≤1.5 Years",
+        "content": "Ensure that any openings in rigid materials are less than 5.5mm to prevent finger entrapment for children aged 1.5 years or younger.",
+        "image_references": [
+          "Finger-trap.jpg"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Finger Trap Design for Ages >1.5 Years",
+        "content": "For children older than 1.5 years, openings should be designed to be either less than 5.5mm or greater than 12mm to avoid finger entrapment.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Performance Requirements",
+        "content": "Adhere to the specified performance requirements for product integrity in QSOP guidelines, ensuring safety in design to prevent finger entrapment.",
+        "image_references": [],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "gating-design-guidelines",
+    "title": "Gating Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Requirements for Water Inlet Products",
+        "content": "To minimize pressure loss, the following guidelines should be followed:\n\n1. The submerged column should be relatively long, with a length-to-distance ratio of 6:3, to avoid excessive expansion.\n2. Ensure there is a water inlet.\n3. Ensure there is a water outlet.\n4. The component should not be easily deformed.\n5. The water inlet position should be thick enough.\n6. The water outlet position should be thick enough.",
+        "image_references": [
+          "Product design for gating.pptx_image3.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Gate Types for Gear",
+        "content": "Different gate types have specific recommendations:\n\n1. **Pin Point Gate (A)**: Not recommended due to too big runner ratio.\n2. **Edge Gate (B)**: Recommended if structure allows for self-trimming.\n3. **Sub Gate to Post in Cavity (C)**: Not recommended due to still needing trimming.\n4. **Hot Runner with Many Drops (D)**: Not recommended due to high investment and use for high quota.\n5. **New Design Edge Gate (E)**: Recommended as flange can increase gear strength, but gate needs trimming.",
+        "image_references": [
+          "Product design for gating.pptx_image4.png"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "title": "Gear Clearance Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Gear Clearance Calculation",
+        "content": "Set the gear-center spacing to \\(D+C\\), where \\(C\\) is the clearance and:\n\n\\[\nD=\\frac{m(Z1+Z2)}{2}\n\\]\n\n- \\(m\\) = module\n- \\(Z1\\), \\(Z2\\) = numbers of teeth",
+        "image_references": [
+          "Gear.xlsm_image2.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Module and Clearance Reference",
+        "content": "",
+        "image_references": [],
+        "type": "reference",
+        "table": {
+          "columns": [
+            "Module",
+            "Clearance"
+          ],
+          "rows": [
+            [
+              "0.5",
+              "0.05mm"
+            ],
+            [
+              "0.6",
+              "0.06mm"
+            ],
+            [
+              "0.7",
+              "0.06mm"
+            ],
+            [
+              "0.8",
+              "0.06–0.07mm"
+            ],
+            [
+              "0.9",
+              "0.07mm"
+            ],
+            [
+              "1",
+              "0.08mm"
+            ]
+          ]
+        }
+      },
+      {
+        "title": "General Gear Design Concerns",
+        "content": "- For abuse-service gears, \\(m=0.8\\) is suggested.\n- Use Acetal for motor gears and high-speed gears; use ABS for lower-speed gears.\n- Use a flange design for gating.",
+        "image_references": [],
+        "type": "guideline"
+      }
+    ],
+    "slug": "gear-clearance-guidelines"
+  },
+  {
+    "slug": "heat-stake-design",
+    "title": "Heat Stake Design",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Heat Stake Design Overview",
+        "content": "The heat stake design involves creating a joint by melting and reforming a plastic stud to hold components together. This process is commonly used in assembling plastic parts.",
+        "image_references": [
+          "heat-stake.xlsm_image3.jpeg",
+          "heat-stake.xlsm_image2.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Design Specifications",
+        "content": "1. The diameter of the heat stake should be between 1/16 to 3/16 inches.\n2. The chamfer should be 0.4x45° minimum.\n3. Match radius size should be maintained as per design requirements.\n4. Tolerances for dimensions are specified as +/- 0.05 mm for critical dimensions.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Ultrasonic Welding Standards",
+        "content": "The ultrasonic welding standards specify the profile and dimensions before and after welding. The standard profile stake should have a diameter of 0.58 inches before weld and 0.50 inches after weld.",
+        "image_references": [
+          "heat-stake.xlsm_image1.jpeg"
+        ],
+        "type": "reference"
+      }
+    ]
+  },
+  {
+    "slug": "insert-molding-guideline",
+    "title": "Insert Molding Guideline",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "General Guideline for Hand Insert Molds",
+        "content": "For hand insert molds, when designing the connecting bone, the outer diameter of the connecting bone should be greater than 0.3mm.",
+        "image_references": [
+          "insert-molding-guideline.xlsx_image1.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "General Guideline for Lower Arm Insert Molds",
+        "content": "For lower arm insert molds, the connection area is prone to deformation. When designing the connection, the outer diameter of the connecting bone should be 0.3-0.5mm.",
+        "image_references": [
+          "insert-molding-guideline.xlsx_image2.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "General Guideline for Lower Leg Insert Molds",
+        "content": "For lower leg insert molds, the connection area is prone to deformation. When designing the connection, both sides of the connecting bone should be symmetrical. The water outlet should be smooth, and the connection between the insert and the mold should be tight to prevent water leakage.",
+        "image_references": [
+          "insert-molding-guideline.xlsx_image3.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Design Considerations for Hand Molds",
+        "content": "Ensure that the diameter is greater than 0.7mm and the angle is greater than 10 degrees for optimal design.",
+        "image_references": [
+          "insert-molding-guideline.xlsx_image4.jpg"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Insert Mold Process Flow",
+        "content": "The process flow for insert molds includes steps such as PQ lab testing, EDM, and assembly. The new process requires additional steps for insert mold verification.",
+        "image_references": [
+          "insert-molding-guideline.xlsx_image5.png"
+        ],
+        "type": "reference"
+      },
+      {
+        "title": "General Guideline for Barbie Arm & Shoulder Connector",
+        "content": "For Barbie arm and shoulder connectors, ensure the connection is tight and symmetrical. The connector should have a diameter of 0.5mm and follow the specified dimensions for optimal fit.",
+        "image_references": [
+          "insert-molding-guideline.xlsx_image6.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "General Guideline for Shut-Off Hole Design",
+        "content": "The shut-off hole should be designed with a distance of 0.1mm between the hole and the edge to ensure proper sealing.",
+        "image_references": [
+          "insert-molding-guideline.xlsx_image7.png"
+        ],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "connector-with-mushroom-design",
+    "title": "Connector with Mushroom Design",
+    "page_type": "technical_reference",
+    "sections": [
+      {
+        "title": "Design Specifications",
+        "content": "The connector features a mushroom design intended for shoulder joints. The design includes specific measurements and standards to ensure optimal performance.",
+        "image_references": [
+          "shoulder - Rev A.png"
+        ],
+        "type": "reference"
+      },
+      {
+        "title": "Key Measurements",
+        "content": "- Diameter of the ball (ΦB) is specified as ΦA - 3.0mm.\n- The thickness (T) is calculated as ΦC divided by 4.\n- The diameter of the connector disc (ΦC) is 0.9 times ΦB.",
+        "image_references": [],
+        "type": "reference"
+      },
+      {
+        "title": "Design Goals",
+        "content": "Maximize the contact area between the connector disc and the torso rib to achieve maximum friction.",
+        "image_references": [],
+        "type": "goal"
+      }
+    ]
+  },
+  {
+    "slug": "hot-stamp-process",
+    "title": "Hot Stamp Process",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Overview of Hot Stamping",
+        "content": "Hot stamping is a process used to apply metallic or colored foils to a surface using heat and pressure. It is commonly used in automotive, packaging, and decorative industries.",
+        "image_references": [
+          "Hot Stamp Example in production-.pptx_image1.jpeg",
+          "Hot Stamp Example in production-.pptx_image2.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Applications",
+        "content": "Hot stamping is ideal for adding decorative elements to products, such as logos or text, and is often used on plastic components like hubcaps or interior car parts.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Process Details",
+        "content": "The process involves placing a foil between a heated die and the substrate. The die is pressed onto the foil, transferring the design onto the substrate. This requires precise control of temperature and pressure to ensure quality results.",
+        "image_references": [],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "lap-joint-design-standard",
+    "title": "Lap Joint Design Standard",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Double Lap Joint Design Standard",
+        "content": "The Double Lap Joint Design Standard outlines the specifications for creating lap joints with specific dimensions and angles. The design is presented in two versions, A and B, each with distinct measurements and angles.",
+        "image_references": [
+          "Lap-joint.xlsm_image4.jpeg",
+          "Lap-joint.xlsm_image2.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Lap Joint Design Standard",
+        "content": "This section provides the design specifications for lap joints, detailing the thickness and angle requirements for two versions, A and B. The designs specify different thicknesses and angles for precise application.",
+        "image_references": [
+          "Lap-joint.xlsm_image3.png",
+          "Lap-joint.xlsm_image1.jpeg"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "legal-marking-guidelines",
+    "title": "Legal Marking Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "General Legal Marking Requirements",
+        "content": "All products must include standard legal markings. These markings should be clear and legible, using the specified fonts and sizes.",
+        "image_references": [
+          "Legal-marking.xlsm_image1.png",
+          "Legal-marking.xlsm_image14.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Battery Size Artwork",
+        "content": "Battery compartments must display the correct battery size artwork with precise dimensions. Ensure the markings are placed on the finished part.",
+        "image_references": [
+          "Legal-marking.xlsm_image3.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Product Markings for Battery-operated Products",
+        "content": "Markings such as CE and FCC compliance must be placed on the outer surface of the product or near the battery compartment. Specific symbols and text are required for different product types.",
+        "image_references": [
+          "Legal-marking.xlsm_image7.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Brand and Logo Usage",
+        "content": "Logos must be used according to brand guidelines. For example, the Barbie logo must be 4 inches and should not be altered. The updated brand icon can be used starting in 2018.",
+        "image_references": [
+          "Legal-marking.xlsm_image10.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Etching and Sculpting Details",
+        "content": "Etching depth and sculpting details must adhere to specified dimensions, such as a 0.3mm etching depth for certain designs.",
+        "image_references": [
+          "Legal-marking.xlsm_image15.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Placement and Size Constraints",
+        "content": "For small doll torsos, use specific font sizes and placements. Replacement parts with size constraints may use 'CHINA' instead of 'MADE IN CHINA'.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Specific Product Marking Examples",
+        "content": "Examples include EA shoe branding and Polly Pocket logos, which must follow specific size and placement guidelines.",
+        "image_references": [
+          "Legal-marking.xlsm_image6.jpeg",
+          "Legal-marking.xlsm_image8.png"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "key-lock-design-guidelines",
+    "title": "Key Lock Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Design Tips for Key Locks",
+        "content": "The design of key locks should consider the following aspects: \n\n1. Ensure the main bar is 90° to the base for optimal stability.\n2. Utilize a rib structure for enhanced strength and durability.\n3. Consider the use of auto-forming tooling to improve manufacturing efficiency.",
+        "image_references": [
+          "Key-lock.xlsm_image1.jpeg"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Packaging Component Specifications",
+        "content": "The key lock packaging components are specified as follows:\n\n- FASTENER - KEY LOCK \"SHORT\" 250° HEIGHT, China\n- FASTENER - KEY LOCK \"SHORT\" 250° HEIGHT, Mexico\n- FASTENER - KEY LOCK \"MED\" 350° HEIGHT, Mexico\n- FASTENER - KEY LOCK \"LONG\" 750° HEIGHT, China\n- FASTENER - KEY LOCK \"LONG\" 750° HEIGHT, Mexico",
+        "image_references": [
+          "Key-lock.xlsm_image2.jpeg"
+        ],
+        "type": "reference"
+      },
+      {
+        "title": "Variety of Key Locks",
+        "content": "There are a total of 17 kinds of key locks. These include variations where two or three key locks are the same, and others where they are different. Some key locks are not standard and may have different heights or pin configurations.",
+        "image_references": [
+          "Key-lock.xlsm_image3.png"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "knurling-pin-design",
+    "title": "Knurling Pin Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Knurling Pin Overview",
+        "content": "Knurling pins are used to provide a grip or interference fit between moving and fixed parts. The knurling area is crucial for ensuring proper engagement and function.",
+        "image_references": [
+          "knurling-pin.xlsm_image4.png",
+          "knurling-pin.xlsm_image3.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Design Specifications",
+        "content": "1. **Chamfer**: A chamfer of 0.020\" to 0.030\" at 45° is typical to facilitate insertion.\n2. **Knurling Area**: The knurling area must be clearly defined to ensure proper grip.\n3. **Diameter Specifications**: Ensure that the diameters (D, D1, Dm1, Dm2) are specified according to the design requirements for both fixed and moving parts.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Design Variations",
+        "content": "Two primary designs are illustrated:\n\n- **Design #1**: Features a uniform knurling area across the length of the pin.\n- **Design #2**: Includes a stepped design with varying diameters for different sections.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Assembly Use Cases",
+        "content": "Illustrations show the application of knurling pins in assembly scenarios, highlighting their role in securing components.",
+        "image_references": [
+          "knurling-pin.xlsm_image2.jpeg"
+        ],
+        "type": "reference"
+      }
+    ]
+  },
+  {
+    "slug": "motor-selection",
+    "title": "Motor Selection",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Motor Component Identification",
+        "content": "The image illustrates the key components of a motor setup. It includes a capacitor, a diode, and the positive and negative motor terminals. These components are essential for the proper functioning and protection of the motor.",
+        "image_references": [
+          "motor.xlsm_image1.jpeg"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "plug-and-play-design-guidelines",
+    "title": "Plug and Play Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Overview",
+        "content": "This guideline provides design specifications for plug and play components, focusing on the male and female sides of the connection.",
+        "image_references": [
+          "Plug and display standard.JPG"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Male Side Specifications",
+        "content": "- Diameter: Ø8.5 ± 0.05 mm\n- Depth: 2.7 mm\n- Tolerance: +0.03 mm / -0.03 mm\n- Material: PP (Polypropylene) with ABS coating for enhanced durability.",
+        "image_references": [],
+        "type": "design_rule"
+      },
+      {
+        "title": "Female Side Specifications",
+        "content": "- Diameter: Ø8.7 ± 0.05 mm\n- Depth: 2 mm\n- Tolerance: +0.05 mm / -0.05 mm\n- Material: PP (Polypropylene) with ABS coating for enhanced durability.",
+        "image_references": [],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "pp-hinge-design",
+    "title": "PP Hinge Design",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "General Guidelines",
+        "content": "1. Use two hinges for stability.\n2. Ensure lap joint height is in accordance with CFF48-2039.",
+        "image_references": [
+          "PP-hinge.xlsm_image2.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Design Specifications",
+        "content": "- The hinge should have a full radius.\n- Dimensions should be precise to ensure proper function.\n- Include a 0.020 tear rib at each end of the hinge.",
+        "image_references": [
+          "PP-hinge.xlsm_image3.png",
+          "PP-hinge.xlsm_image4.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Living Hinge Design",
+        "content": "- Gates should be located to ensure material flow across the hinge area.\n- The center of the hinge bend is critical for flexibility.\n- Use specified radii and dimensions for optimal performance.",
+        "image_references": [
+          "PP-hinge.xlsm_image5.jpeg",
+          "PP-hinge.xlsm_image6.jpeg",
+          "PP-hinge.xlsm_image7.jpeg"
+        ],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "projection-sop",
+    "title": "Projection SOP",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Introduction",
+        "content": "This document outlines the Standard Operating Procedures (SOP) for designing projections on products to minimize step-on injuries. The guidelines focus on ensuring safety while maintaining design integrity.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Design Considerations",
+        "content": "1. Projections should be rounded and smooth to prevent injuries.\n2. Avoid sharp edges and points in the design.\n3. Ensure that projections are not excessively long or thin, which could lead to breakage or injury.",
+        "image_references": [
+          "SOP_Projecitons(step-on injuries)-.pptx_image1.png",
+          "SOP_Projecitons(step-on injuries)-.pptx_image2.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Material Selection",
+        "content": "Use materials that can withstand pressure without breaking or deforming. PVC is recommended for its durability and flexibility.",
+        "image_references": [
+          "SOP_Projecitons(step-on injuries)-.pptx_image11.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Angle and Orientation",
+        "content": "1. Projections should be oriented at angles that minimize the risk of injury. \n2. A 30-degree angle is recommended for certain designs to reduce impact risk.",
+        "image_references": [
+          "SOP_Projecitons(step-on injuries)-.pptx_image8.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Testing and Validation",
+        "content": "Conduct thorough testing to ensure that projections do not pose a risk of injury. Simulate step-on scenarios to validate safety.",
+        "image_references": [
+          "SOP_Projecitons(step-on injuries)-.pptx_image9.png"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "pvc-glue-plug-in-design-for-animal",
+    "title": "PVC Glue & Plug-in Design for Animal",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Design Considerations",
+        "content": "1. Ensure gate position is on the upper neck or body to avoid easy area.\n2. Use two pullers at the main runner.\n3. Ensure there are ejector's places at the sub runner.\n4. Apply D shape polyakyo for head with groove.\n5. Add space on neck to head: 2-3mm.\n6. Add cavity number on body and neck (not easy area).\n7. Add KD area for neck and head (assembly area).\n8. Add no cut at runner.",
+        "image_references": [
+          "PVC-glue.xlsm_image5.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "PVC Plug-in Design",
+        "content": "- Design for good and quick assembly without gluing.\n- Neck cut diameter needs to be stronger with a radius on the sharp angle to improve torque performance.",
+        "image_references": [
+          "PVC-glue.xlsm_image6.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Minimum Size Specifications",
+        "content": "- Minimum size for PVC material: 0.05mm.\n- Specific dimensions for plug-in components: 2.0mm, 3° angle, 0.2mm clearance.",
+        "image_references": [
+          "PVC-glue.xlsm_image4.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Assembly and Joint Design",
+        "content": "- Use double lap joint and pin & sleeves for secure assembly.\n- Ensure reasonable clearance between components for effective assembly.",
+        "image_references": [
+          "PVC-glue.xlsm_image8.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Modification and Improvement",
+        "content": "- Prevent glue from flowing into the fore head by modifying the design.\n- Adjust wall thickness to 2.5mm for better structural integrity.",
+        "image_references": [
+          "PVC-glue.xlsm_image3.png"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "o-ring-guidelines",
+    "title": "O-Ring Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Silicon Band Tension",
+        "content": "The tension of the silicon band can extend to 2-2.5 times the original length, with a life cycle of 500-1000 cycles.",
+        "image_references": [
+          "O-ring.xlsm_image2.JPG"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Twist",
+        "content": "For twist, there will be no problem after aging and life test.",
+        "image_references": [],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "r-design-guidelines",
+    "title": "R Design Guidelines for Cross-Separated Core",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Objective",
+        "content": "Strengthen cross-separated core to prevent material breakage, especially in aluminum.",
+        "image_references": [
+          "R-guide-line.xlsm_image18.png"
+        ],
+        "type": "goal"
+      },
+      {
+        "title": "Guideline 1",
+        "content": "Add R=0.5mm around the sharp edges.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Guideline 2",
+        "content": "Add R=0.5mm at the top of cross-ribs.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Recommendation",
+        "content": "Use R0.020\" for lead-in areas to improve durability.",
+        "image_references": [
+          "R-guide-line.xlsm_image17.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Material Considerations",
+        "content": "For soft materials, avoid sharp edges at parting lines (P/L).",
+        "image_references": [
+          "R-guide-line.xlsm_image14.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Abuse R",
+        "content": "Use R in connecting areas for drop and pull abuse tests.",
+        "image_references": [
+          "R-guide-line.xlsm_image15.jpeg",
+          "R-guide-line.xlsm_image16.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Shut Off Edge",
+        "content": "Edges should have R unless specified otherwise for functional purposes.",
+        "image_references": [
+          "R-guide-line.xlsm_image12.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Aesthetic Considerations",
+        "content": "Default R is 0.020\" unless specified for aesthetic purposes.",
+        "image_references": [
+          "R-guide-line.xlsm_image1.jpeg",
+          "R-guide-line.xlsm_image2.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Thin and Shallow Details",
+        "content": "No R is required for thin and shallow details unless specified.",
+        "image_references": [
+          "R-guide-line.xlsm_image3.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Special Cases",
+        "content": "Some designs may not require R, such as specific toys or aesthetic elements.",
+        "image_references": [
+          "R-guide-line.xlsm_image11.jpeg",
+          "R-guide-line.xlsm_image4.jpeg",
+          "R-guide-line.xlsm_image5.jpeg",
+          "R-guide-line.xlsm_image6.jpeg"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "snap-design",
+    "title": "Snap Design",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Introduction to Snap Design",
+        "content": "Snap design involves creating interlocking components that can be easily assembled and disassembled. This is commonly used in plastic parts for toys, electronics, and other consumer products.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Design Principles",
+        "content": "1. Ensure that dimension B is smaller than A for effective snap design. This allows for proper engagement and retention.\n2. Overshoot or clearance is necessary for the snap to function effectively.\n3. For cylindrical snaps, ensure that the diameter C is smaller than diameter D to maintain engagement.",
+        "image_references": [
+          "Snap-design.xlsm_image6.jpeg",
+          "Snap-design.xlsm_image5.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Structural Support",
+        "content": "When the snap is a separate small part, add a U-shaped rib to hold it. Additional support ribs may be needed to strengthen the structure.",
+        "image_references": [
+          "Snap-design.xlsm_image7.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Technical Drawings",
+        "content": "The technical drawings provide detailed dimensions and cross-sectional views of various snap designs. These include measurements for effective engagement and structural integrity.",
+        "image_references": [
+          "Snap-design.xlsm_image11.png",
+          "Snap-design.xlsm_image9.png",
+          "Snap-design.xlsm_image8.png",
+          "Snap-design.xlsm_image10.png",
+          "Snap-design.xlsm_image2.png",
+          "Snap-design.xlsm_image4.png",
+          "Snap-design.xlsm_image3.png",
+          "Snap-design.xlsm_image1.jpeg"
+        ],
+        "type": "reference"
+      }
+    ]
+  },
+  {
+    "slug": "solvent-bond-sleeve-pin",
+    "title": "Solvent Bond Sleeve & Pin Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Sleeve Height Guideline",
+        "content": "When designing products, consider the risk of excessive plastic flow. Avoid using sleeves with an outer diameter (OD) less than 4mm and an inner diameter (ID) less than 2mm. Preferably, use sleeves with an ID greater than 3mm. Ensure the sleeve height meets the following requirements: 2 ≤ ID ≤ 5, L ≤ 4 * ID; ID > 5, L ≤ 6 * ID.",
+        "image_references": [
+          "Solvent Bond Sleeve.xlsx_image1.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Recommendation for Long Sleeves",
+        "content": "Due to the flow of adhesive, long sleeves may deform during assembly. Consider the direction of adhesive flow and minimize sleeve deformation by avoiding excessive adhesive application.",
+        "image_references": [
+          "Solvent Bond Sleeve.xlsx_image2.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Big Size Part Assembly",
+        "content": "For large parts, pre-assemble using 3-4 pins. Ensure a lead-in of 5mm to facilitate assembly.",
+        "image_references": [
+          "Solvent Bond Sleeve.xlsx_image3.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Design Specifications",
+        "content": "Ensure a minimum engagement of 5mm. Use a chamfer of 30° and a clearance of 0.75mm for proper fit. Maintain a radius of 0.20mm for stress relief.",
+        "image_references": [
+          "Solvent Bond Sleeve.xlsx_image4.png",
+          "Solvent Bond Sleeve.xlsx_image5.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Post and Sleeve Dimensions",
+        "content": "For the post, maintain a diameter of ØB and a stress relief radius (SR). For the sleeve, ensure a clearance of 0.75mm and a tolerance of B-0.10mm.",
+        "image_references": [
+          "Solvent Bond Sleeve.xlsx_image6.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Male and Female Sleeve Specifications",
+        "content": "For male sleeves, use a 45° chamfer and maintain a diameter of ØB. For female sleeves, ensure a clearance of 0.75mm and a tolerance of B-0.10mm (0.25°/S).",
+        "image_references": [
+          "Solvent Bond Sleeve.xlsx_image7.png"
+        ],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "spring-design-guidelines",
+    "title": "Spring Design Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "End Folding in Springs",
+        "content": "Ensure that the ends of the spring are folded to avoid sharp points. This design consideration helps in preventing injuries and damage to other components.",
+        "image_references": [
+          "Spring.xlsm_image2.png",
+          "Spring.xlsm_image1.png"
+        ],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "surface-finishing-for-label",
+    "title": "Surface Finishing for Label",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Surface Texture Specifications",
+        "content": "The surface texture for the label area should follow the specified patterns. The spacing between the textures should be 25mm, and the texture depth should be 3.5mm. Use texture pattern YS1284A for the specified areas.",
+        "image_references": [
+          "sticky label area.xlsx_image1.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Label Area Surface Treatment",
+        "content": "The surface of the label area should have a fire pattern or follow the YS1280-1282 specifications. This ensures proper adhesion and aesthetic consistency.",
+        "image_references": [],
+        "type": "design_rule"
+      }
+    ]
+  },
+  {
+    "slug": "surface-finishing-for-doll",
+    "title": "Surface Finishing for Doll",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Introduction to Surface Finishing",
+        "content": "Surface finishing is a critical process in doll manufacturing, affecting both aesthetics and tactile quality. This guideline provides insights into achieving optimal surface finishes for doll components.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Surface Finish Variations",
+        "content": "Different surface finishes can be applied to doll parts, such as arms, legs, and torsos. These finishes can vary in texture and color, impacting the final appearance and feel of the doll.",
+        "image_references": [
+          "Doll-surface-finish.pptx_image3.png",
+          "Doll-surface-finish.pptx_image4.png",
+          "Doll-surface-finish.pptx_image2.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Material Considerations",
+        "content": "The choice of material plays a significant role in the surface finish. Materials must be selected based on their ability to achieve the desired finish and durability.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Color Matching and Consistency",
+        "content": "Ensuring color consistency across different parts of the doll is essential. This involves careful selection of pigments and control of the manufacturing process.",
+        "image_references": [],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "in-mold-label-guideline",
+    "title": "In-Mold-Label Guideline",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Introduction to In-Mold Labeling",
+        "content": "In-mold labeling (IML) is a process where labels are applied to a product during the molding process. This technique is commonly used in plastic manufacturing to create durable and integrated labels.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Design Considerations",
+        "content": "Ensure that the label fits precisely within the mold cavity to avoid misalignment. The label should be designed to withstand the heat and pressure of the molding process.",
+        "image_references": [
+          "In-Mold-Label Guide Line.pptx_image4.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Label Placement",
+        "content": "Proper placement of the label is crucial. The label should be positioned accurately to ensure it adheres correctly during the molding process.",
+        "image_references": [
+          "In-Mold-Label Guide Line.pptx_image1.png",
+          "In-Mold-Label Guide Line.pptx_image2.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Material Compatibility",
+        "content": "Select label materials that are compatible with the plastic used in the molding process. This ensures proper adhesion and durability of the label.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Quality Control",
+        "content": "Inspect the final product for label alignment and adhesion. Any misalignment or detachment can affect the product's appearance and functionality.",
+        "image_references": [
+          "In-Mold-Label Guide Line.pptx_image5.png"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "texture-handbook",
+    "title": "Texture Handbook",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Introduction to Textures",
+        "content": "This handbook provides a comprehensive overview of various textures available for metal and plastic products. It serves as a guide for selecting appropriate textures for different applications.",
+        "image_references": [
+          "Texture Handbook.xlsm_image1.jpeg"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Texture Samples",
+        "content": "The handbook includes a range of texture samples, each identified by a unique code (e.g., YS 6280, YS 6281). These samples illustrate the variety of textures that can be applied to enhance the aesthetic and functional properties of products.",
+        "image_references": [
+          "Texture Handbook.xlsm_image2.jpeg"
+        ],
+        "type": "reference"
+      },
+      {
+        "title": "Detailed Texture Patterns",
+        "content": "Detailed patterns are provided to give a closer look at the texture designs. These patterns help in understanding the intricacies involved in each texture type.",
+        "image_references": [
+          "Texture Handbook.xlsm_image3.png"
+        ],
+        "type": "reference"
+      }
+    ]
+  },
+  {
+    "slug": "tampo-printing-guideline",
+    "title": "Tampo Printing Guideline",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Introduction to Tampo Printing",
+        "content": "Tampo printing is a versatile printing technique used to transfer 2D images onto 3D objects. It is commonly used for decorating toys, electronics, and other consumer products.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Design Considerations",
+        "content": "Ensure there is at least 1.0 mm space for the tampo pad to operate effectively. A recess of 0.5 mm is recommended to accommodate the tampo pad and ensure accurate printing.",
+        "image_references": [
+          "Product_Design_Guide_for_Tampo_Printing.pptx_image18.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Common Issues",
+        "content": "Under print issues can occur if the tampo pad does not have sufficient space or if the surface is not adequately prepared. Ensure the design allows for proper pad contact.",
+        "image_references": [
+          "Product_Design_Guide_for_Tampo_Printing.pptx_image13.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Surface Preparation",
+        "content": "The surface should be clean and free of contaminants to ensure proper ink adhesion. Consider the material's texture and color as they can affect the final print quality.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Examples of Tampo Printing",
+        "content": "Various examples illustrate the application of tampo printing on different products, showcasing both successful prints and common issues.",
+        "image_references": [
+          "Product_Design_Guide_for_Tampo_Printing.pptx_image8.jpeg",
+          "Product_Design_Guide_for_Tampo_Printing.pptx_image9.jpeg",
+          "Product_Design_Guide_for_Tampo_Printing.pptx_image10.jpeg",
+          "Product_Design_Guide_for_Tampo_Printing.pptx_image11.jpeg",
+          "Product_Design_Guide_for_Tampo_Printing.pptx_image12.png",
+          "Product_Design_Guide_for_Tampo_Printing.pptx_image14.jpeg",
+          "Product_Design_Guide_for_Tampo_Printing.pptx_image15.jpeg",
+          "Product_Design_Guide_for_Tampo_Printing.pptx_image16.jpeg",
+          "Product_Design_Guide_for_Tampo_Printing.pptx_image17.jpeg"
+        ],
+        "type": "reference"
+      }
+    ]
+  },
+  {
+    "slug": "jetting-flowmark-improvement",
+    "title": "Jetting/FlowMark Improvement",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Introduction to Jetting and Flow Marks",
+        "content": "Jetting and flow marks are common defects in injection molding, often caused by improper flow of the molten material into the mold. These defects can affect the aesthetic and structural integrity of the final product.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Causes of Jetting and Flow Marks",
+        "content": "Jetting occurs when the molten plastic enters the mold cavity at high speed, causing a snake-like pattern. Flow marks are usually caused by variations in the flow speed of the molten material, leading to visible lines on the surface.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Improvement Techniques",
+        "content": "1. **Adjust Injection Speed**: Reducing the injection speed can help in minimizing jetting by allowing the material to flow more smoothly into the mold.\n\n2. **Optimize Mold Design**: Ensure that the mold design facilitates even flow of material. This includes proper placement of gates and runners.\n\n3. **Temperature Control**: Maintain consistent temperature throughout the mold to prevent flow marks. Uneven cooling can lead to defects.\n\n4. **Material Selection**: Use materials with appropriate viscosity to ensure smooth flow and reduce the likelihood of jetting and flow marks.",
+        "image_references": [
+          "MBK_PTP 10-06.pptx_image16.png",
+          "MBK_PTP 10-06.pptx_image19.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Conclusion",
+        "content": "By understanding the causes of jetting and flow marks and implementing the suggested improvements, manufacturers can enhance the quality of their injection molded products.",
+        "image_references": [],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "torso-insert-molding-std",
+    "title": "Torso Insert Molding Standard",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Introduction",
+        "content": "This guideline provides standards for insert molding of torso components, focusing on material thickness, sealing surfaces, and structural integrity.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Material Thickness",
+        "content": "Add 0.5mm material on insert ribs to enhance the seal surface. Ensure overlapping parts are increased to 2.3mm thickness for structural integrity.",
+        "image_references": [
+          "Insert mold torso standard guideline.pptx_image6.jpg",
+          "Insert mold torso standard guideline.pptx_image8.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Sealing Surface Improvement",
+        "content": "Raise up 0.05mm steel to improve the seal surface on the cavity side. Ensure no flash is present on the final product.",
+        "image_references": [
+          "Insert mold torso standard guideline.pptx_image16.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Structural Reinforcement",
+        "content": "Add ribs near the water column to prevent ultrasonic cracking. Reinforce connections to prevent deformation.",
+        "image_references": [
+          "Insert mold torso standard guideline.pptx_image13.png",
+          "Insert mold torso standard guideline.pptx_image9.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Design Recommendations",
+        "content": "Avoid designs that lead to flash or weak sealing. Ensure proper alignment and sealing of components.",
+        "image_references": [
+          "Insert mold torso standard guideline.pptx_image14.png"
+        ],
+        "type": "guideline"
+      }
+    ]
+  },
+  {
+    "slug": "mechanism-envelope",
+    "title": "Mechanism Envelope Guidelines",
+    "page_type": "guideline_article",
+    "sections": [
+      {
+        "title": "Introduction to Mechanism Envelope",
+        "content": "The mechanism envelope refers to the spatial constraints and design considerations for housing mechanical components within a device. Proper design ensures functionality, efficiency, and ease of assembly.",
+        "image_references": [],
+        "type": "guideline"
+      },
+      {
+        "title": "Design Considerations",
+        "content": "1. **Component Placement**: Ensure all components fit within the designated space without interference.\n2. **Accessibility**: Design for easy access to components for maintenance and assembly.\n3. **Material Selection**: Choose materials that support the mechanical and thermal requirements of the components.",
+        "image_references": [
+          "Mechanism-envelope-guideline.pptx_image53.png",
+          "Mechanism-envelope-guideline.pptx_image40.png"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Speaker Grille Design",
+        "content": "- Open area should be at least 37% for optimal sound.\n- Hole shape and pattern should not exceed 0.15” diameter.\n- Wall thickness of 0.070” allows up to 0.15” diameter holes.",
+        "image_references": [
+          "Mechanism-envelope-guideline.pptx_image43.png"
+        ],
+        "type": "guideline"
+      },
+      {
+        "title": "Speaker Enclosure",
+        "content": "- Ensure the speaker enclosure is sealed on the back side.\n- The speaker should be fully sealed against the cavity to prevent sound leakage.",
+        "image_references": [
+          "Mechanism-envelope-guideline.pptx_image44.jpg"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Speaker Retainer Design",
+        "content": "- Inside diameter should be 0.2mm over the speaker diameter.\n- Protrusion height should be max 3% of speaker diameter.\n- Retainer should be held by two screws and surround the magnet only.",
+        "image_references": [
+          "Mechanism-envelope-guideline.pptx_image45.jpg"
+        ],
+        "type": "design_rule"
+      },
+      {
+        "title": "Transmission System Efficiency",
+        "content": "- Worm gear efficiency varies with the number of threads: 1 thread - 90%, 2 threads - 70%, 3 threads - 50%.\n- Spur gear efficiency should be around 95% per mesh.",
+        "image_references": [
+          "Mechanism-envelope-guideline.pptx_image34.png"
+        ],
+        "type": "guideline"
+      }
+    ]
+  }
+]

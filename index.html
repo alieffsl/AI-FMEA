@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" class="fonts-pending">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="description" content="AI-powered FMEA draft generation for tooling, manufacturing, and product development teams. Upload CDI files, get evidence-based failure mode analysis." />
+    <title>AI FMEA Tooling Copilot</title>
+
+    <!-- Apply the saved/system theme before first paint to prevent a light-mode flash. -->
+    <script>
+      (function() {
+        try {
+          const savedTheme = localStorage.getItem('ai-fmea-theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const isDark = savedTheme ? savedTheme === 'dark' : prefersDark;
+
+          document.documentElement.classList.toggle('dark', isDark);
+          document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+          document.querySelector('meta[name="theme-color"]').setAttribute(
+            'content',
+            isDark ? '#121212' : '#f0f4f9'
+          );
+        } catch (_) {
+          // Storage can be unavailable in privacy-restricted contexts.
+        }
+      })();
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    
+    <!-- FOUT prevention logic as per ckw-design-system -->
+    <script>
+      (function() {
+        if ('fonts' in document) {
+          // Safety timeout ensures text is readable even if fonts fail
+          const timeout = setTimeout(() => {
+            document.documentElement.classList.replace('fonts-pending', 'fonts-ready');
+          }, 2500);
+
+          document.fonts.ready.then(() => {
+            clearTimeout(timeout);
+            document.documentElement.classList.replace('fonts-pending', 'fonts-ready');
+          });
+        } else {
+          document.documentElement.classList.remove('fonts-pending');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

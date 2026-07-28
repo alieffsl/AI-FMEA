@@ -1,0 +1,20 @@
+﻿Issue_ID,Severity,Area,Source,Issue,Recommendation
+ISS-001,High,Baseline_Checks,BELT!C9,Checklist sequence exists but requirement text is blank.,Fill the missing standard text or remove the unused sequence row.
+ISS-002,High,Baseline_Checks,BRACELET!C5,Checklist sequence exists but requirement text is blank.,Fill the missing standard text or remove the unused sequence row.
+ISS-003,High,Baseline_Checks,BRACELET!C6,Checklist sequence exists but requirement text is blank.,Fill the missing standard text or remove the unused sequence row.
+ISS-004,High,Baseline_Checks,BRACELET!C7,Checklist sequence exists but requirement text is blank.,Fill the missing standard text or remove the unused sequence row.
+ISS-005,High,Baseline_Checks,BRACELET!C8,Checklist sequence exists but requirement text is blank.,Fill the missing standard text or remove the unused sequence row.
+ISS-006,High,Baseline_Checks,BRACELET!C9,Checklist sequence exists but requirement text is blank.,Fill the missing standard text or remove the unused sequence row.
+ISS-007,High,Baseline_Checks,NECKLACE!C9,Checklist sequence exists but requirement text is blank.,Fill the missing standard text or remove the unused sequence row.
+ISS-008,High,Baseline_Checks,Backpack assy!B7,Checklist sequence exists but requirement text is blank.,Fill the missing standard text or remove the unused sequence row.
+ISS-009,High,Baseline_Checks,Backpack assy!B8,Checklist sequence exists but requirement text is blank.,Fill the missing standard text or remove the unused sequence row.
+ISS-010,High,Baseline_Checks,Arm!B7,Checklist sequence exists but requirement text is blank.,Fill the missing standard text or remove the unused sequence row.
+ISS-011,High,Baseline_Checks,Arm!B8,Checklist sequence exists but requirement text is blank.,Fill the missing standard text or remove the unused sequence row.
+ISS-012,Medium,Visual-only source,HANDRING,Sheet has images and/or drawing text but no structured checklist rows.,Convert the visual standard into Baseline_Checks rows and add image captions.
+ISS-013,Medium,Visual-only source,BRACELET,Sheet has images and/or drawing text but no structured checklist rows.,Convert the visual standard into Baseline_Checks rows and add image captions.
+ISS-014,Medium,Visual-only source,STD Electrode PTMI,Sheet has images and/or drawing text but no structured checklist rows.,Convert the visual standard into Baseline_Checks rows and add image captions.
+ISS-015,Medium,Visual-only source,ROTOHEAD,Sheet has images and/or drawing text but no structured checklist rows.,Convert the visual standard into Baseline_Checks rows and add image captions.
+ISS-016,Medium,Visual-only source,MARKING & GENUINE,Sheet has images and/or drawing text but no structured checklist rows.,Convert the visual standard into Baseline_Checks rows and add image captions.
+ISS-017,Medium,Visual-only source,C clip bottle,Sheet has images and/or drawing text but no structured checklist rows.,Convert the visual standard into Baseline_Checks rows and add image captions.
+ISS-018,Medium,Image_Index,All picture sheets,"Pictures were floating Excel drawings, not tied to stable requirement IDs.",Review Evidence_Image_IDs and move row-specific image IDs to the exact checklist rows they support.
+ISS-019,Low,Original workbook,Copy of Standart Accesoris_Updated.xlsx,Original workbook contains workbook relationships/external-link artifacts; values were extracted as displayed text for RAG stability.,"Keep the cleaned workbook as the AI source, not formula-dependent copies."

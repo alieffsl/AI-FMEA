@@ -1,0 +1,91 @@
+﻿standard_id,accessory,seq,requirement_type,standard_text,applicability_remark,verification_status,header_status_set,evidence_image_ids,related_image_count,source_sheet,source_cell,source_row,review_flag,owner,last_reviewed,version,notes
+STD-EARRING-001,EARRING,1,Dimension/geometry,"Sharp point/thin steel, R 0.8mm, Ø 2mm hole.",,,D/NY/NN,IMG-001; IMG-002; IMG-003,3,EARRING,C6,6,,,,v0.1,
+STD-EARRING-002,EARRING,2,Assembly/fit,Full R at end fo easy assembly,,,D/NY/NN,IMG-001; IMG-002; IMG-003,3,EARRING,C7,7,,,,v0.1,
+STD-EARRING-003,EARRING,3,Assembly/fit,Post location/angel depends on design request,,,D/NY/NN,IMG-001; IMG-002; IMG-003,3,EARRING,C8,8,,,,v0.1,
+STD-EARRING-004,EARRING,4,Safety/edge,Make sure mo sharp poimt/thin steel,,,D/NY/NN,IMG-001; IMG-002; IMG-003,3,EARRING,C9,9,,,,v0.1,
+STD-EARRING-005,EARRING,5,Assembly/fit,Post has angle (25 for EAH and 35 for MH) at front view,,,D/NY/NN,IMG-001; IMG-002; IMG-003,3,EARRING,C10,10,,,,v0.1,
+STD-HEADBAND-001,HEADBAND,1,General design,Get SG head to double check.,,,D/NY/NN,IMG-006; IMG-007; IMG-008; IMG-009; IMG-010; IMG-011,6,HEADBAND,C5,5,,,,v0.1,
+STD-HEADBAND-002,HEADBAND,2,Gate/runner/trimming,Use one gate design to avoid weldline,,,D/NY/NN,IMG-006; IMG-007; IMG-008; IMG-009; IMG-010; IMG-011,6,HEADBAND,C6,6,,,,v0.1,
+STD-HEADBAND-003,HEADBAND,3,Material/process,PPCO is 1st option.,,,D/NY/NN,IMG-006; IMG-007; IMG-008; IMG-009; IMG-010; IMG-011,6,HEADBAND,C7,7,,,,v0.1,
+STD-HEADBAND-004,HEADBAND,4,Dimension/geometry,"Sharp point/thin steel, R 0.8mm, Ø 2mm hole.",,,D/NY/NN,IMG-006; IMG-007; IMG-008; IMG-009; IMG-010; IMG-011,6,HEADBAND,C8,8,,,,v0.1,
+STD-HEADBAND-005,HEADBAND,5,Mold/tooling,"Sticking slide, 3~10 degree draft.",,,D/NY/NN,IMG-006; IMG-007; IMG-008; IMG-009; IMG-010; IMG-011,6,HEADBAND,C9,9,,,,v0.1,
+STD-BELT-001,BELT,1,Assembly/fit,"Post direction, outward is the 1st choice. Inward direction is ok for loose belt per design request, but not allowed for tight belt.",,,D/NY/NN,IMG-012; IMG-013; IMG-014; IMG-015,4,BELT,C5,5,,,,v0.1,
+STD-BELT-002,BELT,2,Assembly/fit,Need to fit SG,,,D/NY/NN,IMG-012; IMG-013; IMG-014; IMG-015,4,BELT,C6,6,,,,v0.1,
+STD-BELT-003,BELT,3,Assembly/fit,"Try to use 1 post, insead of 2 at every breakaway.",,,D/NY/NN,IMG-012; IMG-013; IMG-014; IMG-015,4,BELT,C7,7,,,,v0.1,
+STD-BELT-004,BELT,4,Gate/runner/trimming,"Gate at hole side for PTMI, at post side for MCA",,,D/NY/NN,IMG-012; IMG-013; IMG-014; IMG-015,4,BELT,C8,8,,,,v0.1,
+STD-BELT-005,BELT,5,Missing text,,,,D/NY/NN,IMG-012; IMG-013; IMG-014; IMG-015,4,BELT,C9,9,Missing checklist text - needs SME fill-in,,,v0.1,
+STD-BRACELET-001,BRACELET,1,Missing text,,,,D/NY/NN,IMG-016; IMG-017,2,BRACELET,C5,5,Missing checklist text - needs SME fill-in,,,v0.1,
+STD-BRACELET-002,BRACELET,2,Missing text,,,,D/NY/NN,IMG-016; IMG-017,2,BRACELET,C6,6,Missing checklist text - needs SME fill-in,,,v0.1,
+STD-BRACELET-003,BRACELET,3,Missing text,,,,D/NY/NN,IMG-016; IMG-017,2,BRACELET,C7,7,Missing checklist text - needs SME fill-in,,,v0.1,
+STD-BRACELET-004,BRACELET,4,Missing text,,,,D/NY/NN,IMG-016; IMG-017,2,BRACELET,C8,8,Missing checklist text - needs SME fill-in,,,v0.1,
+STD-BRACELET-005,BRACELET,5,Missing text,,,,D/NY/NN,IMG-016; IMG-017,2,BRACELET,C9,9,Missing checklist text - needs SME fill-in,,,v0.1,
+STD-NECKLACE-001,NECKLACE,1,Gate/runner/trimming,Please ensure cloose loop design (prefer Y shape gate ),All type,,D/NY/NN,IMG-018; IMG-019; IMG-020; IMG-021; IMG-022; IMG-023; IMG-024; IMG-025; IMG-026,9,NECKLACE,C5,5,,,,v0.1,
+STD-NECKLACE-002,NECKLACE,2,Gate/runner/trimming,Please ensure enough space for trimming gate (plier),All type,,D/NY/NN,IMG-018; IMG-019; IMG-020; IMG-021; IMG-022; IMG-023; IMG-024; IMG-025; IMG-026,9,NECKLACE,C6,6,,,,v0.1,
+STD-NECKLACE-003,NECKLACE,3,Material/process,Please d-check opening standard below for each material,All type,,D/NY/NN,IMG-018; IMG-019; IMG-020; IMG-021; IMG-022; IMG-023; IMG-024; IMG-025; IMG-026,9,NECKLACE,C7,7,,,,v0.1,
+STD-NECKLACE-004,NECKLACE,4,Dimension/geometry,Please d-check VUM proceed/not --> decide holder dimension,All type,,D/NY/NN,IMG-018; IMG-019; IMG-020; IMG-021; IMG-022; IMG-023; IMG-024; IMG-025; IMG-026,9,NECKLACE,C8,8,,,,v0.1,
+STD-NECKLACE-005,NECKLACE,5,Missing text,,,,D/NY/NN,IMG-018; IMG-019; IMG-020; IMG-021; IMG-022; IMG-023; IMG-024; IMG-025; IMG-026,9,NECKLACE,C9,9,Missing checklist text - needs SME fill-in,,,v0.1,
+STD-BACKPACK_ASSY-001,BACKPACK ASSY,1,General design,Strap connection type mushroom,,,D/NY/NN,IMG-027; IMG-028; IMG-029; IMG-030; IMG-031,5,Backpack assy,B4,4,,,,v0.1,
+STD-BACKPACK_ASSY-002,BACKPACK ASSY,2,Assembly/fit,Ensure there's locking slot on hole,,,D/NY/NN,IMG-027; IMG-028; IMG-029; IMG-030; IMG-031,5,Backpack assy,B5,5,,,,v0.1,
+STD-BACKPACK_ASSY-003,BACKPACK ASSY,3,General design,Add ribb allong backpack bottom,,,D/NY/NN,IMG-027; IMG-028; IMG-029; IMG-030; IMG-031,5,Backpack assy,B6,6,,,,v0.1,
+STD-BACKPACK_ASSY-004,BACKPACK ASSY,4,Missing text,,,,D/NY/NN,IMG-027; IMG-028; IMG-029; IMG-030; IMG-031,5,Backpack assy,B7,7,Missing checklist text - needs SME fill-in,,,v0.1,
+STD-BACKPACK_ASSY-005,BACKPACK ASSY,5,Missing text,,,,D/NY/NN,IMG-027; IMG-028; IMG-029; IMG-030; IMG-031,5,Backpack assy,B8,8,Missing checklist text - needs SME fill-in,,,v0.1,
+STD-GLASSES-001,GLASSES,1,Mold/tooling,"P/L location, not go through middle of glass.",,,D/NY/NN,IMG-033; IMG-034,2,GLASSES,C5,5,,,,v0.1,
+STD-GLASSES-002,GLASSES,2,General design,Enough Connection at Middle,,,D/NY/NN,IMG-033; IMG-034,2,GLASSES,C6,6,,,,v0.1,
+STD-GLASSES-003,GLASSES,3,Mold/tooling,"Slide sticking, enough draft 3~10 degree.",,,D/NY/NN,IMG-033; IMG-034,2,GLASSES,C7,7,,,,v0.1,
+STD-GLASSES-004,GLASSES,4,Mold/tooling,"Hang on slide, enough strike",,,D/NY/NN,IMG-033; IMG-034,2,GLASSES,C8,8,,,,v0.1,
+STD-GLASSES-005,GLASSES,5,Dimension/geometry,Basic wall thickness 1.5mm,,,D/NY/NN,IMG-033; IMG-034,2,GLASSES,C9,9,,,,v0.1,
+STD-HAIR_CLIP-001,HAIR CLIP,1,General design,Add notch on part,,,D/NY/NN,IMG-035; IMG-036; IMG-037,3,Hair clip,C5,5,,,,v0.1,
+STD-HAIR_CLIP-002,HAIR CLIP,2,General design,half plastic on hinge,,,D/NY/NN,IMG-035; IMG-036; IMG-037,3,Hair clip,C6,6,,,,v0.1,
+STD-HAIR_CLIP-003,HAIR CLIP,3,General design,coring on hinge,,,D/NY/NN,IMG-035; IMG-036; IMG-037,3,Hair clip,C7,7,,,,v0.1,
+STD-HAIR_CLIP-004,HAIR CLIP,4,General design,Bump on pin,,,D/NY/NN,IMG-035; IMG-036; IMG-037,3,Hair clip,C8,8,,,,v0.1,
+STD-HAIR_CLIP-005,HAIR CLIP,5,General design,Optimize projection area,,,D/NY/NN,IMG-035; IMG-036; IMG-037,3,Hair clip,C9,9,,,,v0.1,
+STD-SHOES-001,SHOES,1,Decoration/marking,Need jumping P/L at bottom if there's logo.,All type,,D/NY/NN,IMG-038; IMG-039; IMG-040; IMG-041; IMG-042; IMG-043; IMG-044; IMG-045; IMG-046; IMG-047; IMG-048; IMG-049; IMG-050; IMG-051; IMG-052; IMG-053; IMG-054,17,SHOES,C5,5,,,,v0.1,
+STD-SHOES-002,SHOES,2,Dimension/geometry,Please add offset 0.3mm (clearance to leg) per side,All type,,D/NY/NN,IMG-038; IMG-039; IMG-040; IMG-041; IMG-042; IMG-043; IMG-044; IMG-045; IMG-046; IMG-047; IMG-048; IMG-049; IMG-050; IMG-051; IMG-052; IMG-053; IMG-054,17,SHOES,C6,6,,,,v0.1,
+STD-SHOES-003,SHOES,3,Gate/runner/trimming,Arrange layout R-R and L-L and add flag on runner to make trimming process easier,All type,,D/NY/NN,IMG-038; IMG-039; IMG-040; IMG-041; IMG-042; IMG-043; IMG-044; IMG-045; IMG-046; IMG-047; IMG-048; IMG-049; IMG-050; IMG-051; IMG-052; IMG-053; IMG-054,17,SHOES,C7,7,,,,v0.1,
+STD-SHOES-004,SHOES,4,Decoration/marking,Tampo issue- Ensure gate position not at side area bookmask (will affect paint issue),All type,,D/NY/NN,IMG-038; IMG-039; IMG-040; IMG-041; IMG-042; IMG-043; IMG-044; IMG-045; IMG-046; IMG-047; IMG-048; IMG-049; IMG-050; IMG-051; IMG-052; IMG-053; IMG-054,17,SHOES,C8,8,,,,v0.1,
+STD-SHOES-005,SHOES,5,Decoration/marking,"Tampo issue - sculpted step w/ 0.5mm Radius or chamfer, 5 degree draft for tampo",Optional,,D/NY/NN,IMG-038; IMG-039; IMG-040; IMG-041; IMG-042; IMG-043; IMG-044; IMG-045; IMG-046; IMG-047; IMG-048; IMG-049; IMG-050; IMG-051; IMG-052; IMG-053; IMG-054,17,SHOES,C9,9,,,,v0.1,
+STD-SHOES-006,SHOES,6,Mold/tooling,Ensure no undercut for bit/sculpture,All type,,D/NY/NN,IMG-038; IMG-039; IMG-040; IMG-041; IMG-042; IMG-043; IMG-044; IMG-045; IMG-046; IMG-047; IMG-048; IMG-049; IMG-050; IMG-051; IMG-052; IMG-053; IMG-054,17,SHOES,C10,10,,,,v0.1,
+STD-SHOES-007,SHOES,7,Assembly/fit,Ensure there's open loop slit (to make detached part process easy),All type,,D/NY/NN,IMG-038; IMG-039; IMG-040; IMG-041; IMG-042; IMG-043; IMG-044; IMG-045; IMG-046; IMG-047; IMG-048; IMG-049; IMG-050; IMG-051; IMG-052; IMG-053; IMG-054,17,SHOES,C11,11,,,,v0.1,
+STD-SHOES-008,SHOES,8,Mold/tooling,"Please apply qty cavity acs below:
+simple deco --> 6 cav (CLN62-S501-02)
+complex deco --> 4 cav (common design)",All type,,D/NY/NN,IMG-038; IMG-039; IMG-040; IMG-041; IMG-042; IMG-043; IMG-044; IMG-045; IMG-046; IMG-047; IMG-048; IMG-049; IMG-050; IMG-051; IMG-052; IMG-053; IMG-054,17,SHOES,C12,12,,,,v0.1,
+STD-SHOES-009,SHOES,9,Mold/tooling,Please minimize floating core slit height (image below) for easier demold process,All type,,D/NY/NN,IMG-038; IMG-039; IMG-040; IMG-041; IMG-042; IMG-043; IMG-044; IMG-045; IMG-046; IMG-047; IMG-048; IMG-049; IMG-050; IMG-051; IMG-052; IMG-053; IMG-054,17,SHOES,C13,13,,,,v0.1,
+STD-PET_SEPARATE_HEAD-001,PET(SEPARATE HEAD),1,Gate/runner/trimming,Put gate position on upper neck or body (not assy area),,,D/NY/NN,IMG-055; IMG-056; IMG-057; IMG-058; IMG-059; IMG-060; IMG-061; IMG-062; IMG-063,9,PET(SEPARATE HEAD),B5,5,,,,v0.1,
+STD-PET_SEPARATE_HEAD-002,PET(SEPARATE HEAD),2,Gate/runner/trimming,Use Z puller at main runner,,,D/NY/NN,IMG-055; IMG-056; IMG-057; IMG-058; IMG-059; IMG-060; IMG-061; IMG-062; IMG-063,9,PET(SEPARATE HEAD),B6,6,,,,v0.1,
+STD-PET_SEPARATE_HEAD-003,PET(SEPARATE HEAD),3,Gate/runner/trimming,Ensure there are ejector's placed at sub runner,,,D/NY/NN,IMG-055; IMG-056; IMG-057; IMG-058; IMG-059; IMG-060; IMG-061; IMG-062; IMG-063,9,PET(SEPARATE HEAD),B7,7,,,,v0.1,
+STD-PET_SEPARATE_HEAD-004,PET(SEPARATE HEAD),4,General design,Apply D shape pokayoke for neck + Groove,,,D/NY/NN,IMG-055; IMG-056; IMG-057; IMG-058; IMG-059; IMG-060; IMG-061; IMG-062; IMG-063,9,PET(SEPARATE HEAD),B8,8,,,,v0.1,
+STD-PET_SEPARATE_HEAD-005,PET(SEPARATE HEAD),5,Dimension/geometry,Add space on neck to head 2-3mm,,,D/NY/NN,IMG-055; IMG-056; IMG-057; IMG-058; IMG-059; IMG-060; IMG-061; IMG-062; IMG-063,9,PET(SEPARATE HEAD),B9,9,,,,v0.1,
+STD-PET_SEPARATE_HEAD-006,PET(SEPARATE HEAD),6,Mold/tooling,Add cav number on body and inside head (not assy area),,,D/NY/NN,IMG-055; IMG-056; IMG-057; IMG-058; IMG-059; IMG-060; IMG-061; IMG-062; IMG-063,9,PET(SEPARATE HEAD),B10,10,,,,v0.1,
+STD-PET_SEPARATE_HEAD-007,PET(SEPARATE HEAD),7,Assembly/fit,Add KD area head and neck (assembly area),,,D/NY/NN,IMG-055; IMG-056; IMG-057; IMG-058; IMG-059; IMG-060; IMG-061; IMG-062; IMG-063,9,PET(SEPARATE HEAD),B11,11,,,,v0.1,
+STD-PET_SEPARATE_HEAD-008,PET(SEPARATE HEAD),8,Gate/runner/trimming,Add tool no at runner,,,D/NY/NN,IMG-055; IMG-056; IMG-057; IMG-058; IMG-059; IMG-060; IMG-061; IMG-062; IMG-063,9,PET(SEPARATE HEAD),B12,12,,,,v0.1,
+STD-PET_SEPARATE_HEAD-009,PET(SEPARATE HEAD),9,Mold/tooling,Please add cooling on slider (pet head),,,D/NY/NN,IMG-055; IMG-056; IMG-057; IMG-058; IMG-059; IMG-060; IMG-061; IMG-062; IMG-063,9,PET(SEPARATE HEAD),B13,13,,,,v0.1,
+STD-PET_SEPARATE_HEAD-010,PET(SEPARATE HEAD),10,Mold/tooling,Develop Jig cooling,,,D/NY/NN,IMG-055; IMG-056; IMG-057; IMG-058; IMG-059; IMG-060; IMG-061; IMG-062; IMG-063,9,PET(SEPARATE HEAD),B14,14,,,,v0.1,
+STD-SHOULDER_CONNECTOR-001,SHOULDER CONNECTOR,1,Mold/tooling,Number of cav : 8 (23T) /16 (55T),All type,,,IMG-064; IMG-065; IMG-066; IMG-067; IMG-068; IMG-069; IMG-070; IMG-071; IMG-072,9,Shoulder connector,B2,2,,,,v0.1,
+STD-SHOULDER_CONNECTOR-002,SHOULDER CONNECTOR,2,Assembly/fit,"Design Connector :
+-Doom design : no need bump
+-Hole design : 1 bump, 1 side only",All type,,,IMG-064; IMG-065; IMG-066; IMG-067; IMG-068; IMG-069; IMG-070; IMG-071; IMG-072,9,Shoulder connector,B3,3,,,,v0.1,
+STD-SHOULDER_CONNECTOR-003,SHOULDER CONNECTOR,3,Gate/runner/trimming,"Runner type
+-Auto : I shape
+-Semi auto : H shape",All type,,,IMG-064; IMG-065; IMG-066; IMG-067; IMG-068; IMG-069; IMG-070; IMG-071; IMG-072,9,Shoulder connector,B4,4,,,,v0.1,
+STD-SHOULDER_CONNECTOR-004,SHOULDER CONNECTOR,4,Safety/edge,"Please add stopper
+
+Limit issue scratch
+limit issue abuse",All type,,,IMG-064; IMG-065; IMG-066; IMG-067; IMG-068; IMG-069; IMG-070; IMG-071; IMG-072,9,Shoulder connector,B5,5,,,,v0.1,
+STD-ARM-001,ARM,1,Assembly/fit,No need KD,All type,,,IMG-073; IMG-074,2,Arm,B2,2,,,,v0.1,
+STD-ARM-002,ARM,2,Assembly/fit,Please add ribs on pocket connector,All type,,,IMG-073; IMG-074,2,Arm,B3,3,,,,v0.1,
+STD-ARM-003,ARM,3,Reference/sample,"Refference :
+**Straight arm
+4 set --> DVX72-Q601-16
+**bent arm
+4 set --> T7738-Q502-02
+**bent&straight
+2 set -->HJN31-U981-01",All type,,,IMG-073; IMG-074,2,Arm,B4,4,,,,v0.1,
+STD-ARM-004,ARM,4,Material/process,Matte surface finish,All type,,,IMG-073; IMG-074,2,Arm,B5,5,,,,v0.1,
+STD-ARM-005,ARM,5,Gate/runner/trimming,"Please confirm runner design for auto PIM or not
+*design reff DVX72-Q601-02",All type,,,IMG-073; IMG-074,2,Arm,B6,6,,,,v0.1,
+STD-ARM-006,ARM,6,Missing text,,,,,IMG-073; IMG-074,2,Arm,B7,7,Missing checklist text - needs SME fill-in,,,v0.1,
+STD-ARM-007,ARM,7,Missing text,,,,,IMG-073; IMG-074,2,Arm,B8,8,Missing checklist text - needs SME fill-in,,,v0.1,
+STD-VUM_HOLDER-001,VUM HOLDER,1,General design,Please create part cloose loop (doesn't colapse when rotate),All type,,,IMG-075; IMG-076; IMG-077,3,VUM Holder,B2,2,,,,v0.1,
+STD-VUM_HOLDER-002,VUM HOLDER,2,Gate/runner/trimming,Please ensure edge gate,All type,,,IMG-075; IMG-076; IMG-077,3,VUM Holder,B3,3,,,,v0.1,
+STD-VUM_HOLDER-003,VUM HOLDER,3,Dimension/geometry,Please ensure holder dimension Ø5mm x 15mm length,All type,,,IMG-075; IMG-076; IMG-077,3,VUM Holder,B4,4,,,,v0.1,
+STD-VUM_HOLDER-004,VUM HOLDER,4,Gate/runner/trimming,"Please ensure part 1 times VUM, no separate sub runner",All type,,,IMG-075; IMG-076; IMG-077,3,VUM Holder,B5,5,,,,v0.1,

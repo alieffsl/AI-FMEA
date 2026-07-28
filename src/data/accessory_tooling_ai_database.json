@@ -1,0 +1,4473 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-07-28T02:28:25.273Z",
+  "source_workbook": "Copy of Standart Accesoris_Updated.xlsx",
+  "model": "gpt-5.6-sol",
+  "sheet_count": 18,
+  "image_occurrence_count": 76,
+  "standards": [
+    {
+      "id": "tooling-earring",
+      "slug": "tooling-baseline-earring",
+      "title": "Earring",
+      "source_sheet": "EARRING",
+      "source_workbook": "Copy of Standart Accesoris_Updated.xlsx",
+      "summary": "",
+      "checkpoints": [
+        {
+          "title": "Sharp-point and thin-steel prevention",
+          "requirement": "Ensure the accessory has no sharp points or thin steel, and ensure any post barb does not terminate in a sharp point.",
+          "category": "safety_edge",
+          "verification_method": "Visually inspect all accessible features and barb terminations.",
+          "acceptance_criteria": "",
+          "applicability": "All earring designs; barb condition applies to posts with a barb.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C4",
+              "observation": "The checklist identifies sharp points and thin steel as conditions to check."
+            },
+            {
+              "source_type": "cell",
+              "reference": "C7",
+              "observation": "The checklist requires no sharp points or thin steel."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-002",
+              "observation": "The standard states that the barb cannot be a sharp point."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-00c02fc532"
+        },
+        {
+          "title": "Specified radius and hole geometry",
+          "requirement": "Provide the specified radius and hole geometry.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the radius and hole diameter at the indicated features.",
+          "acceptance_criteria": "R 0.8mm; Ø 2mm hole.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C4",
+              "observation": "The checklist specifies R 0.8mm and a Ø 2mm hole, but does not identify the controlled radius location."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-af694143a0"
+        },
+        {
+          "title": "Full-radius assembly end",
+          "requirement": "Provide a full radius at the end to facilitate assembly.",
+          "category": "assembly_fit",
+          "verification_method": "Inspect the end profile against the tooling definition.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C5",
+              "observation": "The checklist requires a full radius at the end for easy assembly."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-c18abf93ad"
+        },
+        {
+          "title": "Top-view post orientation",
+          "requirement": "Set the top-view post orientation according to the design request.",
+          "category": "dimension_geometry",
+          "verification_method": "Compare the post centerline orientation with the approved design request.",
+          "acceptance_criteria": "0 or 45° per design request.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C6",
+              "observation": "Post location and angle depend on the design request."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-001",
+              "observation": "The top-view annotation specifies 0 or 45° per design request."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-89f430da8e"
+        },
+        {
+          "title": "Model-specific front-view post angle",
+          "requirement": "Apply the specified front-view post angle for each model.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the post centerline angle in the front view.",
+          "acceptance_criteria": "25 for EAH; 35 for MH.",
+          "applicability": "EAH and MH models.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C8",
+              "observation": "The checklist specifies a front-view post angle of 25 for EAH and 35 for MH."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-44a8aa6bec"
+        },
+        {
+          "title": "Hook wall thickness",
+          "requirement": "Control the basic wall thickness of the hook design.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the wall thickness at the hook region shown in the standard.",
+          "acceptance_criteria": "1.2mm .047\".",
+          "applicability": "Hook designs.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-001",
+              "observation": "The Basic Wall Thickness box associates hook design with 1.2mm .047\"."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-ca925146b2"
+        },
+        {
+          "title": "Wall thickness without through holes",
+          "requirement": "Control the basic wall thickness for designs without through holes.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the wall thickness at the region indicated by the standard.",
+          "acceptance_criteria": "1mm .039\".",
+          "applicability": "Designs without through holes.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-001",
+              "observation": "The Basic Wall Thickness box associates designs without through holes with 1mm .039\"."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-1e3911878b"
+        },
+        {
+          "title": "Age-grade post barb configuration",
+          "requirement": "Configure the earring-post barb according to the toy age grade.",
+          "category": "safety_edge",
+          "verification_method": "Inspect the post geometry against the assigned age grade.",
+          "acceptance_criteria": "For Age Grade 6+ toys: no barb. For Age Grade 3+ toys: every earring has a barb.",
+          "applicability": "Age Grade 3+ and Age Grade 6+ toys.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-001",
+              "observation": "The standard shows no barb for 6+ toys and requires a barb on all earrings for 3+ toys."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-002",
+              "observation": "The age-grade examples repeat the no-barb requirement for 6+ toys and the barb requirement for 3+ toys."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-448fbd04d4"
+        },
+        {
+          "title": "Top-worn earring post alignment",
+          "requirement": "Keep the earring post straight and centered for dolls wearing the earring on top.",
+          "category": "assembly_fit",
+          "verification_method": "Inspect post alignment and location in the top-worn configuration.",
+          "acceptance_criteria": "",
+          "applicability": "Dolls with the earring worn on top.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-003",
+              "observation": "The note requires the earring post to be straight and in the middle for dolls with the earring on top; no positional datum or tolerance is defined."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-ffe6dc222e"
+        },
+        {
+          "title": "Visible post dimension",
+          "requirement": "Control the dimensioned visible portion of the post.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure between the endpoints of the visible-post dimension callout.",
+          "acceptance_criteria": "4mm.",
+          "applicability": "The post configuration shown in the visual reference.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-003",
+              "observation": "The CAD detail labels the feature as the visible post and shows a 4mm dimension; the precise endpoints are partly obscured."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-674c567458"
+        }
+      ],
+      "reference_notes": [],
+      "quality_notes": [],
+      "images": [
+        {
+          "image_id": "IMG-001",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-001.png",
+          "original_asset_url": "/rag-assets/images/original/image3.png",
+          "anchor": "from R6C15 | to R54C44",
+          "caption": "Composite earring tooling standard showing hook wall thickness, post dimensions and orientation, and age-grade-dependent barb requirements.",
+          "observed_text": [
+            "Earrings",
+            "Basic Wall Thickness",
+            "- hook design",
+            "- without thru holes",
+            "Top view",
+            "Front view",
+            "0 or 45° per design request",
+            "because the earhole is 25° on head",
+            "For 6+ Toys, no barb on earring post",
+            "Earring without barb",
+            "For 3+ Toys, ALL earrings should have barb design for safety request",
+            "Earring with barb on post"
+          ],
+          "uncertainties": [
+            "The exact feature controlled by the revised 3.9mm value is not fully clear from the overlapping redline; the prior visible value is 3.3mm / .130\".",
+            "Several repeated 1.8mm / .071\" and 1.5mm / .059\" dimensions are visible, but some extension lines overlap the renderings and make the exact controlled surfaces ambiguous.",
+            "Small product identification text under the no-barb example is not fully legible."
+          ]
+        },
+        {
+          "image_id": "IMG-002",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-002.png",
+          "original_asset_url": "/rag-assets/images/original/image1.png",
+          "anchor": "from R14C4 | to R44C10",
+          "caption": "Earring standard design sheet presenting no-barb requirements for age grade 6+, barb requirements for age grade 3+, and examples of two post designs.",
+          "observed_text": [
+            "Earring Standard design",
+            "For Age Grade 6+ toys, no barb on earring post, earring can be removable.",
+            "Earring without barb",
+            "C1248-2039 Small Hoop",
+            "C1248-0563",
+            "For Age Grade 3+ toys, all the earrings should have barb design for safety request.",
+            "Earring with barb on post",
+            "There are 2 kinds of earring post design, the barb can’t be sharp point.",
+            "2029",
+            "2039",
+            "T5500-Q051",
+            "T7173-4 Bluetooth",
+            "T7173-0051-01 CNC"
+          ],
+          "uncertainties": [
+            "Some Chinese annotations in the lower-left example are too small to translate reliably.",
+            "Small captions beneath the lower-left illustrations are not fully legible.",
+            "No numerical dimensions or acceptance limits are visibly provided."
+          ]
+        },
+        {
+          "image_id": "IMG-003",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-003.png",
+          "original_asset_url": "/rag-assets/images/original/image2.png",
+          "anchor": "from R37C11 | to R54C15",
+          "caption": "Photo and CAD detail showing the visible post of an earring mounted on a doll ear, with a 4mm callout and a location note for dolls wearing on top.",
+          "observed_text": [
+            "visible post",
+            "4mm",
+            "Earring post straight and in the middle for dolls w/earring on top"
+          ],
+          "uncertainties": [
+            "The precise endpoints of the 4mm dimension are partly obscured by the CAD geometry and low resolution.",
+            "The exact meaning of “in the middle” is not defined by a datum or numerical positional tolerance."
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "populated_cells": 14,
+        "drawing_text_items": 1,
+        "image_occurrences": 3,
+        "checkpoints": 10,
+        "checkpoints_requiring_review": 3
+      },
+      "reference_tables": []
+    },
+    {
+      "id": "tooling-handring",
+      "slug": "tooling-baseline-handring",
+      "title": "Handring",
+      "source_sheet": "HANDRING",
+      "source_workbook": "Copy of Standart Accesoris_Updated.xlsx",
+      "summary": "",
+      "checkpoints": [],
+      "reference_notes": [],
+      "quality_notes": [],
+      "images": [
+        {
+          "image_id": "IMG-004",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-004.png",
+          "original_asset_url": "/rag-assets/images/original/image4.png",
+          "anchor": "from R1C12 | to R38C27",
+          "caption": "Tabulated HANDRING tooling inventory showing toy/model applications, tool numbers, makers, build years, actual-part and model dimensions, reference pictures, and remarks.",
+          "observed_text": [
+            "TOY",
+            "TOOL NO.",
+            "Maker",
+            "Built Year",
+            "Actual part",
+            "Ø (mm)",
+            "P (mm)",
+            "Model",
+            "Ø (mm)",
+            "P (mm)",
+            "Picture",
+            "Remark",
+            "Mata bor 2.0 | DGW46 | DGW46-Q052-01 | MTI | 2016 | 1.53 | 5.0 | 1.5 | 5.1 | Mold already transfer to MTSG April 2021. Drawing 3d tool complate",
+            "Mata bor 1.8 | GTJ95 | GTJ95-U832-01 | MEC | 2020 | NA | NA | 1.5 | 3.18 | Drawing 3d tool complate",
+            "Mata bor 1.8 | GHT91 | GHT91-K511-01 | MEC | 2019 | 1.6 | 4.6 | 1.6 | 4.60 | Drawing 3d tool complate, tool insert Al if changes (refer 1.5 mm) should be sub insert with steel.",
+            "Mata bor 1.8 | GHT91 | FJH75-K511-01 | MTI | 2017 | 1.62 | 3.22 | 1.6 | 3.2 | Drawing 3d tool complate, tool insert Al if changes (refer 1.5 mm) should be sub insert with steel.",
+            "Mata bor 1.8 | GTJ87",
+            "Mata bor 1.8 | GTJ88 | 1953-Q502-01 | MJS | 1995 | 1.5 | 4.0 | NA | NA | No record drawing sinces buil 1995",
+            "Mata bor 1.8 | GXL24",
+            "Mata bor 1.9 | GTJ85 | FJH75-K511-01 | MTI | 2017 | 1.62 | 3.22 | 1.6 | 3.2 | Drawing 3d tool complate, tool insert Al if changes (refer 1.5 mm) should be sub insert with steel.",
+            "Mata bor 2.0 | GXL18 | No record use hand ring"
+          ],
+          "uncertainties": [
+            "The small 3D renderings do not expose readable feature-level dimensions or annotations.",
+            "The phrase “P (mm)” is visible, but the image does not define what geometric feature P represents.",
+            "Rows GTJ87 and GXL24 contain no visible tool number, maker, year, dimension, or remark data beyond their toy/model identifiers.",
+            "Spelling in remarks is reproduced as visible, including “complate” and “No record drawing sinces buil 1995.”"
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "populated_cells": 103,
+        "drawing_text_items": 0,
+        "image_occurrences": 2,
+        "checkpoints": 0,
+        "checkpoints_requiring_review": 0
+      },
+      "reference_tables": [
+        {
+          "title": "Handring Tool Reference",
+          "columns": [
+            "Toy No",
+            "Tools",
+            "Build year",
+            "Built by",
+            "Handring parts dimension (Model)",
+            "Handring parts dimension (Actual)",
+            "VUM",
+            "Hand ring drill",
+            "Remark",
+            "Production"
+          ],
+          "rows": [
+            [
+              "DGW46",
+              "DGW46-Q052-01",
+              "2019",
+              "NHT",
+              "1.5",
+              "1.53",
+              "NO",
+              "1.7",
+              "COCKTAIL RING EA CP DGW46-Q052",
+              "EOT 7/24/21"
+            ],
+            [
+              "GTJ95",
+              "GTJ95-U832-01",
+              "2013",
+              "MTI",
+              "1.5",
+              "",
+              "NO",
+              "1.8",
+              "HAND RING GTJ95 EA CP GTJ95-U832",
+              ""
+            ],
+            [
+              "GHT91",
+              "FJH75-K511-01",
+              "2013",
+              "MTI",
+              "1.6",
+              "1.62",
+              "YES",
+              "1.8",
+              "VUM HANDRING LF MOLD: FJH75-K511",
+              ""
+            ],
+            [
+              "GTJ87",
+              "1953-Q502-01",
+              "2019",
+              "NHT",
+              "N/A",
+              "1.5",
+              "",
+              "1.8",
+              "HAND RING GTJ87 EA CP 1953-Q502",
+              ""
+            ],
+            [
+              "GTJ88",
+              "1953-Q502-01",
+              "2019",
+              "NHT",
+              "N/A",
+              "1.5",
+              "",
+              "1.8",
+              "HAND RING GTJ87 EA CP 1953-Q502",
+              ""
+            ],
+            [
+              "GXL24",
+              "1953-Q502-01",
+              "2019",
+              "NHT",
+              "N/A",
+              "1.5",
+              "",
+              "1.8",
+              "HAND RING GTJ87 EA CP 1953-Q502",
+              ""
+            ],
+            [
+              "GTJ85",
+              "FJH75-K511-01",
+              "2013",
+              "MTI",
+              "1.6",
+              "1.62",
+              "",
+              "1.9",
+              "HAND RING GTJ85 EA CP FJH75-K511",
+              "EOT 8/14/21"
+            ],
+            [
+              "GXL18",
+              "No hand ring",
+              "0",
+              "0",
+              "",
+              "",
+              "",
+              "2",
+              "Aisyah, toy ini gak pake handring. Pls. advise",
+              ""
+            ],
+            [
+              "GHT91",
+              "GHT91-K511-01",
+              "",
+              "",
+              "1.6",
+              "1.6",
+              "VUM",
+              "2.0",
+              "VUM HANDRING LF MOLD: FJH75-K511 HANDRING BMR NEW EA CP GHT91-K511",
+              "RE-run : 10/16 and 10/13 qty 14.7"
+            ],
+            [
+              "HJX01",
+              "FJH75-K511-01",
+              "2013",
+              "MTI",
+              "1.6",
+              "1.62",
+              "",
+              "",
+              "FJH75-K511",
+              ""
+            ],
+            [
+              "HJX18",
+              "HBY13-U512-01",
+              "2013",
+              "MTI",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "HJX41",
+              "DGW74-Q502",
+              "2019",
+              "NHT",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            [
+              "HBY01",
+              "HBY01-U513-01",
+              "2013",
+              "MTI",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tooling-headband",
+      "slug": "tooling-baseline-headband",
+      "title": "Headband",
+      "source_sheet": "HEADBAND",
+      "source_workbook": "Copy of Standart Accesoris_Updated.xlsx",
+      "summary": "",
+      "checkpoints": [
+        {
+          "title": "SG Head Review",
+          "requirement": "Obtain a double-check from the SG head.",
+          "category": "general_design",
+          "verification_method": "Confirm that the specified review has been completed.",
+          "acceptance_criteria": "",
+          "applicability": "General headband review.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C4",
+              "observation": "The checklist instructs: “Get SG head to double check.”"
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-aea89e675f"
+        },
+        {
+          "title": "Single-Gate Design",
+          "requirement": "Use one gate to avoid a weld line.",
+          "category": "mold_tooling",
+          "verification_method": "Review the mold gate layout and resulting weld-line condition.",
+          "acceptance_criteria": "",
+          "applicability": "Mold design for the headband.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C5",
+              "observation": "The checklist specifies one gate design to avoid a weld line."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-77a258dea9"
+        },
+        {
+          "title": "First-Option Material",
+          "requirement": "Use PPCO as the first material option.",
+          "category": "material_process",
+          "verification_method": "Check the selected material specification.",
+          "acceptance_criteria": "",
+          "applicability": "Headband material selection.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C6",
+              "observation": "PPCO is identified as the first option."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-04827e9377"
+        },
+        {
+          "title": "Slide Parting-Line Inner Edge",
+          "requirement": "Provide a sharp inner edge along the slide parting line at the indicated location.",
+          "category": "mold_tooling",
+          "verification_method": "Inspect the inner edge at the arrowed location in the top-left view.",
+          "acceptance_criteria": "",
+          "applicability": "The slide parting-line detail shown in the annotated CAD view.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-008",
+              "observation": "Callout (1) requires a sharp edge inside along the slide parting line and points to the inner curved edge."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-558687fd53"
+        },
+        {
+          "title": "Sharp-Point Radius",
+          "requirement": "Avoid a sharp point at the indicated ornamental crown profile.",
+          "category": "safety_edge",
+          "verification_method": "Measure the radius at the location represented in the top-right side view.",
+          "acceptance_criteria": "R>0.8mm",
+          "applicability": "The sharp-point location identified by callout (2).",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-008",
+              "observation": "Callout (2) states that the sharp-point issue must be avoided and specifies R>0.8mm."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-4a81220ccd"
+        },
+        {
+          "title": "Shut-Off Hole Size",
+          "requirement": "Size the indicated shut-off hole above the referenced hole diameter.",
+          "category": "mold_tooling",
+          "verification_method": "Measure the circled shut-off hole in the bottom-left front view.",
+          "acceptance_criteria": "Larger than a Dia2mm hole.",
+          "applicability": "The shut-off hole identified by callout (3).",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-008",
+              "observation": "Callout (3) requires shut-off holes to be larger than a Dia2mm hole."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-57b835f36f"
+        },
+        {
+          "title": "Ornamental Connection Section",
+          "requirement": "Provide sufficient material at the circled ornamental connection.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the circled connection section in the bottom-right side view.",
+          "acceptance_criteria": ">1.2mm",
+          "applicability": "The connection identified by callout (4); the measured thickness or width direction is not defined in the image.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-008",
+              "observation": "Callout (4) specifies that the connection should be strong enough with a criterion of >1.2mm."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-5acb09e931"
+        },
+        {
+          "title": "Sticking-Slide Draft",
+          "requirement": "Apply the specified draft to the sticking-slide feature.",
+          "category": "mold_tooling",
+          "verification_method": "Measure the draft angle on the applicable slide surface.",
+          "acceptance_criteria": "3~10 degree draft.",
+          "applicability": "The sticking-slide feature; the source does not identify the exact surface.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C8",
+              "observation": "The checklist states: “Sticking slide, 3~10 degree draft.”"
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-cbfb2864bd"
+        },
+        {
+          "title": "BBD52 Glued Attachment",
+          "requirement": "Glue the BBD52 decorative attachment to the headband at the crown interface shown.",
+          "category": "assembly_fit",
+          "verification_method": "Inspect the attachment interface against the labeled rendering.",
+          "acceptance_criteria": "",
+          "applicability": "BBD52 attachment configuration.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-006",
+              "observation": "The BBD52 rendering labels the interface between the decorative attachment and headband as “glue.”"
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-f1712731f1"
+        },
+        {
+          "title": "Snap Attachment Configurations",
+          "requirement": "Use the depicted snap-type attachment interfaces for BBD43, BDB09, and T7411.",
+          "category": "assembly_fit",
+          "verification_method": "Compare each applicable crown interface with its labeled CAD example.",
+          "acceptance_criteria": "",
+          "applicability": "BBD43, BDB09, and T7411 configurations.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-007",
+              "observation": "The BBD43, BDB09, and T7411 examples are each labeled as snap connections."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-185e4913ad"
+        },
+        {
+          "title": "Crown Wall Thicknesses",
+          "requirement": "Apply the specified inner-area and basic wall thicknesses at the indicated crown locations.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure or section the locations identified by the red leader lines in the upper-left crown view.",
+          "acceptance_criteria": "Inner area: 1mm / .039”; basic wall: 1.5mm / .059”.",
+          "applicability": "The crown geometry shown in the upper-left view.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-009",
+              "observation": "The crown view labels inner-area wall thickness as 1mm / .039” and basic wall thickness as 1.5mm / .059”."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-9d24260435"
+        },
+        {
+          "title": "Headpiece Tip Minimum Radius",
+          "requirement": "Maintain the specified minimum radius at the indicated sharp headpiece tip.",
+          "category": "safety_edge",
+          "verification_method": "Measure the radius at the circled upper tip in the enlarged star detail.",
+          "acceptance_criteria": "Min. Radius 0.8mm / .031”.",
+          "applicability": "The rounded sharp-point detail shown in the upper-right view.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-009",
+              "observation": "The sharp-point callout specifies Min. Radius 0.8mm / .031”."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-a16a49ba3d"
+        },
+        {
+          "title": "Chamfered Sharp-Look Radius",
+          "requirement": "Where the illustrated chamfer is used to create a sharper appearance, maintain the specified radius.",
+          "category": "safety_edge",
+          "verification_method": "Measure the chamfered profile represented by the green line.",
+          "acceptance_criteria": "Min. Radius 0.6mm / .024”.",
+          "applicability": "Features using the illustrated chamfer treatment.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-009",
+              "observation": "The green-line chamfer guidance specifies Min. Radius 0.6mm / .024”."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-e77923a3c4"
+        },
+        {
+          "title": "Bead-Chain Cross-Section Detail",
+          "requirement": "Apply the illustrated bead-chain cross-section and fill dimensions.",
+          "category": "decoration_marking",
+          "verification_method": "Section and measure the bead-chain feature at the illustrated detail.",
+          "acceptance_criteria": "Cross-section annotation: .016” / 0.4mm; fill: 0.2mm / .008”.",
+          "applicability": "Headpieces containing the illustrated bead-chain feature; exact endpoints of the .016” / 0.4mm dimension are unclear.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-009",
+              "observation": "The bead-chain detail labels .016” / 0.4mm and a fill of 0.2mm / .008”."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-052cb2a05d"
+        },
+        {
+          "title": "Scribe-Line Branches and Height",
+          "requirement": "Form the scribe-line feature to the illustrated branch and height dimensions.",
+          "category": "decoration_marking",
+          "verification_method": "Measure both branches in plan view and the feature height in side section.",
+          "acceptance_criteria": "Each indicated branch: 0.4mm / .016”; Min. height: 0.3mm / .012”.",
+          "applicability": "The boxed scribe-line detail.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-009",
+              "observation": "The boxed detail labels both branches 0.4mm / .016” and specifies Min. height 0.3mm / .012”."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-531e09ef03"
+        },
+        {
+          "title": "Intentional-Flash Wall Thickness",
+          "requirement": "Use the listed wall thickness for intentional-flash areas that fill through holes that are too small.",
+          "category": "mold_tooling",
+          "verification_method": "Measure wall thickness at the highlighted filled-through-hole areas and identify the applicable product type.",
+          "acceptance_criteria": "Earrings: 0.6mm /.024” // 0.8mm /.031”; Tiara: 0.8mm /.031”; Big Star (e.g.DYX39 Holiday doll): 1mm /.039”.",
+          "applicability": "Only the listed product types where intentional flash is used to fill a small through-hole area.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-009",
+              "observation": "The intentional-flash guidance lists wall thicknesses for Earrings, Tiara, and Big Star product types."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-38eba3a960"
+        },
+        {
+          "title": "Headband Width and Wall Proportion",
+          "requirement": "Use one of the illustrated headband width and wall-thickness configurations.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the headband cross-section at the lower-left illustrated location.",
+          "acceptance_criteria": "Basic Wall Thickness 1.5mm / .059”; or Width > 2 mm / .079” with Wall thickness 1.2mm / .047”.",
+          "applicability": "The headband proportion detail in the lower-left views.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-009",
+              "observation": "The “Width vs Wall Thickness for headband” detail gives the two stated configurations."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-76769e77aa"
+        },
+        {
+          "title": "Tie-Down Hole Detail",
+          "requirement": "Provide the illustrated tie-down hole and adjacent dimension at the headband end.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the hole and the indicated adjacent dimension in the lower-center view.",
+          "acceptance_criteria": "Hole: 2mm; adjacent dimension: 3mm / .118”.",
+          "applicability": "The lower-center tie-down detail; the exact endpoints of the 3mm / .118” dimension are unclear.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-009",
+              "observation": "The view states “2mm hole for tie down” and shows an adjacent 3mm / .118” dimension."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-995c62daa1"
+        },
+        {
+          "title": "Top Attachment Hole Detail",
+          "requirement": "Provide the illustrated top attachment hole with the indicated surrounding dimension.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the hole and surrounding attachment geometry in the lower-right side view.",
+          "acceptance_criteria": "Hole: 2mm; surrounding dimension: at least 1.3mm.",
+          "applicability": "The lower-right top attachment detail; the direction of the at least 1.3mm measurement is partly obscured.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-009",
+              "observation": "The top attachment detail labels a 2mm hole and an adjacent dimension of at least 1.3mm."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-fd98d9fefa"
+        },
+        {
+          "title": "Dimensioned Loop Envelope",
+          "requirement": "Control the depicted headband-like loop to the three shown envelope dimensions.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure between the extension lines and reference levels shown in the CAD view.",
+          "acceptance_criteria": "Vertical height: 1.199\"; lower inner spacing: .949\"; lower outer width: 1.102\".",
+          "applicability": "The specific loop and offset mounting-tab geometry depicted in IMG-010.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-010",
+              "observation": "The CAD view shows dimensions of 1.199\", .949\", and 1.102\" for the loop envelope."
+            }
+          ],
+          "confidence": "medium",
+          "review_required": true,
+          "id": "CHK-8f614a3262"
+        },
+        {
+          "title": "Standardized Headband Hole Position",
+          "requirement": "Position the headband hole at the specified fraction of the headband height from the top.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the hole position relative to the headband height using the side and front views.",
+          "acceptance_criteria": "1/3 from the top headband height.",
+          "applicability": "The standardized hole-position proposal; the source does not explicitly define whether the reference applies to the hole center.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-011",
+              "observation": "The drawing proposes the hole position at 1/3 from the top headband height."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-86271f3f52"
+        },
+        {
+          "title": "Two-Tack Retention Arrangement",
+          "requirement": "Use only the two indicated tacks without an additional rubber band and tacks.",
+          "category": "assembly_fit",
+          "verification_method": "Inspect the assembly for the two indicated tack locations and the absence of the additional retention arrangement.",
+          "acceptance_criteria": "",
+          "applicability": "The retention arrangement shown in the lower schematic.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-011",
+              "observation": "Two arrows identify the tack locations, and the note requires only 2 tacks without an additional rubber band and tacks."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-6d40882c8a"
+        }
+      ],
+      "reference_notes": [],
+      "quality_notes": [],
+      "images": [
+        {
+          "image_id": "IMG-006",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-006.png",
+          "original_asset_url": "/rag-assets/images/original/image6.png",
+          "anchor": "from R3C14 | to R10C16",
+          "caption": "CAD-style rendering of a blue headband with a pink decorative attachment bonded at the crown.",
+          "observed_text": [
+            "BBD52",
+            "glue",
+            "ABS+PVC90"
+          ],
+          "uncertainties": [
+            "The exact material notation appears to read \"ABS+PVC90,\" but the final characters are small.",
+            "No dimensions or acceptance limits are visible."
+          ]
+        },
+        {
+          "image_id": "IMG-007",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-007.png",
+          "original_asset_url": "/rag-assets/images/original/image7.png",
+          "anchor": "from R4C17 | to R10C26",
+          "caption": "Four CAD-style examples of headband accessory attachments, including snap-type interfaces and material labels.",
+          "observed_text": [
+            "BBD43",
+            "snap",
+            "PPCo+PVC90",
+            "BDB09",
+            "snap",
+            "PPCo+PPCo",
+            "T7411",
+            "Snap",
+            "PPCo+PPCo"
+          ],
+          "uncertainties": [
+            "The small material text in the BBD43 panel appears to read \"PPCo+PVC90,\" but the final characters are not fully clear.",
+            "No dimensions or explicit acceptance limits are visible.",
+            "The heart-shaped example has no clearly visible identifier or connection label in its panel."
+          ]
+        },
+        {
+          "image_id": "IMG-008",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-008.png",
+          "original_asset_url": "/rag-assets/images/original/image11.JPG",
+          "anchor": "from R11C14 | extent 782x578px",
+          "caption": "Four annotated CAD views defining edge, radius, shut-off-hole, and connection-strength requirements for an ornamental headband accessory.",
+          "observed_text": [
+            "(1)Need sharp edge inside along slide parting line.",
+            "(2)Avoid sharp point issue.(R>0.8mm)",
+            "(3)Shut off holes should be larger than a Dia2mm hole.",
+            "Dia2mm",
+            "(4)Connection should be strong enough.(>1.2mm)"
+          ],
+          "uncertainties": [
+            "The image does not identify exactly which geometric thickness or width the >1.2mm criterion measures.",
+            "The image does not specify the measurement direction for the shut-off-hole comparison beyond the \"Dia2mm\" wording."
+          ]
+        },
+        {
+          "image_id": "IMG-009",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-009.png",
+          "original_asset_url": "/rag-assets/images/original/image9.png",
+          "anchor": "from R14C1 | to R53C14",
+          "caption": "Composite headpiece engineering guidance sheet covering wall thickness, sharp-point radii, chamfering, bead-chain scribe details, intentional flash, headband proportions, and attachment holes.",
+          "observed_text": [
+            "Headpiece",
+            "Inner area Wall thickness",
+            "1mm",
+            ".039”",
+            "Basic Wall Thickness",
+            "1.5mm .059”",
+            "(a) part thickness & (b) taper angle can affect the upper surface radius dia.",
+            "chamfer cross section",
+            "Sharp point",
+            "Min. Radius 0.8mm",
+            ".031”",
+            "we can use chamfer to make it looks sharper like the green line",
+            "Min. Radius 0.6mm",
+            ".024”",
+            "For Bead Chain Scribe details",
+            "Cross Section",
+            "Fill",
+            "0.2mm",
+            ".008”",
+            ".016”",
+            "0.4mm",
+            "Lorem ipsum",
+            "Scribe line dimension",
+            "Min. height 0.3mm",
+            ".012”",
+            "Intentional flash added when the through hole is too small that fills that specific area wall thickness",
+            "- Earrings - 0.6mm /.024” // 0.8mm /.031”",
+            "- Tiara - 0.8mm /.031”",
+            "- Big Star (e.g.DYX39 Holiday doll) - 1mm /.039”",
+            "Width vs Wall Thickness for headband",
+            "Basic Wall Thickness",
+            "1.5mm /.059”",
+            "or",
+            "Width - > 2 mm .079”",
+            "Wall thickness - 1.2mm .047”",
+            "usually 2mm for hair",
+            "2mm hole",
+            "at least 1.3mm",
+            "2mm hole for tie down",
+            "3mm",
+            ".118”"
+          ],
+          "uncertainties": [
+            "The bead-chain .016” / 0.4mm annotation is small, and its exact dimension endpoints are difficult to distinguish.",
+            "The meaning of \"usually 2mm for hair\" is not fully defined by measurement arrows.",
+            "The direction measured by \"at least 1.3mm\" is partly obscured in the lower-right attachment detail.",
+            "The 3mm / .118” dimension is visibly adjacent to the tie-down hole, but the exact referenced endpoints are not fully clear.",
+            "The placeholder text \"Lorem ipsum\" has no evident engineering meaning.",
+            "Some punctuation and spacing between metric and inch values vary or are indistinct in the source."
+          ]
+        },
+        {
+          "image_id": "IMG-010",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-010.png",
+          "original_asset_url": "/rag-assets/images/original/image10.jpg",
+          "anchor": "from R40C15 | to R58C21",
+          "caption": "Dimensioned CAD view of a pink headband-like loop with two open lower ends and an offset top mounting tab containing a circular hole.",
+          "observed_text": [
+            "1.199\"",
+            ".949\"",
+            "1.102\""
+          ],
+          "uncertainties": [
+            "The image does not visibly dimension the top-tab hole, loop thickness, radii, or tab position.",
+            "The exact datum points for the horizontal dimensions are somewhat difficult to distinguish because the extension lines overlap the part profile."
+          ]
+        },
+        {
+          "image_id": "IMG-011",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-011.png",
+          "original_asset_url": "/rag-assets/images/original/image8.jpeg",
+          "anchor": "from R40C21 | to R59C29",
+          "caption": "Side and front-view proposal showing a headband hole positioned one-third of the headband height, with a lower schematic explaining a two-tack retention arrangement.",
+          "observed_text": [
+            "Propose to standardize hole position 1/3 from top headband height",
+            "Hole position should be 1/3 from headband height",
+            "Side View",
+            "Front View",
+            "Requires only 2 tacks without additional rubber band and tacks.",
+            "Secure the headband because of the hole position hold the upper and lower area of headband."
+          ],
+          "uncertainties": [
+            "The wording “1/3 from headband height” does not explicitly define whether the reference is to the hole center or another point on the hole, although the drawing suggests the hole position.",
+            "No numeric overall headband height, hole diameter, tack size, or tack offset is shown.",
+            "The exact meaning of the paired short marks in the upper front view is not explicitly labeled."
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "populated_cells": 14,
+        "drawing_text_items": 0,
+        "image_occurrences": 6,
+        "checkpoints": 22,
+        "checkpoints_requiring_review": 8
+      },
+      "reference_tables": []
+    },
+    {
+      "id": "tooling-belt",
+      "slug": "tooling-baseline-belt",
+      "title": "Belt",
+      "source_sheet": "BELT",
+      "source_workbook": "Copy of Standart Accesoris_Updated.xlsx",
+      "summary": "",
+      "checkpoints": [
+        {
+          "title": "Belt post orientation",
+          "requirement": "Use an outward-facing post as the first choice. An inward-facing post is permitted for a loose belt only when requested by the design; it is not permitted for a tight belt.",
+          "category": "assembly_fit",
+          "verification_method": "Inspect the post orientation against the tight- and loose-belt configurations.",
+          "acceptance_criteria": "Tight belt: outward only. Loose belt: outward preferred; inward permitted only per design request.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C4",
+              "observation": "Outward is the first-choice post direction; inward is permitted for a loose belt by design request but prohibited for a tight belt."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-012",
+              "observation": "The comparison identifies the tight belt with the mushroom outward and the loose belt with the mushroom inward."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-928bd432b7"
+        },
+        {
+          "title": "SG fit",
+          "requirement": "Ensure the belt fits SG.",
+          "category": "assembly_fit",
+          "verification_method": "Perform a fit check with SG.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C5",
+              "observation": "The checklist states that the belt needs to fit SG."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-b6627b29ce"
+        },
+        {
+          "title": "Posts at each breakaway",
+          "requirement": "Prefer 1 post instead of 2 at every breakaway.",
+          "category": "general_design",
+          "verification_method": "Count the posts at each breakaway location.",
+          "acceptance_criteria": "1 post per breakaway is preferred.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C6",
+              "observation": "The checklist recommends trying to use 1 post instead of 2 at every breakaway."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-014",
+              "observation": "The annotated example states that 2 posts are difficult to align when dressing and suggests using one post."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-5c435c94c5"
+        },
+        {
+          "title": "Gate location by application",
+          "requirement": "Place the gate at the hole side for PTMI and at the post side for MCA.",
+          "category": "mold_tooling",
+          "verification_method": "Inspect the gate location on the applicable tool or molded part.",
+          "acceptance_criteria": "PTMI: hole side. MCA: post side.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C7",
+              "observation": "The checklist specifies the hole side for PTMI and the post side for MCA."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-ca4ef5efda"
+        },
+        {
+          "title": "Mushroom post diameters",
+          "requirement": "Use the recommended mushroom head diameter of ⌀3.4mm and stem diameter of ⌀2.8mm.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the maximum head diameter and the stem diameter below the head.",
+          "acceptance_criteria": "Head: ⌀3.4mm. Stem: ⌀2.8mm.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-013",
+              "observation": "The mushroom-post drawing dimensions the head as ⌀3.4mm and the stem as ⌀2.8mm, with a note that the stem was previously 3.0."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-15cd7c59de"
+        },
+        {
+          "title": "Mushroom post radii",
+          "requirement": "Provide R 0.4mm and R0.25mm at the indicated mushroom-post edges.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure or compare the indicated edge radii with the drawing.",
+          "acceptance_criteria": "Upper edge: R 0.4mm. Stem transition: R0.25mm.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-013",
+              "observation": "The drawing identifies R 0.4mm at the head and R0.25mm at the stem transition."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-1d4654a86a"
+        },
+        {
+          "title": "Mushroom head feature and chamfer",
+          "requirement": "Provide the indicated 1.3mm mushroom-head feature with a 0.8mm 45° chamfer.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the indicated head feature and chamfer.",
+          "acceptance_criteria": "1.3mm with 0.8mm 45° chamfer.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-013",
+              "observation": "The mushroom-post view is annotated “1.3mm with 0.8mm 45° chamfer.”"
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-b64fd88b8d"
+        },
+        {
+          "title": "Post height relationship",
+          "requirement": "Set the indicated post height to B+0.3mm.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the indicated post height and compare it with B.",
+          "acceptance_criteria": "B+0.3mm.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-013",
+              "observation": "The vertical post dimension is labeled B+0.3mm."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-32ea4aa86d"
+        },
+        {
+          "title": "Keyhole opening geometry",
+          "requirement": "Provide the illustrated keyhole opening with a ⌀ 3.0mm circular portion, the narrow-slot annotation 1mm', and the indicated 5.0mm horizontal dimension.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the circular portion, narrow slot, and marked horizontal span against the illustrated opening.",
+          "acceptance_criteria": "Circular portion: ⌀ 3.0mm. Narrow slot: 1mm'. Horizontal dimension: 5.0mm.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-013",
+              "observation": "The keyhole opening is annotated ⌀ 3.0mm, 1mm', and 5.0mm; the trailing mark and exact endpoints of the latter dimensions are unclear."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-f987cfe987"
+        },
+        {
+          "title": "Opening edge allowance",
+          "requirement": "Maintain 1.6 mm (min) at the indicated edge of the mating opening.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the depicted distance from the opening boundary to the outer edge.",
+          "acceptance_criteria": "1.6 mm (min).",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-013",
+              "observation": "The right-side edge distance is marked 1.6 mm (min)."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-8e9fb3f3d5"
+        },
+        {
+          "title": "Section thickness B",
+          "requirement": "Use section thickness B, with 1.5mm suggested.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the section thickness identified as B.",
+          "acceptance_criteria": "B; suggested value 1.5mm.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-013",
+              "observation": "The section view is labeled “B (suggest 1.5mm).”"
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-a7633536d4"
+        },
+        {
+          "title": "Opening chamfer",
+          "requirement": "Provide a 0.8mm 45° chamfer at the opening as a preferred feature.",
+          "category": "dimension_geometry",
+          "verification_method": "Inspect and measure the chamfer shown in the opening section.",
+          "acceptance_criteria": "0.8mm 45° chamfer, identified as best to have.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-013",
+              "observation": "The section view specifies “0.8mm 45° chamfer (best to have).”"
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-8a87b6fbc4"
+        },
+        {
+          "title": "Assembly direction",
+          "requirement": "Assemble in the upward direction shown in the section view.",
+          "category": "assembly_fit",
+          "verification_method": "Compare the insertion direction with the assembly-direction arrow.",
+          "acceptance_criteria": "Direction matches the upward arrow.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-013",
+              "observation": "An upward arrow beneath the section is labeled “assembly direction.”"
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-b1c8106b54"
+        },
+        {
+          "title": "Illustrated two-post spacing",
+          "requirement": "Maintain 16.5mm between the two marked reference levels in the illustrated arrangement.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure between the horizontal reference levels shown in the image.",
+          "acceptance_criteria": "16.5mm.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-014",
+              "observation": "A hand-drawn vertical dimension between two horizontal reference levels is labeled 16.5mm, but the physical endpoint features are not identified clearly."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-bf94d47dea"
+        },
+        {
+          "title": "N/S pin orientation",
+          "requirement": "Use an outward pin location and direction for the illustrated N/S configuration.",
+          "category": "assembly_fit",
+          "verification_method": "Inspect the pin location and confirm its direction relative to the torso opening.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-015",
+              "observation": "The N/S example requests revision of the pin location and direction to outward, while another note states that the design insisted on retaining the inward pin."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-a633a03596"
+        }
+      ],
+      "reference_notes": [],
+      "quality_notes": [],
+      "images": [
+        {
+          "image_id": "IMG-012",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-012.png",
+          "original_asset_url": "/rag-assets/images/original/image13.JPG",
+          "anchor": "from R3C12 | extent 376x511px",
+          "caption": "Comparison of tight and loose belts with mushroom posts oriented outward and inward.",
+          "observed_text": [
+            "tight belt",
+            "mushroom outward",
+            "loose belt",
+            "mushroom inward"
+          ],
+          "uncertainties": [
+            "The image itself does not state an explicit prohibition or acceptance rule for either orientation.",
+            "No dimensions are shown."
+          ]
+        },
+        {
+          "image_id": "IMG-013",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-013.png",
+          "original_asset_url": "/rag-assets/images/original/image12.png",
+          "anchor": "from R10C1 | extent 756x555px",
+          "caption": "Revision 2014.11-20 dimensional standard for a belt mushroom post and mating keyhole-shaped opening, including section and assembly direction.",
+          "observed_text": [
+            "Belt's mushroom standard",
+            "Rev 2014.11-20",
+            "recommend size",
+            "R 0.4mm",
+            "⌀3.4mm",
+            "R0.25mm",
+            "⌀2.8mm",
+            "(was 3.0)",
+            "1.3mm with",
+            "0.8mm 45° chamfer",
+            "B+0.3mm",
+            "⌀ 3.0mm",
+            "1mm'",
+            "5.0mm",
+            "1.6 mm",
+            "(min)",
+            "B (suggest 1.5mm)",
+            "*add details height if have",
+            "0.8mm",
+            "45° chamfer",
+            "(best to have)",
+            "assembly direction"
+          ],
+          "uncertainties": [
+            "The narrow-slot label appears as \"1mm'\"; the trailing mark is unclear.",
+            "The exact endpoints represented by the 5.0mm dimension are visible, but their design interpretation is not explicitly stated.",
+            "The phrase \"*add details height if have\" is grammatically unclear but legible enough to transcribe."
+          ]
+        },
+        {
+          "image_id": "IMG-014",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-014.png",
+          "original_asset_url": "/rag-assets/images/original/image15.png",
+          "anchor": "from R27C12 | extent 710x503px",
+          "caption": "Annotated product photo showing a two-post belt arrangement, a 16.5mm dimension, and a suggestion to use one post.",
+          "observed_text": [
+            "2 post, not easy to align when dressing.",
+            "Suggestion: use one post",
+            "16.5mm"
+          ],
+          "uncertainties": [
+            "The physical features defining the endpoints of the 16.5mm dimension are not clearly identified by text.",
+            "The dark product has limited contrast, making some molded details difficult to distinguish.",
+            "The image presents one-post use as a suggestion rather than an explicit mandatory limit."
+          ]
+        },
+        {
+          "image_id": "IMG-015",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-015.png",
+          "original_asset_url": "/rag-assets/images/original/image14.jpg",
+          "anchor": "from R39C1 | extent 492x582px",
+          "caption": "Comparison of an inward-facing pin configuration and a proposed outward-facing pin revision, with an assembly photo on a figure torso.",
+          "observed_text": [
+            "FS",
+            "pin inward and difficult",
+            "to dress on torso.",
+            "N/S",
+            "revise pin location/direction to",
+            "outward",
+            "Before TL, we have pointed out this issue and send the mock-up for",
+            "MOA/ES engineer/design review. But design insists to keep pin inward."
+          ],
+          "uncertainties": [
+            "The meanings of \"FS,\" \"N/S,\" \"TL,\" \"MOA/ES,\" and the final design status are not defined in the image.",
+            "The note says design insisted on keeping the pin inward, which conflicts with the visible recommendation to revise it outward.",
+            "No dimensions or quantitative acceptance limits are shown."
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "populated_cells": 13,
+        "drawing_text_items": 0,
+        "image_occurrences": 4,
+        "checkpoints": 15,
+        "checkpoints_requiring_review": 4
+      },
+      "reference_tables": []
+    },
+    {
+      "id": "tooling-bracelet",
+      "slug": "tooling-baseline-bracelet",
+      "title": "Bracelet",
+      "source_sheet": "BRACELET",
+      "source_workbook": "Copy of Standart Accesoris_Updated.xlsx",
+      "summary": "",
+      "checkpoints": [
+        {
+          "title": "Bracelet mold slide arrangement",
+          "requirement": "Apply the illustrated recommended slide arrangement for PP and ABS bracelet molds.",
+          "category": "mold_tooling",
+          "verification_method": "Compare the mold concept with the recommended diagram, including slide directions relative to the cavity side, core side, and parting line.",
+          "acceptance_criteria": "Two slides act outward from the bracelet opening, one slide acts downward, and no slide acts against the moving cavity side.",
+          "applicability": "PP and ABS bracelet molds.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-016",
+              "observation": "The recommended diagram shows two slides acting outward from the bracelet opening and a third slide acting downward. The non-recommended diagram warns that a slide against the moving cavity side can easily cause flash."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-ae15fa943e"
+        },
+        {
+          "title": "Trimming for floating-core retention closure",
+          "requirement": "If the final-product opening is closed during molding to retain the part on a floating core, include the required extra production trimming.",
+          "category": "material_process",
+          "verification_method": "Review the tooling concept and planned post-molding operation at the called-out opening.",
+          "acceptance_criteria": "A production trimming operation is included when the opening is molded closed for floating-core retention.",
+          "applicability": "Tooling concepts that close the bracelet opening to hold the part on a floating core.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-017",
+              "observation": "The annotation states that the final product has an opening and that closing the opening to hold the part on a floating core requires extra trimming in production."
+            }
+          ],
+          "confidence": "medium",
+          "review_required": false,
+          "id": "CHK-58b654db9a"
+        }
+      ],
+      "reference_notes": [],
+      "quality_notes": [],
+      "images": [
+        {
+          "image_id": "IMG-016",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-016.png",
+          "original_asset_url": "/rag-assets/images/original/image16.png",
+          "anchor": "from R11C1 | to R30C10",
+          "caption": "Recommended and non-recommended slide arrangements for a PP and ABS bracelet mold, showing the slide direction relative to the cavity side, core side, and parting line (PL).",
+          "observed_text": [
+            ">> PP and ABS bracelet",
+            "slide",
+            "Cavity Side",
+            "PL",
+            "Core Side",
+            "Recommend",
+            "Not recommend",
+            "The slide against the moving cavity side, will easily cause the flash."
+          ],
+          "uncertainties": [
+            "Small component details in the section and side views are not sufficiently clear to identify exact mold geometry.",
+            "The image does not state which mold half is moving beyond the sentence referring to the \"moving cavity side.\""
+          ]
+        },
+        {
+          "image_id": "IMG-017",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-017.png",
+          "original_asset_url": "/rag-assets/images/original/image17.jpeg",
+          "anchor": "from R12C10 | extent 539x332px",
+          "caption": "Annotated photograph of a red molded runner and bracelet-like parts, contrasting a final-product opening with a closed opening used to retain the part on a floating core.",
+          "observed_text": [
+            "have a openning on final product",
+            "close openning to have part hold on floating core.",
+            "Need extra trimming in production."
+          ],
+          "uncertainties": [
+            "The exact geometry and size of the opening are not specified.",
+            "No dimensions, tolerances, material identification, or acceptance limits are visible.",
+            "The precise feature indicated by the lower arrow is partly obscured by the red molded geometry."
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "populated_cells": 9,
+        "drawing_text_items": 0,
+        "image_occurrences": 2,
+        "checkpoints": 2,
+        "checkpoints_requiring_review": 0
+      },
+      "reference_tables": []
+    },
+    {
+      "id": "tooling-necklace",
+      "slug": "tooling-baseline-necklace",
+      "title": "Necklace",
+      "source_sheet": "NECKLACE",
+      "source_workbook": "Copy of Standart Accesoris_Updated.xlsx",
+      "summary": "",
+      "checkpoints": [
+        {
+          "title": "Closed-loop gate design",
+          "requirement": "Use a closed-loop design, preferably with a Y-shaped gate.",
+          "category": "mold_tooling",
+          "verification_method": "",
+          "acceptance_criteria": "",
+          "applicability": "All types.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C4",
+              "observation": "The checklist requests a close-loop design and identifies a Y-shaped gate as preferred."
+            },
+            {
+              "source_type": "cell",
+              "reference": "J4",
+              "observation": "The requirement applies to all types."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-8adfeb7675"
+        },
+        {
+          "title": "Gate trimming access",
+          "requirement": "Provide enough space for gate trimming with pliers.",
+          "category": "mold_tooling",
+          "verification_method": "Inspect plier access at the gate before trimming.",
+          "acceptance_criteria": "",
+          "applicability": "All types.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C5",
+              "observation": "The checklist requires enough space to trim the gate with pliers."
+            },
+            {
+              "source_type": "cell",
+              "reference": "J5",
+              "observation": "The requirement applies to all types."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-024",
+              "observation": "The molded assembly visibly has an exposed central runner and transverse gate or runner feature."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-3eaf1ca873"
+        },
+        {
+          "title": "VUM process and holder dimensions",
+          "requirement": "Confirm whether the VUM process applies before deciding the holder dimensions.",
+          "category": "dimension_geometry",
+          "verification_method": "",
+          "acceptance_criteria": "",
+          "applicability": "All types.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C7",
+              "observation": "The checklist links the VUM process decision to the holder dimensions."
+            },
+            {
+              "source_type": "cell",
+              "reference": "J7",
+              "observation": "The requirement applies to all types."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-a54b4e5955"
+        },
+        {
+          "title": "PPCO opening for 0.9\"≤L≤1.5\"",
+          "requirement": "Apply the stated PPCO opening guidance for the specified L range.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure L and the opening at the locations indicated in the visual reference, and verify the material.",
+          "acceptance_criteria": "For PPCO with 0.9\"≤L≤1.5\", the suggested opening is 0.120\"-0.200\".",
+          "applicability": "PPCO necklaces with 0.9\"≤L≤1.5\".",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C6",
+              "observation": "The checklist requires the opening standard to be checked for each material."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-018",
+              "observation": "The visual states that for PPCO, if 0.9\"≤L≤1.5\", the suggested opening is 0.120\"-0.200\" and shows the L and opening measurement locations."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-2f4d05191a"
+        },
+        {
+          "title": "ABS opening for 0.9\"≤L≤1.5\"",
+          "requirement": "Apply the stated ABS opening guidance for the specified L range.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure L and the opening at the locations indicated in the visual reference, and verify the material.",
+          "acceptance_criteria": "For ABS (not too much flexibility) with 0.9\"≤L≤1.5\", the suggested opening is 0.360\"-0.400\".",
+          "applicability": "ABS necklaces with 0.9\"≤L≤1.5\".",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C6",
+              "observation": "The checklist requires the opening standard to be checked for each material."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-018",
+              "observation": "The visual states that for ABS with not too much flexibility, if 0.9\"≤L≤1.5\", the suggested opening is 0.360\"-0.400\"."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-d86a5c7291"
+        },
+        {
+          "title": "Opening and material for L> 1.5\"",
+          "requirement": "Apply the stated opening and material guidance for necklaces above the specified L value.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure L and the opening at the depicted callouts, then verify the material designation.",
+          "acceptance_criteria": "For L> 1.5\", the suggested opening is 0.120\" and the suggested material is PPCO.",
+          "applicability": "Necklaces with L> 1.5\".",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C6",
+              "observation": "The checklist requires the opening standard to be checked for each material."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-025",
+              "observation": "The visual states: for L> 1.5\", suggest open =0.120\" and suggest material is PPCO."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-5e97aec4f9"
+        },
+        {
+          "title": "Opening and material for close-fitting necklaces",
+          "requirement": "Apply the stated opening and material guidance for a necklace that closely fits the doll's neck.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the indicated L feature and necklace opening, then verify the material designation.",
+          "acceptance_criteria": "For a close-fitting necklace with L<0.5\", the suggested opening is 0.300\"~0.360\" and the suggested material designation is PPCO & PVC90.",
+          "applicability": "Necklaces that closely fit the doll's neck and have L<0.5\".",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C6",
+              "observation": "The checklist requires the opening standard to be checked for each material."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-026",
+              "observation": "The visual states that for a necklace closely fitting the doll's neck with L<0.5\", the suggested opening is 0.300\"~0.360\" and the suggested material is PPCO & PVC90."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-f6a6cb1ea9"
+        },
+        {
+          "title": "Necklace-to-torso profile match",
+          "requirement": "Match the necklace shape to the corresponding torso shape.",
+          "category": "assembly_fit",
+          "verification_method": "Compare the necklace profile with the applicable torso profile.",
+          "acceptance_criteria": "",
+          "applicability": "Necklaces covered by the opening guidance.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-018",
+              "observation": "The visual states that the shape should match the torso's shape for both material-dependent opening ranges."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-025",
+              "observation": "The visual states that the necklace shape should match the torso's shape."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-026",
+              "observation": "The visual states that the necklace shape should match the torso's shape."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-c5959455a4"
+        },
+        {
+          "title": "Model-specific mold configurations",
+          "requirement": "Apply the listed mold configuration for each identified model.",
+          "category": "mold_tooling",
+          "verification_method": "Compare the tooling design with the configuration assigned to the applicable model.",
+          "acceptance_criteria": "HHN06-U831-01: slider and 4 cavities. HHN08-U514-01: Y-shaped gate, no slider, and 4 cavities. HHN09-U514-01: T runner, no slider, and 4 cavities.",
+          "applicability": "HHN06-U831-01, HHN08-U514-01, and HHN09-U514-01.",
+          "evidence": [
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-004",
+              "observation": "HHN06-U831-01 is identified with a slider and 4 cavities."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-005",
+              "observation": "HHN08-U514-01 is identified with a Y-shaped gate, no slider, and 4 cavities."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-006",
+              "observation": "HHN09-U514-01 is identified with a T runner, no slider, and 4 cavities."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-bba019302d"
+        }
+      ],
+      "reference_notes": [],
+      "quality_notes": [],
+      "images": [
+        {
+          "image_id": "IMG-018",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-018.png",
+          "original_asset_url": "/rag-assets/images/original/image19.png",
+          "anchor": "from R14C18 | to R37C29",
+          "caption": "Necklace opening guidance with product examples, an opening callout, and two material-dependent suggested opening ranges.",
+          "observed_text": [
+            "open",
+            "A. If 0.9\"≤L≤1.5\", suggest open=0.120\"-0.200\",material is PPCO",
+            "( shape should match Torso's shape )",
+            "N7468-2009",
+            "( ref. sample )",
+            "open",
+            "J1138-2049",
+            "( ref. sample )",
+            "B. If 0.9\"≤L≤1.5\", suggest open=0.360\"-0.400\", when material is ABS ( not too much flexibility)",
+            "( shape should match Torso's shape )"
+          ],
+          "uncertainties": [
+            "The exact capitalization of \"PPCO\" is visible, but the material designation may be a specialized internal abbreviation.",
+            "No numeric value is assigned to L beyond the stated conditional range."
+          ]
+        },
+        {
+          "image_id": "IMG-019",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-019.png",
+          "original_asset_url": "/rag-assets/images/original/image21.png",
+          "anchor": "from R16C1 | to R30C5",
+          "caption": "Photograph of four light-gray molded necklace-like parts connected to a central runner and surrounding sprue/gate features on a gridded cutting mat.",
+          "observed_text": [
+            "90",
+            "130"
+          ],
+          "uncertainties": [
+            "The visible \"90\" and \"130\" appear to be cutting-mat markings rather than part dimensions.",
+            "No scale, unit, dimension arrows, or acceptance criteria are shown.",
+            "Exact gate geometry and intended trimming locations are not annotated."
+          ]
+        },
+        {
+          "image_id": "IMG-020",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-020.png",
+          "original_asset_url": "/rag-assets/images/original/image22.png",
+          "anchor": "from R16C5 | to R30C9",
+          "caption": "Photograph of an open metal mold assembly showing opposing tooling blocks, cavity-side details, fasteners, and machine mounting features.",
+          "observed_text": [],
+          "uncertainties": [
+            "No readable labels, dimensions, redlines, or acceptance criteria are present.",
+            "The precise cavity geometry and tooling function cannot be determined from the photograph alone.",
+            "Some central details are obscured by reflections and viewing angle."
+          ]
+        },
+        {
+          "image_id": "IMG-021",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-021.png",
+          "original_asset_url": "/rag-assets/images/original/image23.png",
+          "anchor": "from R16C10 | to R30C12",
+          "caption": "Photograph of four gold-colored molded open-loop necklace parts connected to a central horizontal runner and vertical branches on a gridded cutting mat.",
+          "observed_text": [
+            "10",
+            "100",
+            "90",
+            "80",
+            "60"
+          ],
+          "uncertainties": [
+            "The visible numbers appear to be cutting-mat markings rather than dimensions of the molded parts.",
+            "No units, dimension arrows, or acceptance criteria are shown.",
+            "The exact gate and trimming requirements are not annotated."
+          ]
+        },
+        {
+          "image_id": "IMG-022",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-022.png",
+          "original_asset_url": "/rag-assets/images/original/image24.png",
+          "anchor": "from R16C12 | to R30C16",
+          "caption": "Photograph of an open metal mold containing multiple necklace-shaped cavity impressions and an attached runner/gate system.",
+          "observed_text": [],
+          "uncertainties": [
+            "Fine gate geometry and individual connection points are partly obscured by reflections and residue.",
+            "No readable dimensional or acceptance annotations are visible."
+          ]
+        },
+        {
+          "image_id": "IMG-023",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-023.png",
+          "original_asset_url": "/rag-assets/images/original/image25.png",
+          "anchor": "from R32C1 | to R56C6",
+          "caption": "Gray molded sprue assembly with four loop-shaped parts connected by vertical and horizontal runners, photographed on a marked cutting mat.",
+          "observed_text": [
+            "100",
+            "90",
+            "80",
+            "60",
+            "50",
+            "30"
+          ],
+          "uncertainties": [
+            "The cutting-mat grid and numerals do not establish a stated part dimension because no explicit measurement annotation is provided.",
+            "The preferred gate shape and trimming-clearance limits are not annotated."
+          ]
+        },
+        {
+          "image_id": "IMG-024",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-024.png",
+          "original_asset_url": "/rag-assets/images/original/image26.png",
+          "anchor": "from R35C10 | to R50C12",
+          "caption": "Close-up of two white beaded loop-shaped molded parts connected by a central runner/gate assembly on a cutting mat.",
+          "observed_text": [
+            "50",
+            "60",
+            "70",
+            "80",
+            "90",
+            "100"
+          ],
+          "uncertainties": [
+            "No explicit dimensions or trimming-clearance acceptance limits are shown.",
+            "The image does not identify the material.",
+            "The exact gate profile is not labeled."
+          ]
+        },
+        {
+          "image_id": "IMG-025",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-025.png",
+          "original_asset_url": "/rag-assets/images/original/image18.png",
+          "anchor": "from R35C18 | to R46C27",
+          "caption": "Illustrated necklace-opening guideline showing length L, an opening dimension, example necklace forms, and a labeled reference sample.",
+          "observed_text": [
+            "open",
+            "L",
+            "IF L> 1.5\", suggest open =0.120\", Suggest material is PPCO",
+            "( shape should match Torso's shape )",
+            "T5501-2019",
+            "( ref. sample )"
+          ],
+          "uncertainties": [
+            "The image states suggested values rather than an explicit mandatory acceptance limit.",
+            "No tolerance is provided for L or the opening dimension.",
+            "The exact endpoints used to measure L beyond the depicted arrow are not further defined."
+          ]
+        },
+        {
+          "image_id": "IMG-026",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-026.png",
+          "original_asset_url": "/rag-assets/images/original/image20.png",
+          "anchor": "from R47C18 | to R57C28",
+          "caption": "Necklace opening guidance showing three necklace examples, an opening measurement marked “L,” and a reference sample identified as V4390-2009.",
+          "observed_text": [
+            "L",
+            "If necklace close fit doll's neck, L<0.5\", suggest open =0.300\"~0.360\"",
+            "suggest material is PPCO & PVC90",
+            "( shape should match Torso's shape )",
+            "V4390-2009",
+            "( ref. sample )"
+          ],
+          "uncertainties": [
+            "The precise endpoints represented by dimension L are not fully clear in the small example image.",
+            "“PPCO” is transcribed as visibly shown; the intended material designation is not clarified.",
+            "The wording “suggest open” is preserved from the image and may refer to the necklace opening width."
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "populated_cells": 18,
+        "drawing_text_items": 6,
+        "image_occurrences": 9,
+        "checkpoints": 9,
+        "checkpoints_requiring_review": 3
+      },
+      "reference_tables": []
+    },
+    {
+      "id": "tooling-backpack-assy",
+      "slug": "tooling-baseline-backpack-assy",
+      "title": "Backpack Assembly",
+      "source_sheet": "Backpack assy",
+      "source_workbook": "Copy of Standart Accesoris_Updated.xlsx",
+      "summary": "",
+      "checkpoints": [
+        {
+          "title": "Mushroom strap connection",
+          "requirement": "Provide a mushroom-type strap connection with diameter Ø3.4.",
+          "category": "assembly_fit",
+          "verification_method": "Inspect the connector profile and check the specified diameter against the drawing text.",
+          "acceptance_criteria": "Mushroom profile with diameter Ø3.4.",
+          "applicability": "Strap connection.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B4",
+              "observation": "Specifies a mushroom-type strap connection."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-009",
+              "observation": "Specifies “Mushroom Ø3.4”."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-028",
+              "observation": "Shows a cylindrical stem with an enlarged rounded head forming a mushroom-like profile."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-76c142bf7f"
+        },
+        {
+          "title": "Locking slot on connection hole",
+          "requirement": "Provide a locking slot on each rear-panel connection hole, with hole diameter Ø3.2.",
+          "category": "assembly_fit",
+          "verification_method": "Inspect each rear-panel connection opening for the keyhole-like locking-slot extension and check the specified hole diameter against the drawing text.",
+          "acceptance_criteria": "Each rear-panel connection hole includes a locking slot; hole diameter is Ø3.2.",
+          "applicability": "Rear-panel connection holes.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B5",
+              "observation": "Requires a locking slot on the hole."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-008",
+              "observation": "Specifies “Locking on hole Ø3.2”."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-027",
+              "observation": "Shows two rear-panel circular openings, each with a narrow downward locking-slot extension."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-029",
+              "observation": "Shows a circular feature with a centered downward rectangular extension forming a keyhole-like profile."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-aa51e51bb2"
+        },
+        {
+          "title": "Backpack bottom rib",
+          "requirement": "Provide a raised rib along the backpack bottom.",
+          "category": "general_design",
+          "verification_method": "Visually inspect the lower edge of the backpack body for the raised rib.",
+          "acceptance_criteria": "Raised rib is present along the backpack bottom edge.",
+          "applicability": "Backpack bottom.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B6",
+              "observation": "Requires a rib along the backpack bottom."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-027",
+              "observation": "Shows a raised rib or bumper-like feature running along the lower edge of the backpack body."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-bad74146c2"
+        }
+      ],
+      "reference_notes": [],
+      "quality_notes": [],
+      "images": [
+        {
+          "image_id": "IMG-027",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-027.png",
+          "original_asset_url": "/rag-assets/images/original/image27.png",
+          "anchor": "from R14C1 | to R22C5",
+          "caption": "Rear lower portion of a backpack model showing two keyhole-shaped connection openings and a raised feature extending along the bottom edge.",
+          "observed_text": [],
+          "uncertainties": [
+            "No dimensions or acceptance limits are visible in the image.",
+            "The exact size, depth, and profile of the openings and bottom feature cannot be determined from this view."
+          ]
+        },
+        {
+          "image_id": "IMG-028",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-028.png",
+          "original_asset_url": "/rag-assets/images/original/image28.png",
+          "anchor": "from R24C4 | to R33C7",
+          "caption": "Close-up CAD view of a mushroom-shaped strap connection stud mounted on a textured strap or base.",
+          "observed_text": [],
+          "uncertainties": [
+            "No dimensions or acceptance limits are visible.",
+            "The material and exact attachment method to the strap or base are not identifiable from the image."
+          ]
+        },
+        {
+          "image_id": "IMG-029",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-029.png",
+          "original_asset_url": "/rag-assets/images/original/image29.png",
+          "anchor": "from R24C9 | to R48C17",
+          "caption": "Measurement view of a circular feature with a downward rectangular extension, annotated with a measured diameter.",
+          "observed_text": [
+            "Ø 3.21"
+          ],
+          "uncertainties": [
+            "No unit is visibly stated for Ø 3.21.",
+            "No nominal dimension, tolerance, or acceptance limit is shown.",
+            "The image does not identify whether the highlighted geometry represents a hole, boss, or another selected surface."
+          ]
+        },
+        {
+          "image_id": "IMG-030",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-030.png",
+          "original_asset_url": "/rag-assets/images/original/image30.png",
+          "anchor": "from R24C17 | to R47C25",
+          "caption": "Measurement view of a circular domed feature on a textured base, annotated with a measured diameter.",
+          "observed_text": [
+            "Ø 3.37"
+          ],
+          "uncertainties": [
+            "No unit is visibly stated for Ø 3.37.",
+            "No nominal dimension, tolerance, or acceptance limit is shown.",
+            "The image does not explicitly identify the measured feature or its functional relationship to the other views."
+          ]
+        },
+        {
+          "image_id": "IMG-031",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-031.png",
+          "original_asset_url": "/rag-assets/images/original/image31.png",
+          "anchor": "from R32C2 | to R41C6",
+          "caption": "Rendered CAD view of the interior of a backpack assembly component. Green-highlighted elongated features are positioned along three sections of the inner perimeter of the gray base.",
+          "observed_text": [],
+          "uncertainties": [
+            "No legible text, dimensional callouts, arrows, or acceptance limits appear within the image.",
+            "A Ø3.2 hole and associated locking slot cannot be positively identified from this rendered viewing angle.",
+            "The exact function and connection type of the green-highlighted features cannot be confirmed from the image alone."
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "populated_cells": 12,
+        "drawing_text_items": 2,
+        "image_occurrences": 5,
+        "checkpoints": 3,
+        "checkpoints_requiring_review": 0
+      },
+      "reference_tables": []
+    },
+    {
+      "id": "tooling-std-electrode-ptmi",
+      "slug": "tooling-baseline-std-electrode-ptmi",
+      "title": "Std Electrode PTMI",
+      "source_sheet": "STD Electrode PTMI",
+      "source_workbook": "Copy of Standart Accesoris_Updated.xlsx",
+      "summary": "",
+      "checkpoints": [
+        {
+          "title": "40mm dimension",
+          "requirement": "Apply the specified 40mm dimension to the applicable electrode feature.",
+          "category": "dimension_geometry",
+          "verification_method": "Dimensional inspection against the released drawing.",
+          "acceptance_criteria": "40mm",
+          "applicability": "Standard electrode PTMI.",
+          "evidence": [
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-010",
+              "observation": "The drawing specifies 40mm."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-012",
+              "observation": "The component is identified as Standard electrode PTMI."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-16307959b6"
+        },
+        {
+          "title": "Ø7mm feature",
+          "requirement": "Apply the specified Ø7mm diameter to the applicable electrode feature.",
+          "category": "dimension_geometry",
+          "verification_method": "Dimensional inspection against the released drawing.",
+          "acceptance_criteria": "Ø7mm",
+          "applicability": "Standard electrode PTMI.",
+          "evidence": [
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-011",
+              "observation": "The drawing specifies Ø7mm."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-012",
+              "observation": "The component is identified as Standard electrode PTMI."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-8bc15b2dbd"
+        },
+        {
+          "title": "M6 holes on flat surface",
+          "requirement": "Add 2 holes for M6 on the flat surface.",
+          "category": "mold_tooling",
+          "verification_method": "Drawing review and visual inspection.",
+          "acceptance_criteria": "Quantity: 2; designation: M6; location: flat surface.",
+          "applicability": "Standard electrode PTMI.",
+          "evidence": [
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-013",
+              "observation": "The drawing instructs adding 2 holes for M6 on the flat surface."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-032",
+              "observation": "The component has a flat top surface with three visible circular openings; the image does not identify which openings are for M6."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-012",
+              "observation": "The component is identified as Standard electrode PTMI."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-dd5fa4636e"
+        }
+      ],
+      "reference_notes": [],
+      "quality_notes": [],
+      "images": [
+        {
+          "image_id": "IMG-032",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-032.png",
+          "original_asset_url": "/rag-assets/images/original/image32.png",
+          "anchor": "from R1C1 | to R21C6",
+          "caption": "Product photograph of a brass-colored, block-shaped tooling component with three top openings marked by red check marks.",
+          "observed_text": [],
+          "uncertainties": [
+            "No dimensions, units, labels, or acceptance limits are legible within the image itself.",
+            "The diameters, depths, threading, and exact alignment of the three top openings cannot be determined from the photograph.",
+            "The function and detailed geometry of the feature inside the front recess are unclear."
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "populated_cells": 0,
+        "drawing_text_items": 4,
+        "image_occurrences": 1,
+        "checkpoints": 3,
+        "checkpoints_requiring_review": 2
+      },
+      "reference_tables": []
+    },
+    {
+      "id": "tooling-glasses",
+      "slug": "tooling-baseline-glasses",
+      "title": "Glasses",
+      "source_sheet": "GLASSES",
+      "source_workbook": "Copy of Standart Accesoris_Updated.xlsx",
+      "summary": "",
+      "checkpoints": [
+        {
+          "title": "Parting-line location",
+          "requirement": "Locate the parting line so it does not pass through the middle of the lens.",
+          "category": "mold_tooling",
+          "verification_method": "Inspect the parting-line path in the tooling design relative to the lens area.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C4",
+              "observation": "The checklist states that the parting-line location must not pass through the middle of the glass."
+            },
+            {
+              "source_type": "cell",
+              "reference": "N5",
+              "observation": "The same parting-line restriction is repeated."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-3b8c196215"
+        },
+        {
+          "title": "Middle connection",
+          "requirement": "Provide sufficient connection at the middle of the sunglasses frame.",
+          "category": "general_design",
+          "verification_method": "Inspect the central connection in the design.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C5",
+              "observation": "The checklist requires enough connection at the middle."
+            },
+            {
+              "source_type": "cell",
+              "reference": "N6",
+              "observation": "The same middle-connection requirement is repeated."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-e596d6ad0a"
+        },
+        {
+          "title": "Slide draft",
+          "requirement": "Provide 3~10 degree draft to prevent slide sticking.",
+          "category": "mold_tooling",
+          "verification_method": "Measure the draft on the applicable slide geometry.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C6",
+              "observation": "The checklist identifies slide sticking and specifies enough draft of 3~10 degree."
+            },
+            {
+              "source_type": "cell",
+              "reference": "N7",
+              "observation": "The same slide draft requirement is repeated."
+            }
+          ],
+          "confidence": "medium",
+          "review_required": false,
+          "id": "CHK-dea9064dee"
+        },
+        {
+          "title": "Slide stroke",
+          "requirement": "Provide sufficient slide stroke to prevent the part from hanging on the slide.",
+          "category": "mold_tooling",
+          "verification_method": "Check the available slide stroke and release condition in the tooling design.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C7",
+              "observation": "The checklist states: hanging on the slide, enough strike."
+            },
+            {
+              "source_type": "cell",
+              "reference": "N8",
+              "observation": "The same slide statement is repeated."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-16f97ea3bf"
+        },
+        {
+          "title": "Basic wall thickness",
+          "requirement": "Use a basic wall thickness of 1.5mm / .059” at the illustrated wall sections.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the indicated basic wall sections.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C8",
+              "observation": "The checklist specifies a basic wall thickness of 1.5mm."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-034",
+              "observation": "The illustrated callout specifies “Basic Wall Thickness 1.5mm / .059””."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-23b52df6ad"
+        },
+        {
+          "title": "Bridge width and wall thickness",
+          "requirement": "At the illustrated bridge, provide width ≥ 2 mm .079” and wall thickness 1.5mm .059”.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the bridge at the red-indicated region in the reference image.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-034",
+              "observation": "The bridge guidance specifies “Width - ≥ 2 mm .079”” and “Wall thickness - 1.5mm .059””."
+            }
+          ],
+          "confidence": "medium",
+          "review_required": true,
+          "id": "CHK-f2da48f451"
+        },
+        {
+          "title": "Edge-gate locations",
+          "requirement": "Use edge gates at the cavity-entry locations indicated by the red leaders.",
+          "category": "mold_tooling",
+          "verification_method": "Compare the tooling gate layout with the annotated cavity-entry locations.",
+          "acceptance_criteria": "",
+          "applicability": "DHC56-Q501-01 sunglasses runner and gating layout.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-033",
+              "observation": "Four red leaders labeled “Edge gate” point to the illustrated frame-entry locations."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-155ba48715"
+        },
+        {
+          "title": "Central sprue diameter",
+          "requirement": "Provide the central sprue with the specified Ø3 mm diameter.",
+          "category": "mold_tooling",
+          "verification_method": "Measure the central sprue diameter.",
+          "acceptance_criteria": "",
+          "applicability": "DHC56-Q501-01 sunglasses runner and gating layout.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-033",
+              "observation": "The central feed is labeled “Sprue Ø3 mm”."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-6a210ec628"
+        },
+        {
+          "title": "Runner and feed diameters",
+          "requirement": "Provide the runner or feed diameters shown at the marked regions, including Ø3mm/Φ3 mm and two Ø1.5mm locations.",
+          "category": "mold_tooling",
+          "verification_method": "Measure each labeled runner or feed region against the visual reference.",
+          "acceptance_criteria": "",
+          "applicability": "DHC56-Q501-01 sunglasses runner and gating layout.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-033",
+              "observation": "Multiple regions are labeled Ø3mm or Φ3 mm, and two lower left-side regions are labeled Ø1.5mm."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-1576916529"
+        },
+        {
+          "title": "Half-round runners",
+          "requirement": "Use half-round runners at the two indicated lower connection locations.",
+          "category": "mold_tooling",
+          "verification_method": "Inspect the runner cross-section and location against the red-arrow annotations.",
+          "acceptance_criteria": "",
+          "applicability": "DHC56-Q501-01 sunglasses runner and gating layout.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-033",
+              "observation": "Two red arrows identify lower connections labeled “Half-round runner.”"
+            }
+          ],
+          "confidence": "medium",
+          "review_required": true,
+          "id": "CHK-cedb1a60fb"
+        }
+      ],
+      "reference_notes": [],
+      "quality_notes": [],
+      "images": [
+        {
+          "image_id": "IMG-033",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-033.png",
+          "original_asset_url": "/rag-assets/images/original/image34.png",
+          "anchor": "from R11C13 | to R29C22",
+          "caption": "Sunglasses mold runner and gating layout for DHC56-Q501-01, showing two frame cavities connected to a central sprue and runner system.",
+          "observed_text": [
+            "DHC56-Q501-01 - Sunglasses",
+            "Edge gate",
+            "Sprue Ø3 mm",
+            "Ø3mm",
+            "Ø3mm",
+            "Φ3 mm",
+            "Φ3 mm",
+            "Ø1.5mm",
+            "Ø1.5mm",
+            "Φ3 mm",
+            "Half-round runner.",
+            "Half-round runner."
+          ],
+          "uncertainties": [
+            "The exact boundaries to which some Ø3 mm and Ø1.5 mm labels apply are not fully defined by dimension lines.",
+            "The yellow highlighted regions are not explicitly named or dimensioned.",
+            "No section view is provided to verify the half-round runner profile geometrically."
+          ]
+        },
+        {
+          "image_id": "IMG-034",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-034.png",
+          "original_asset_url": "/rag-assets/images/original/image33.png",
+          "anchor": "from R15C1 | to R27C11",
+          "caption": "Sunglasses design guidance illustrating basic wall thickness and bridge width relative to wall thickness.",
+          "observed_text": [
+            "Sunglasses",
+            "Basic Wall Thickness",
+            "1.5mm / .059”",
+            "Width vs Wall Thickness for bridge",
+            "or",
+            "Width - ≥ 2 mm .079”",
+            "Wall thickness - 1.5mm .059”",
+            "1.5mm / .059”",
+            "2mm .079”",
+            "1.5mm / .059”",
+            "DHC54"
+          ],
+          "uncertainties": [
+            "The small text \"DHC54\" appears adjacent to the left example, but its full intended reference is unclear.",
+            "The exact measurement endpoints are schematic and are not defined with conventional extension lines in every view."
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "populated_cells": 18,
+        "drawing_text_items": 0,
+        "image_occurrences": 2,
+        "checkpoints": 10,
+        "checkpoints_requiring_review": 5
+      },
+      "reference_tables": []
+    },
+    {
+      "id": "tooling-hair-clip",
+      "slug": "tooling-baseline-hair-clip",
+      "title": "Hair Clip",
+      "source_sheet": "Hair clip",
+      "source_workbook": "Copy of Standart Accesoris_Updated.xlsx",
+      "summary": "",
+      "checkpoints": [
+        {
+          "title": "Component edge notch",
+          "requirement": "Add a notch to the component edge near the transition between the narrow arm and the broader body.",
+          "category": "dimension_geometry",
+          "verification_method": "Visually inspect the CAD geometry at the indicated transition.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C4",
+              "observation": "The checklist requires a notch on the part."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-016",
+              "observation": "The design reference labels the feature as a notch."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-035",
+              "observation": "A localized recessed notch is visible near the central transition."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-f5b51a2a4a"
+        },
+        {
+          "title": "Half-plastic hinge configuration",
+          "requirement": "Provide a half-plastic configuration at the hinge.",
+          "category": "assembly_fit",
+          "verification_method": "Inspect the hinge configuration in the tooling design.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C5",
+              "observation": "The checklist specifies half plastic on the hinge."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-4542e3ed20"
+        },
+        {
+          "title": "Hinge coring",
+          "requirement": "Provide coring at the hinge.",
+          "category": "mold_tooling",
+          "verification_method": "Inspect the hinge geometry in the tooling design.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C6",
+              "observation": "The checklist requires coring on the hinge."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-017",
+              "observation": "The design reference labels a feature as coring."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-018",
+              "observation": "A second design-reference callout also identifies coring."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-035",
+              "observation": "The circular hinge end visibly contains a central opening, although the image does not establish whether it is fully through or partially cored."
+            }
+          ],
+          "confidence": "medium",
+          "review_required": true,
+          "id": "CHK-26e8087e5e"
+        },
+        {
+          "title": "Pin terminal bump",
+          "requirement": "Add a bump to the pin.",
+          "category": "assembly_fit",
+          "verification_method": "Visually inspect the free end of the pin in the CAD model.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C7",
+              "observation": "The checklist requires a bump on the pin."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-019",
+              "observation": "The design reference labels the feature as a bump."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-035",
+              "observation": "The projecting pin terminates in a visibly enlarged rounded bump."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-458a582d71"
+        },
+        {
+          "title": "Projection area optimization",
+          "requirement": "Optimize the projection area so that no slider is required.",
+          "category": "mold_tooling",
+          "verification_method": "Review the tooling layout and projected geometry.",
+          "acceptance_criteria": "No slider is required.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C8",
+              "observation": "The checklist requires projection-area optimization."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-022",
+              "observation": "The drawing identifies a good projection area with no slider."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-025",
+              "observation": "The layout reference identifies a slider for comparison."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-674060a571"
+        }
+      ],
+      "reference_notes": [],
+      "quality_notes": [],
+      "images": [
+        {
+          "image_id": "IMG-035",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-035.png",
+          "original_asset_url": "/rag-assets/images/original/image37.png",
+          "anchor": "from R10C1 | to R19C6",
+          "caption": "CAD rendering of a hair-clip component viewed from below/side, showing a long body, a circular hinge eye, a localized edge notch, underside ribs, and a projecting pin with a rounded terminal bump.",
+          "observed_text": [],
+          "uncertainties": [
+            "No dimensions, tolerances, material specifications, or labeled callouts are visible.",
+            "The image does not establish whether the hinge opening is fully through or partially cored.",
+            "The exact function and required profile of the underside ribs are not identified."
+          ]
+        },
+        {
+          "image_id": "IMG-036",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-036.png",
+          "original_asset_url": "/rag-assets/images/original/image35.png",
+          "anchor": "from R10C6 | to R29C11",
+          "caption": "Photograph of a blue injection-molded sprue assembly containing multiple repeated decorative hair-clip components arranged on runners and branch gates.",
+          "observed_text": [
+            "10",
+            "20",
+            "30",
+            "40",
+            "50",
+            "60",
+            "70",
+            "90",
+            "120",
+            "140",
+            "160",
+            "170"
+          ],
+          "uncertainties": [
+            "Numbers and grid markings belong to the cutting mat and are not confirmed product dimensions.",
+            "No annotations identify notch, hinge coring, half-plastic hinge construction, or pin-bump requirements.",
+            "Fine molding details and gate conditions cannot be assessed reliably at this image scale."
+          ]
+        },
+        {
+          "image_id": "IMG-037",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-037.png",
+          "original_asset_url": "/rag-assets/images/original/image36.png",
+          "anchor": "from R10C6 | to R29C11",
+          "caption": "Close-up photograph of a pink injection-molded runner section with four attached U-shaped clip or jaw features, each showing internal tooth-like ribs.",
+          "observed_text": [
+            "10",
+            "90",
+            "80",
+            "70"
+          ],
+          "uncertainties": [
+            "Numbers and grid markings belong to the cutting mat and are not confirmed product dimensions.",
+            "The image does not label the hinge, notch, coring, or pin-bump features.",
+            "The translucent strip crossing the upper-left branch is unclear and may not be part of the molded assembly.",
+            "Exact tooth count is not consistently readable for all four parts."
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "populated_cells": 14,
+        "drawing_text_items": 12,
+        "image_occurrences": 3,
+        "checkpoints": 5,
+        "checkpoints_requiring_review": 2
+      },
+      "reference_tables": []
+    },
+    {
+      "id": "tooling-shoes",
+      "slug": "tooling-baseline-shoes",
+      "title": "Shoes",
+      "source_sheet": "SHOES",
+      "source_workbook": "Copy of Standart Accesoris_Updated.xlsx",
+      "summary": "",
+      "checkpoints": [
+        {
+          "title": "Bottom parting line for logo",
+          "requirement": "Use a jumping parting line at the bottom when a logo is present.",
+          "category": "mold_tooling",
+          "verification_method": "Inspect the tooling CAD parting-line arrangement at the logo area.",
+          "acceptance_criteria": "",
+          "applicability": "All types with a logo.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C5",
+              "observation": "Requires a jumping parting line at the bottom if there is a logo."
+            },
+            {
+              "source_type": "cell",
+              "reference": "J5",
+              "observation": "Applies to all types."
+            }
+          ],
+          "confidence": "medium",
+          "review_required": true,
+          "id": "CHK-0a0f041710"
+        },
+        {
+          "title": "Leg clearance offset",
+          "requirement": "Provide leg clearance by offsetting each side.",
+          "category": "assembly_fit",
+          "verification_method": "Check the offset in the shoe CAD section.",
+          "acceptance_criteria": "0.3mm per side.",
+          "applicability": "All types.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C6",
+              "observation": "Specifies an offset of 0.3mm per side for clearance to the leg."
+            },
+            {
+              "source_type": "cell",
+              "reference": "J6",
+              "observation": "Applies to all types."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-088d40d2bf"
+        },
+        {
+          "title": "Internal shoe relief",
+          "requirement": "Remove material inside the shoe at the indicated rear/ankle region to reserve more space.",
+          "category": "assembly_fit",
+          "verification_method": "Inspect the internal region identified by the magenta curve and leader.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-045",
+              "observation": "The annotation instructs removal of internal shoe material to reserve more space and identifies the rear/ankle region."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-11c984300f"
+        },
+        {
+          "title": "Handed cavity layout and runner flag",
+          "requirement": "Configure the right/left cavity layout and add a flag on the runner to simplify trimming.",
+          "category": "mold_tooling",
+          "verification_method": "Inspect the cavity arrangement and runner in the tooling layout.",
+          "acceptance_criteria": "Right shoes are arranged R-R, left shoes are arranged L-L, and the runner has a flag.",
+          "applicability": "All types.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C7",
+              "observation": "Requires an R-R and L-L layout and a runner flag to make trimming easier."
+            },
+            {
+              "source_type": "cell",
+              "reference": "J7",
+              "observation": "Applies to all types."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-036",
+              "observation": "States that right and left shoes are separated."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-60fd32dd34"
+        },
+        {
+          "title": "Gate location for tampo-painted area",
+          "requirement": "Keep the gate away from the side-area book-mask region to prevent tampo painting issues.",
+          "category": "decoration_marking",
+          "verification_method": "Inspect the gate location relative to the identified side-area book-mask region.",
+          "acceptance_criteria": "",
+          "applicability": "All types.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C8",
+              "observation": "Requires the gate not to be positioned at the side-area book-mask region because it affects painting."
+            },
+            {
+              "source_type": "cell",
+              "reference": "J8",
+              "observation": "Applies to all types."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-c2a3538921"
+        },
+        {
+          "title": "Tampo step geometry",
+          "requirement": "Form the sculpted step for tampo processing with the specified edge treatment and draft.",
+          "category": "decoration_marking",
+          "verification_method": "Check the sculpted-step geometry in the tooling CAD.",
+          "acceptance_criteria": "0.5mm radius or chamfer, with 5 degree draft.",
+          "applicability": "Optional for tampo features.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C9",
+              "observation": "Specifies a sculpted step with 0.5mm radius or chamfer and 5 degree draft for tampo."
+            },
+            {
+              "source_type": "cell",
+              "reference": "J9",
+              "observation": "Marked as optional."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-c1bc8b4691"
+        },
+        {
+          "title": "Tampo decorative feature height",
+          "requirement": "Control the height of the seven highlighted bead or sculpted decorative features for tampo processing.",
+          "category": "decoration_marking",
+          "verification_method": "Inspect the seven red-circled locations in the CAD geometry.",
+          "acceptance_criteria": "",
+          "applicability": "Highlighted tampo decoration features.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-047",
+              "observation": "Seven raised decorative locations are circled, with an annotation requiring bead/sculpt height control for tampo."
+            }
+          ],
+          "confidence": "medium",
+          "review_required": true,
+          "id": "CHK-6a8bba6f7a"
+        },
+        {
+          "title": "No undercut on sculpted decoration",
+          "requirement": "Design the bead or sculpted decorative features without undercuts.",
+          "category": "mold_tooling",
+          "verification_method": "Perform an undercut check on the feature edges, including the red-traced locations.",
+          "acceptance_criteria": "No undercut is present.",
+          "applicability": "All types.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C10",
+              "observation": "Requires no undercut for bead or sculpted features."
+            },
+            {
+              "source_type": "cell",
+              "reference": "J10",
+              "observation": "Applies to all types."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-048",
+              "observation": "States “No undercut” and highlights the applicable decorative feature edges in red."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-e072e47624"
+        },
+        {
+          "title": "Open loop slit",
+          "requirement": "Provide an open loop slit to simplify detached-part processing.",
+          "category": "material_process",
+          "verification_method": "Inspect the loop slit configuration in the tooling CAD and mold.",
+          "acceptance_criteria": "",
+          "applicability": "All types.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C11",
+              "observation": "Requires an open loop slit to make detached-part processing easier."
+            },
+            {
+              "source_type": "cell",
+              "reference": "J11",
+              "observation": "Applies to all types."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-748697b3f6"
+        },
+        {
+          "title": "Cavity quantity by decoration complexity",
+          "requirement": "Set the cavity quantity according to decoration complexity.",
+          "category": "mold_tooling",
+          "verification_method": "Count the cavities in the tooling layout and confirm the decoration classification.",
+          "acceptance_criteria": "Simple decoration: 6 cavities (CLN62-S501-02). Complex decoration: 4 cavities (common design).",
+          "applicability": "All types.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C12",
+              "observation": "Specifies 6 cavities for simple decoration and 4 cavities for complex decoration."
+            },
+            {
+              "source_type": "cell",
+              "reference": "J12",
+              "observation": "Applies to all types."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-038",
+              "observation": "Shows six molded shoe components and identifies mold CLN62-S501-02."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-039",
+              "observation": "Shows a four-cavity mold insert in a single vertical arrangement."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-040",
+              "observation": "Shows four textured shoe-component cavity forms."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-48adbe2d4d"
+        },
+        {
+          "title": "Floating-core slit height",
+          "requirement": "Minimize the floating-core slit height to ease demolding.",
+          "category": "mold_tooling",
+          "verification_method": "Inspect the floating-core slit height in the tooling design.",
+          "acceptance_criteria": "",
+          "applicability": "All types.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "C13",
+              "observation": "Requires minimizing floating-core slit height for easier demolding."
+            },
+            {
+              "source_type": "cell",
+              "reference": "J13",
+              "observation": "Applies to all types."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-042",
+              "observation": "Calls for minimizing the floating-core slit height."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-f9b2cc7dcb"
+        },
+        {
+          "title": "Rib height control",
+          "requirement": "Control the rib height.",
+          "category": "dimension_geometry",
+          "verification_method": "Inspect the rib height in the tooling design.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-037",
+              "observation": "Calls for control of rib height."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-e901b52c34"
+        }
+      ],
+      "reference_notes": [],
+      "quality_notes": [],
+      "images": [
+        {
+          "image_id": "IMG-038",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-038.png",
+          "original_asset_url": "/rag-assets/images/original/image50.png",
+          "anchor": "from R2C28 | to R27C45",
+          "caption": "Screenshot showing a white molded shoe-component runner assembly on a gridded cutting mat.",
+          "observed_text": [
+            "MOLD : CLN62-S501-02",
+            "PART1",
+            "SHOW GAMBAR"
+          ],
+          "uncertainties": [
+            "The cutting-mat grid is visible, but its unit and scale are not established; no dimensions can be derived reliably.",
+            "The exact right/left designation of the six components is not visibly labeled.",
+            "Gate locations on the finished components are not clearly identifiable from this image."
+          ]
+        },
+        {
+          "image_id": "IMG-039",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-039.png",
+          "original_asset_url": "/rag-assets/images/original/image42.png",
+          "anchor": "from R4C13 | to R12C15",
+          "caption": "Photograph of a metal mold insert containing four vertically arranged shoe-component cavity forms and associated runner features.",
+          "observed_text": [],
+          "uncertainties": [
+            "Embossed identification text is not legible enough to transcribe reliably.",
+            "Individual gate interfaces and exact cavity handedness are unclear due to glare, wear, and image resolution.",
+            "No dimensional scale or explicit acceptance limits are shown."
+          ]
+        },
+        {
+          "image_id": "IMG-040",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-040.png",
+          "original_asset_url": "/rag-assets/images/original/image43.png",
+          "anchor": "from R4C15 | to R12C18",
+          "caption": "Photograph of a complementary metal mold insert with four textured shoe-component cavity forms and a right-side runner network.",
+          "observed_text": [],
+          "uncertainties": [
+            "Embossed markings on the mold and insert are not legible enough to transcribe reliably.",
+            "Exact gate positions at the cavity edges cannot be confirmed from the image.",
+            "No dimensions or explicit acceptance limits are visible."
+          ]
+        },
+        {
+          "image_id": "IMG-041",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-041.png",
+          "original_asset_url": "/rag-assets/images/original/image39.jpeg",
+          "anchor": "from R4C19 | to R28C23",
+          "caption": "Angled photograph of a larger metal mold plate showing four vertically arranged shoe-like cavity forms with adjacent channels and identification markings.",
+          "observed_text": [],
+          "uncertainties": [
+            "Embossed identification markings are partially visible but not clear enough for reliable transcription.",
+            "The lower cavity is partly cropped by the image edge.",
+            "Exact runner and gate connections are obscured by the oblique viewing angle and reflections.",
+            "No dimensions or explicit acceptance limits are shown."
+          ]
+        },
+        {
+          "image_id": "IMG-042",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-042.png",
+          "original_asset_url": "/rag-assets/images/original/image40.png",
+          "anchor": "from R4C19 | to R28C23",
+          "caption": "Photograph of two magenta molded boot/shoe components attached to a runner and gate system.",
+          "observed_text": [],
+          "uncertainties": [
+            "No labels, dimensions, redlines, or acceptance criteria are visible.",
+            "The exact gate locations on the finished parts cannot be established confidently from this single view."
+          ]
+        },
+        {
+          "image_id": "IMG-043",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-043.png",
+          "original_asset_url": "/rag-assets/images/original/image44.png",
+          "anchor": "from R4C24 | to R16C27",
+          "caption": "Photograph of an open metal mold assembly with multiple cavities and projecting core features.",
+          "observed_text": [],
+          "uncertainties": [
+            "No tooling labels, dimensions, cavity identifiers, or annotations are readable.",
+            "The detailed cavity geometry and gate arrangement are not clear enough to verify specific design requirements."
+          ]
+        },
+        {
+          "image_id": "IMG-044",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-044.png",
+          "original_asset_url": "/rag-assets/images/original/image52.png",
+          "anchor": "from R12C13 | to R21C18",
+          "caption": "CAD comparison showing a rendered boot exterior at left and a side sectional/profile representation at right, with red dimension arrows but no visible values.",
+          "observed_text": [],
+          "uncertainties": [
+            "No numerical dimension values, units, tolerances, or textual callouts are visible.",
+            "The meanings of the cyan, purple, and dark profile outlines are not identified in the image."
+          ]
+        },
+        {
+          "image_id": "IMG-045",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-045.png",
+          "original_asset_url": "/rag-assets/images/original/image38.png",
+          "anchor": "from R15C2 | to R22C5",
+          "caption": "Annotated side-view comparison showing a light green leg/foot form inside a black shoe or boot form, with a magenta line identifying material to remove for additional internal space.",
+          "observed_text": [
+            "Cut material inside shoe to reserve more space"
+          ],
+          "uncertainties": [
+            "No removal depth, clearance amount, tolerance, or boundary dimensions are shown.",
+            "The exact extent of material removal beyond the magenta marked curve is not defined."
+          ]
+        },
+        {
+          "image_id": "IMG-046",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-046.png",
+          "original_asset_url": "/rag-assets/images/original/image46.png",
+          "anchor": "from R15C6 | to R24C8",
+          "caption": "CAD view of a decorated high-heeled shoe component with a red outlined region near the upper rear side and a small cyan mark below it.",
+          "observed_text": [
+            "Please ad… (truncated)"
+          ],
+          "uncertainties": [
+            "The main annotation is cropped, so the requested change cannot be determined.",
+            "The meaning of the cyan mark is not stated.",
+            "No readable dimension or acceptance limit is shown."
+          ]
+        },
+        {
+          "image_id": "IMG-047",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-047.png",
+          "original_asset_url": "/rag-assets/images/original/image47.png",
+          "anchor": "from R15C8 | to R23C10",
+          "caption": "Front CAD view of repeated bow-and-flower shoe decoration with multiple raised features circled in red for tampo-related height control.",
+          "observed_text": [
+            "Control Bid/sculp height",
+            "(Tampo)"
+          ],
+          "uncertainties": [
+            "The word shown as “Bid” may be a misspelling or may be unclear in the source annotation.",
+            "No numerical height or tolerance is provided."
+          ]
+        },
+        {
+          "image_id": "IMG-048",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-048.png",
+          "original_asset_url": "/rag-assets/images/original/image48.png",
+          "anchor": "from R15C10 | to R23C11",
+          "caption": "Side CAD view of raised shoe decorations with red edge traces and a prominent instruction prohibiting undercuts.",
+          "observed_text": [
+            "No undercut"
+          ],
+          "uncertainties": [
+            "The tooling or pull direction is not explicitly identified.",
+            "No draft angle, clearance, or tolerance is shown."
+          ]
+        },
+        {
+          "image_id": "IMG-049",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-049.png",
+          "original_asset_url": "/rag-assets/images/original/image45.jpeg",
+          "anchor": "from R16C24 | to R24C27",
+          "caption": "Photograph of a light-blue molded runner with several attached and detached small molded components on a gridded cutting mat.",
+          "observed_text": [
+            "SDI",
+            "CUTTING MAT",
+            "A4",
+            "30×22CM"
+          ],
+          "uncertainties": [
+            "No explicit engineering callout, good/bad comparison, or acceptance criterion is visible.",
+            "The grid spacing is not explicitly identified in the visible image and is not used as a part measurement.",
+            "Exact component count and attachment status are partly obscured by small scale and image resolution."
+          ]
+        },
+        {
+          "image_id": "IMG-050",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-050.png",
+          "original_asset_url": "/rag-assets/images/original/image49.png",
+          "anchor": "from R26C5 | to R35C10",
+          "caption": "Close-up of a shoe-shaped mold feature with a red line tracing part of its upper contour.",
+          "observed_text": [],
+          "uncertainties": [
+            "The red line has no visible label, arrow, dimension, or acceptance criterion defining the intended modification.",
+            "No readable tooling identification or dimensional text is visible."
+          ]
+        },
+        {
+          "image_id": "IMG-052",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-052.png",
+          "original_asset_url": "/rag-assets/images/original/image41.png",
+          "anchor": "from R31C18 | to R52C23",
+          "caption": "Oblique view of three vertically arranged shoe-shaped mold features mounted on a mold assembly.",
+          "observed_text": [],
+          "uncertainties": [
+            "No readable annotations, dimensions, or acceptance criteria are visible.",
+            "Fine feature geometry is partly obscured by blur, glare, and the oblique viewing angle.",
+            "The exact relationship of the visible runner-like connections to each cavity cannot be confirmed from this image alone."
+          ]
+        },
+        {
+          "image_id": "IMG-053",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-053.png",
+          "original_asset_url": "/rag-assets/images/original/image51.png",
+          "anchor": "from R33C29 | to R78C38",
+          "caption": "Front-oblique view of a multi-cavity mold plate showing five vertically arranged shoe-shaped features and a branching runner system.",
+          "observed_text": [],
+          "uncertainties": [
+            "The embossed tooling markings are too indistinct to transcribe reliably.",
+            "No readable dimensions, directional labels, good/bad comparisons, or acceptance limits are visible.",
+            "Some runner-to-feature junctions are partly obscured by surface reflections and irregular metal buildup."
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "populated_cells": 32,
+        "drawing_text_items": 17,
+        "image_occurrences": 15,
+        "checkpoints": 12,
+        "checkpoints_requiring_review": 5
+      },
+      "reference_tables": []
+    },
+    {
+      "id": "tooling-pet-separate-head",
+      "slug": "tooling-baseline-pet-separate-head",
+      "title": "Pet(Separate Head)",
+      "source_sheet": "PET(SEPARATE HEAD)",
+      "source_workbook": "Copy of Standart Accesoris_Updated.xlsx",
+      "summary": "",
+      "checkpoints": [
+        {
+          "title": "Gate location",
+          "requirement": "Locate the gate on the upper neck or body, outside the assembly area.",
+          "category": "mold_tooling",
+          "verification_method": "Inspect the tooling layout or CAD model.",
+          "acceptance_criteria": "Upper neck or body; not in the assembly area.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B4",
+              "observation": "Specifies the gate position on the upper neck or body and excludes the assembly area."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-f59b60718a"
+        },
+        {
+          "title": "Main-runner Z puller",
+          "requirement": "Use a Z puller at the main runner.",
+          "category": "mold_tooling",
+          "verification_method": "Inspect the runner and puller configuration.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B5",
+              "observation": "Requires a Z puller at the main runner."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-051",
+              "observation": "Labels a Z puller in the ejector and puller illustration."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-057",
+              "observation": "Labels a second Z puller indication in the illustration."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-4fd1b67b07"
+        },
+        {
+          "title": "Sub-runner ejectors",
+          "requirement": "Place ejectors at the sub-runner.",
+          "category": "mold_tooling",
+          "verification_method": "Inspect the ejection and runner layout.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B6",
+              "observation": "Requires ejectors to be placed at the sub-runner."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-052",
+              "observation": "Identifies an ejector in the ejector and puller illustration."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-053",
+              "observation": "Identifies an additional ejector in the illustration."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-b31acf074f"
+        },
+        {
+          "title": "Neck poka-yoke and groove",
+          "requirement": "Provide a D-shaped poka-yoke and groove at the neck interface.",
+          "category": "assembly_fit",
+          "verification_method": "Compare the interface geometry with the referenced underside CAD views.",
+          "acceptance_criteria": "A non-circular D-like keyed opening and surrounding groove are present.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B7",
+              "observation": "Requires a D-shaped poka-yoke for the neck together with a groove."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-059",
+              "observation": "The underside CAD view shows a D-like central opening with a surrounding groove or stepped ring."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-062",
+              "observation": "The close-up CAD view shows a keyed non-circular opening surrounded by an annular groove."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-063",
+              "observation": "The neck insert has a visibly flattened, non-circular profile."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-dc01c9c0d1"
+        },
+        {
+          "title": "Neck-to-head spacing",
+          "requirement": "Provide spacing between the neck and head.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the interface gap.",
+          "acceptance_criteria": "2-3mm.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B8",
+              "observation": "Specifies 2-3mm spacing from the neck to the head."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-058",
+              "observation": "States a neck-to-head space of 3mm."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-061",
+              "observation": "Labels the gap as 3mm."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-a0737f4665"
+        },
+        {
+          "title": "Cavity numbering",
+          "requirement": "Add the cavity number on the body and inside the head, outside the assembly area.",
+          "category": "decoration_marking",
+          "verification_method": "Inspect the marking locations on the part and tooling layout.",
+          "acceptance_criteria": "Present on the body and inside the head; absent from the assembly area.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B9",
+              "observation": "Requires cavity numbers on the body and inside the head, not in the assembly area."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-060",
+              "observation": "States that the cavity number must not be at the assembly area."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-09811b8843"
+        },
+        {
+          "title": "Head and neck KD areas",
+          "requirement": "Add KD areas to the head and neck at the assembly area.",
+          "category": "assembly_fit",
+          "verification_method": "Inspect the assembly-interface design.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B10",
+              "observation": "Calls for KD areas on the head and neck at the assembly area."
+            },
+            {
+              "source_type": "cell",
+              "reference": "D14",
+              "observation": "Identifies a KD area."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-6895aa27f4"
+        },
+        {
+          "title": "Runner tool-number marking",
+          "requirement": "Add the tool number at the runner.",
+          "category": "decoration_marking",
+          "verification_method": "Inspect the runner marking detail.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B11",
+              "observation": "Requires the tool number to be added at the runner."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-0470dbdbf5"
+        },
+        {
+          "title": "PET head slider cooling",
+          "requirement": "Provide cooling on the slider for the PET head.",
+          "category": "mold_tooling",
+          "verification_method": "Inspect the slider cooling design.",
+          "acceptance_criteria": "",
+          "applicability": "PET head slider.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B12",
+              "observation": "Requires cooling on the PET head slider."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-0bad9ec747"
+        },
+        {
+          "title": "Cooling jig",
+          "requirement": "Develop a cooling jig.",
+          "category": "mold_tooling",
+          "verification_method": "Review the jig design or completed tooling.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B13",
+              "observation": "Requires development of a cooling jig."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-87e5b02e6d"
+        }
+      ],
+      "reference_notes": [],
+      "quality_notes": [],
+      "images": [
+        {
+          "image_id": "IMG-055",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-055.png",
+          "original_asset_url": "/rag-assets/images/original/image57.png",
+          "anchor": "from R3C14 | to R12C18",
+          "caption": "Photograph of two blue molded animal-head components still attached to a shared runner and central sprue/puller structure.",
+          "observed_text": [],
+          "uncertainties": [
+            "No labels, dimensions, or explicit good/bad annotations are visible.",
+            "The exact gate locations and the functional identity of the central and downward projections cannot be confirmed from the photograph alone."
+          ]
+        },
+        {
+          "image_id": "IMG-056",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-056.png",
+          "original_asset_url": "/rag-assets/images/original/image58.png",
+          "anchor": "from R15C14 | to R27C18",
+          "caption": "Photograph of two yellow molded animal-head components attached to a transverse runner with a central sprue and angled puller-like branch.",
+          "observed_text": [],
+          "uncertainties": [
+            "No labels, dimensions, or explicit acceptance annotations are visible.",
+            "The exact gate position and whether the angled branch is a Z puller cannot be established solely from the photograph."
+          ]
+        },
+        {
+          "image_id": "IMG-057",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-057.png",
+          "original_asset_url": "/rag-assets/images/original/image59.png",
+          "anchor": "from R15C14 | to R27C18",
+          "caption": "Close-up photograph of the neck opening on a yellow molded animal-head component.",
+          "observed_text": [],
+          "uncertainties": [
+            "The close-up does not clearly establish whether the opening is intentionally D-shaped or whether a groove is present.",
+            "No dimensions, orientation marks, or acceptance annotations are visible."
+          ]
+        },
+        {
+          "image_id": "IMG-058",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-058.png",
+          "original_asset_url": "/rag-assets/images/original/image54.png",
+          "anchor": "from R16C4 | to R23C11",
+          "caption": "CAD rendering of an animal body with a gray neck/interface feature and red dimension-style arrows labeled A, B, and C.",
+          "observed_text": [
+            "A",
+            "B",
+            "C"
+          ],
+          "uncertainties": [
+            "No numerical values, units, tolerances, or acceptance limits are shown for A, B, or C.",
+            "The exact endpoints of A are partly ambiguous because multiple red inclined lines are present.",
+            "The rendering does not visibly confirm a D-shaped cross-section or a specific groove detail."
+          ]
+        },
+        {
+          "image_id": "IMG-059",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-059.png",
+          "original_asset_url": "/rag-assets/images/original/image55.png",
+          "anchor": "from R16C4 | to R23C11",
+          "caption": "CAD views of an animal-head-shaped part showing three highlighted external rectangular features and an underside neck/interface opening with directional redline arrows.",
+          "observed_text": [],
+          "uncertainties": [
+            "The purposes of the three circled rectangular features are not labeled in the image.",
+            "Red arrows indicate directions or spans, but no readable dimensions or acceptance limits are provided.",
+            "The exact profile and orientation requirement of the central opening cannot be quantified from this image."
+          ]
+        },
+        {
+          "image_id": "IMG-060",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-060.png",
+          "original_asset_url": "/rag-assets/images/original/image53.png",
+          "anchor": "from R28C4 | to R34C6",
+          "caption": "Close-up CAD section/profile showing two nested rounded rectangular or hook-like wall profiles.",
+          "observed_text": [],
+          "uncertainties": [
+            "No labels identify the component or feature.",
+            "No dimensions, tolerances, or annotations are visible.",
+            "The geometry is cropped, so the complete profile and its relationships cannot be confirmed.",
+            "The significance of the short cyan line is unclear."
+          ]
+        },
+        {
+          "image_id": "IMG-061",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-061.png",
+          "original_asset_url": "/rag-assets/images/original/image56.png",
+          "anchor": "from R28C6 | to R37C9",
+          "caption": "Product photograph of a blue molded animal-shaped part attached to a runner or sprue at its upper region.",
+          "observed_text": [],
+          "uncertainties": [
+            "The exact gate location and runner configuration are not clear enough for precise engineering verification.",
+            "Fine surface and attachment details are blurred.",
+            "No dimensions, labels, or acceptance criteria are visible."
+          ]
+        },
+        {
+          "image_id": "IMG-062",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-062.png",
+          "original_asset_url": "/rag-assets/images/original/image60.png",
+          "anchor": "from R28C9 | to R37C11",
+          "caption": "Close-up underside CAD view of a circular recessed interface containing a keyed non-circular internal opening and surrounding annular groove.",
+          "observed_text": [],
+          "uncertainties": [
+            "No dimensions, tolerances, labels, or angular orientation values are visible.",
+            "The exact geometric definition of the keyed profile cannot be determined from the perspective view alone.",
+            "The depth and cross-section of the surrounding groove are not specified."
+          ]
+        },
+        {
+          "image_id": "IMG-063",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-063.png",
+          "original_asset_url": "/rag-assets/images/original/image61.png",
+          "anchor": "from R28C9 | to R37C11",
+          "caption": "3D CAD view of a teal animal-shaped body with a gray tapered neck/head insert seated in a raised circular collar.",
+          "observed_text": [],
+          "uncertainties": [
+            "The mating groove geometry is not exposed clearly enough to verify.",
+            "Gate position, Z puller, main runner, sub-runner, and ejector placement cannot be assessed from this exterior CAD view.",
+            "No dimensions or acceptance limits are visible."
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "populated_cells": 26,
+        "drawing_text_items": 19,
+        "image_occurrences": 9,
+        "checkpoints": 10,
+        "checkpoints_requiring_review": 1
+      },
+      "reference_tables": []
+    },
+    {
+      "id": "tooling-shoulder-connector",
+      "slug": "tooling-baseline-shoulder-connector",
+      "title": "Shoulder Connector",
+      "source_sheet": "Shoulder connector",
+      "source_workbook": "Copy of Standart Accesoris_Updated.xlsx",
+      "summary": "",
+      "checkpoints": [
+        {
+          "title": "Machine-specific mold cavitation",
+          "requirement": "Set mold cavitation according to machine type.",
+          "category": "mold_tooling",
+          "verification_method": "Count the cavity positions in the tooling layout.",
+          "acceptance_criteria": "23T: 8 cavities; 55T: 16 cavities.",
+          "applicability": "All types.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B2",
+              "observation": "Specifies 8 cavities for 23T and 16 cavities for 55T."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-072",
+              "observation": "Shows a 16-position runner layout with profiles labeled 09-1 through 09-16."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-bb8b248d2a"
+        },
+        {
+          "title": "Connector bump configuration",
+          "requirement": "Configure connector bump features according to the applicable design variant.",
+          "category": "general_design",
+          "verification_method": "Inspect both connector faces in the tooling CAD and section views.",
+          "acceptance_criteria": "Doom design: no bump. Hole design: 1 bump, 1 side only.",
+          "applicability": "All types; apply the condition for the applicable connector design.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B3",
+              "observation": "Specifies no bump for the Doom design and 1 bump on 1 side only for the hole design."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-063",
+              "observation": "States that the Doom design does not need a bump."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-064",
+              "observation": "Specifies 1 bump on 1 side only, but names the variant as Dougnut design rather than hole design."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-ecad0b6b82"
+        },
+        {
+          "title": "Runner geometry by automation mode",
+          "requirement": "Configure runner geometry according to the automation mode.",
+          "category": "mold_tooling",
+          "verification_method": "Compare the runner layout with the applicable automation mode.",
+          "acceptance_criteria": "Auto: I shape. Semi auto: H shape.",
+          "applicability": "All types.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B4",
+              "observation": "Specifies I shape for auto and H shape for semi auto."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-074",
+              "observation": "Labels the illustrated runner design as I shape."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-075",
+              "observation": "Labels the illustrated runner design as H shape."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-067",
+              "observation": "Shows four connector parts arranged around an H-shaped runner network."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-0a357dc5db"
+        },
+        {
+          "title": "Stopper feature",
+          "requirement": "Include the specified stopper feature to limit scratching and abuse-related issues.",
+          "category": "general_design",
+          "verification_method": "Review the tooling CAD and relevant section views.",
+          "acceptance_criteria": "",
+          "applicability": "All types.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B5",
+              "observation": "Requires a stopper and identifies scratching and abuse-related issues as the concerns to be limited."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-076",
+              "observation": "Labels a feature as Stopper."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-078",
+              "observation": "Labels the HGC32 feature as stopper."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-080",
+              "observation": "Labels the N5946 feature as stopper."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-dee52fbbc1"
+        }
+      ],
+      "reference_notes": [],
+      "quality_notes": [],
+      "images": [
+        {
+          "image_id": "IMG-064",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-064.png",
+          "original_asset_url": "/rag-assets/images/original/image65.png",
+          "anchor": "from R6C1 | to R22C7",
+          "caption": "Close side view of a molded shoulder connector attached to a runner, showing a rounded end body with a raised circular feature on the visible face.",
+          "observed_text": [],
+          "uncertainties": [
+            "No scale or dimensions are visible.",
+            "The opposite side and complete runner geometry are not shown.",
+            "Fine surface condition cannot be evaluated reliably from the photograph."
+          ]
+        },
+        {
+          "image_id": "IMG-065",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-065.png",
+          "original_asset_url": "/rag-assets/images/original/image66.png",
+          "anchor": "from R6C1 | to R22C7",
+          "caption": "Oblique top view of a molded shoulder connector and runner, showing a rounded end with a central raised projection.",
+          "observed_text": [],
+          "uncertainties": [
+            "No scale or dimensions are visible.",
+            "The image is slightly out of focus.",
+            "The exact profile of the raised feature and end perimeter is not fully clear."
+          ]
+        },
+        {
+          "image_id": "IMG-066",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-066.png",
+          "original_asset_url": "/rag-assets/images/original/image67.png",
+          "anchor": "from R6C1 | to R22C7",
+          "caption": "Oblique side view of a molded shoulder connector with a through-hole, attached to a branched runner.",
+          "observed_text": [],
+          "uncertainties": [
+            "No scale or dimensions are visible.",
+            "The feature at the bottom of the ring may be a groove, seam, or split; its exact form is unclear.",
+            "Only one viewing angle is provided."
+          ]
+        },
+        {
+          "image_id": "IMG-067",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-067.png",
+          "original_asset_url": "/rag-assets/images/original/image62.png",
+          "anchor": "from R6C7 | to R26C10",
+          "caption": "Top view of a complete molded runner assembly with four shoulder connector parts arranged around an H-shaped runner network.",
+          "observed_text": [],
+          "uncertainties": [
+            "No scale or dimensions are visible.",
+            "The image is blurred, so connector-end details and surface condition cannot be assessed reliably.",
+            "The exact shape of the individual end features is not clear from this overhead view."
+          ]
+        },
+        {
+          "image_id": "IMG-068",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-068.png",
+          "original_asset_url": "/rag-assets/images/original/image63.png",
+          "anchor": "from R6C7 | to R26C10",
+          "caption": "Product photograph of one face of a tan shoulder connector, showing two closed circular end pads joined by a straight central bar with a single perpendicular stopper-like projection.",
+          "observed_text": [],
+          "uncertainties": [
+            "No scale or dimensional annotation is visible.",
+            "The photograph alone does not establish the intended names or functions of the central projection, end pads, ribs, or transitions.",
+            "Fine surface condition is not clear enough to assess scratches or other defects."
+          ]
+        },
+        {
+          "image_id": "IMG-069",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-069.png",
+          "original_asset_url": "/rag-assets/images/original/image64.png",
+          "anchor": "from R6C7 | to R26C10",
+          "caption": "Product photograph of the opposite face of a tan shoulder connector, showing open circular holes at both ends and one central perpendicular projection.",
+          "observed_text": [],
+          "uncertainties": [
+            "No scale or dimensional annotation is visible.",
+            "The exact depth and through-condition of the end openings cannot be confirmed from this single view.",
+            "The central projection's intended function is not identified in the image.",
+            "Fine surface condition is not clear enough to assess scratches or other defects."
+          ]
+        },
+        {
+          "image_id": "IMG-072",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-072.png",
+          "original_asset_url": "/rag-assets/images/original/image68.png",
+          "anchor": "from R42C1 | to R55C7",
+          "caption": "Mold runner-layout diagram showing 16 shoulder-connector profiles arranged in two eight-part groups connected by a central horizontal runner.",
+          "observed_text": [
+            "09-1",
+            "09-2",
+            "09-3",
+            "09-4",
+            "09-5",
+            "09-6",
+            "09-7",
+            "09-8",
+            "09-9",
+            "09-10",
+            "09-11",
+            "09-12",
+            "09-13",
+            "09-14",
+            "09-15",
+            "09-16"
+          ],
+          "uncertainties": [
+            "No numerical dimensions or units are visible.",
+            "The meaning of the white circular marks is not identified by a legend.",
+            "The meaning of the small black line annotations is unclear.",
+            "A partial black annotation or leader is clipped at the bottom edge of the image."
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "populated_cells": 16,
+        "drawing_text_items": 20,
+        "image_occurrences": 7,
+        "checkpoints": 4,
+        "checkpoints_requiring_review": 1
+      },
+      "reference_tables": []
+    },
+    {
+      "id": "tooling-arm",
+      "slug": "tooling-baseline-arm",
+      "title": "Arm",
+      "source_sheet": "Arm",
+      "source_workbook": "Copy of Standart Accesoris_Updated.xlsx",
+      "summary": "",
+      "checkpoints": [
+        {
+          "title": "KD provision",
+          "requirement": "Do not include KD.",
+          "category": "general_design",
+          "verification_method": "",
+          "acceptance_criteria": "",
+          "applicability": "All types",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "A2",
+              "observation": "The checklist states that KD is not required."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-3314f0a0ba"
+        },
+        {
+          "title": "Pocket connector ribs and arrangement",
+          "requirement": "Add ribs to the pocket connector and use the arm-end connector arrangement shown in the “Allowed” view rather than the “Not allow” view.",
+          "category": "assembly_fit",
+          "verification_method": "Visually compare the connector rib and seating arrangement with IMG-073.",
+          "acceptance_criteria": "The connector is seated within the arm-end feature as shown in the “Allowed” view.",
+          "applicability": "All types",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "A3",
+              "observation": "Ribs are required on the pocket connector."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-082",
+              "observation": "The drawing identifies a rib on the pocket connector."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-073",
+              "observation": "The image compares prohibited and allowed connector arrangements and highlights a seated arm-end connector in the allowed ribbed layout."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-6e605b96cd"
+        },
+        {
+          "title": "Arm tooling references",
+          "requirement": "Use the applicable tooling reference: straight arm, 4 set — DVX72-Q601-16; bent arm, 4 set — T7738-Q502-02; bent and straight, 2 set — HJN31-U981-01.",
+          "category": "mold_tooling",
+          "verification_method": "Compare the tooling design with the listed reference for the applicable arm configuration.",
+          "acceptance_criteria": "",
+          "applicability": "All types; select the reference matching the arm configuration.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "A4",
+              "observation": "The cell lists tooling references and set quantities for straight, bent, and combined bent-and-straight arms."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-083",
+              "observation": "The drawing identifies reference DVX72-Q601-16."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-b56f53f394"
+        },
+        {
+          "title": "Matte surface finish",
+          "requirement": "Apply a matte surface finish.",
+          "category": "material_process",
+          "verification_method": "Visually inspect the surface finish.",
+          "acceptance_criteria": "",
+          "applicability": "All types",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "A5",
+              "observation": "A matte surface finish is specified."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-58716a22a7"
+        },
+        {
+          "title": "Runner design for auto PIM",
+          "requirement": "Confirm whether the runner design is intended for auto PIM, using DVX72-Q601-02 as the design reference.",
+          "category": "mold_tooling",
+          "verification_method": "Record the auto-PIM decision and compare the runner design with DVX72-Q601-02.",
+          "acceptance_criteria": "",
+          "applicability": "All types",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "A6",
+              "observation": "Confirmation is requested on whether the runner design is for auto PIM, with DVX72-Q601-02 identified as the design reference."
+            }
+          ],
+          "confidence": "medium",
+          "review_required": true,
+          "id": "CHK-98c9fcd0b0"
+        }
+      ],
+      "reference_notes": [],
+      "quality_notes": [],
+      "images": [
+        {
+          "image_id": "IMG-073",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-073.png",
+          "original_asset_url": "/rag-assets/images/original/image70.jpeg",
+          "anchor": "from R9C1 | to R23C6",
+          "caption": "Good/bad comparison of arm-to-pocket connector geometry. The left illustration is marked “Not allow” and shows a separated or projecting connector arrangement; the right CAD view is marked “Allowed” and shows the arm ends seated in connector features within a ribbed runner layout.",
+          "observed_text": [
+            "Not allow",
+            "Allowed",
+            "01",
+            "R1",
+            "L2",
+            "R2"
+          ],
+          "uncertainties": [
+            "The small alphanumeric CAD labels are partially obscured or rotated; only “01,” “R1,” “L2,” and “R2” are clearly discernible.",
+            "The exact feature indicated by the black arrow is not labeled.",
+            "No numeric dimensions or acceptance limits are shown."
+          ]
+        },
+        {
+          "image_id": "IMG-074",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-074.png",
+          "original_asset_url": "/rag-assets/images/original/image69.png",
+          "anchor": "from R9C7 | to R40C16",
+          "caption": "Photograph of an open multi-cavity metal mold installed in molding equipment, showing several curved arm-shaped cavity or molded-part regions, central tooling features, hoses, and machine hardware.",
+          "observed_text": [],
+          "uncertainties": [
+            "The photograph does not clearly distinguish whether the gray curved forms are molded parts, runners, inserts, or cavity residue.",
+            "Fine connector and rib details are not clear enough to establish a dimensional or geometric requirement.",
+            "No readable annotations, dimensions, or acceptance criteria are visible."
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "populated_cells": 21,
+        "drawing_text_items": 2,
+        "image_occurrences": 2,
+        "checkpoints": 5,
+        "checkpoints_requiring_review": 2
+      },
+      "reference_tables": []
+    },
+    {
+      "id": "tooling-vum-holder",
+      "slug": "tooling-baseline-vum-holder",
+      "title": "VUM Holder",
+      "source_sheet": "VUM Holder",
+      "source_workbook": "Copy of Standart Accesoris_Updated.xlsx",
+      "summary": "",
+      "checkpoints": [
+        {
+          "title": "Closed-loop feature",
+          "requirement": "Create the part as a closed loop that does not collapse when rotated.",
+          "category": "general_design",
+          "verification_method": "Rotate the part and visually inspect the closed-loop feature.",
+          "acceptance_criteria": "The loop remains closed and does not collapse during rotation.",
+          "applicability": "All types.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B2",
+              "observation": "The part is required to have a closed loop that does not collapse when rotated."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-085",
+              "observation": "The drawing annotation states that a closed loop must be ensured."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-c087a8b8ce"
+        },
+        {
+          "title": "Edge gate",
+          "requirement": "Provide an edge gate.",
+          "category": "mold_tooling",
+          "verification_method": "Visually inspect the gate location and configuration.",
+          "acceptance_criteria": "An edge gate is present.",
+          "applicability": "All types.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B3",
+              "observation": "An edge gate is required."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-c1bb076a3f"
+        },
+        {
+          "title": "Holder dimensions",
+          "requirement": "Provide the holder with a diameter of Ø5mm and a length of 15mm.",
+          "category": "dimension_geometry",
+          "verification_method": "Measure the diameter and length of the holder feature.",
+          "acceptance_criteria": "Diameter is Ø5mm and length is 15mm.",
+          "applicability": "All types.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B4",
+              "observation": "The holder dimension is specified as Ø5mm x 15mm length."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-076",
+              "observation": "The holder callout specifies Ø 5 x 15mm and points to the central holder feature."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-075",
+              "observation": "The dimensioned holder view shows 5mm horizontally and 15mm vertically."
+            }
+          ],
+          "confidence": "high",
+          "review_required": false,
+          "id": "CHK-71c91db33a"
+        },
+        {
+          "title": "VUM and sub-runner configuration",
+          "requirement": "Configure the part for 1 times VUM, with no separate sub runner.",
+          "category": "mold_tooling",
+          "verification_method": "Inspect the tooling layout and runner configuration.",
+          "acceptance_criteria": "The layout uses 1 times VUM and has no separate sub runner.",
+          "applicability": "All types.",
+          "evidence": [
+            {
+              "source_type": "cell",
+              "reference": "B5",
+              "observation": "The part is specified as 1 times VUM with no separate sub runner."
+            },
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-088",
+              "observation": "The drawing annotation specifies a 1 times VUM process with no separated sub runner."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-8778266409"
+        }
+      ],
+      "reference_notes": [],
+      "quality_notes": [],
+      "images": [
+        {
+          "image_id": "IMG-075",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-075.png",
+          "original_asset_url": "/rag-assets/images/original/image71.png",
+          "anchor": "from R7C1 | to R16C3",
+          "caption": "Dimensioned close-up of a holder feature, showing a horizontal 5mm dimension and a vertical 15mm dimension.",
+          "observed_text": [
+            "5mm",
+            "15mm"
+          ],
+          "uncertainties": [
+            "The image does not visibly include a diameter symbol with the 5mm label.",
+            "The white overlay obscures part of the geometry, so the exact dimension endpoints relative to the physical feature are not fully clear."
+          ]
+        },
+        {
+          "image_id": "IMG-076",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-076.png",
+          "original_asset_url": "/rag-assets/images/original/image72.png",
+          "anchor": "from R7C3 | to R18C6",
+          "caption": "Annotated molding-layout illustration showing a central VUM holder, additional frame runner, red looped flow/runner paths, and the crown identifier.",
+          "observed_text": [
+            "Additional frame runner",
+            "VUM Holder (Ø 5 x 15mm)",
+            "Crown GTJ97-U831-01"
+          ],
+          "uncertainties": [
+            "The precise geometry represented by the red flame-like markings is not explicitly labeled.",
+            "The black diagonal line entering from the lower-left edge appears to be an annotation leader, but its originating label is cropped out.",
+            "No explicit tolerance is shown for Ø 5 x 15mm."
+          ]
+        },
+        {
+          "image_id": "IMG-077",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-077.png",
+          "original_asset_url": "/rag-assets/images/original/image73.png",
+          "anchor": "from R7C6 | to R19C9",
+          "caption": "Product photo of multiple gray molded runner assemblies and a separate central sprue/runner piece placed on a green gridded cutting mat.",
+          "observed_text": [
+            "90",
+            "80",
+            "70",
+            "50"
+          ],
+          "uncertainties": [
+            "No explicit dimensional callouts or units are shown.",
+            "The cutting-mat grid spacing is not identified, so it cannot support dimensional verification.",
+            "The relationship of the separate central runner piece to the upper and lower assemblies is not annotated.",
+            "Some edge features are cropped by the image boundaries."
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "populated_cells": 15,
+        "drawing_text_items": 5,
+        "image_occurrences": 3,
+        "checkpoints": 4,
+        "checkpoints_requiring_review": 2
+      },
+      "reference_tables": []
+    },
+    {
+      "id": "tooling-rotohead",
+      "slug": "tooling-baseline-rotohead",
+      "title": "Rotohead",
+      "source_sheet": "ROTOHEAD",
+      "source_workbook": "Copy of Standart Accesoris_Updated.xlsx",
+      "summary": "",
+      "checkpoints": [
+        {
+          "title": "Cap-head glue-area side angles",
+          "requirement": "Use the depicted standard side-angle geometry for the cap-head glue area to avoid an undercut that impedes unloading.",
+          "category": "mold_tooling",
+          "verification_method": "Measure both annotated side angles and compare them with the standard-design image.",
+          "acceptance_criteria": "Standard-design annotations: 37.73° on the left side and 36.45° on the right side. No tolerance is stated.",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-078",
+              "observation": "The standard-design view identifies glue-area side angles of 37.73° and 36.45°. The note states that angles below the standard can create an undercut and make unloading difficult."
+            }
+          ],
+          "confidence": "medium",
+          "review_required": true,
+          "id": "CHK-7578842113"
+        },
+        {
+          "title": "Cap-head diameter for roto-mold fit",
+          "requirement": "Maintain the cap-head diameter at the depicted standard size for compatibility with the standard cap-cover roto mold.",
+          "category": "assembly_fit",
+          "verification_method": "Measure the span across the upper cap-head feature and compare it with the standard-design measurement.",
+          "acceptance_criteria": "Depicted standard span: Dist: 22.23587mm. No tolerance is stated.",
+          "applicability": "When using the standard cap-cover roto mold.",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-079",
+              "observation": "The standard-design cap-head span is labeled Dist: 22.23587mm. The note states that a smaller diameter will not fit the standard cap-cover roto mold."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-472e3b4acd"
+        },
+        {
+          "title": "Pool-proof hair profile at head assembly",
+          "requirement": "Provide a sufficiently rounded pool-proof hair profile to prevent an assembly gap associated with deformed head output.",
+          "category": "assembly_fit",
+          "verification_method": "Visually compare the produced interface with the rounded reference geometry and inspect the assembled head for a gap.",
+          "acceptance_criteria": "",
+          "applicability": "",
+          "evidence": [
+            {
+              "source_type": "image",
+              "reference": "IMG-080",
+              "observation": "The note requires the pool-proof hair to be rounded enough to prevent a gap from deformed output; contrasting rendered head geometries are shown without dimensions or explicit acceptance labels."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-d103adef70"
+        }
+      ],
+      "reference_notes": [],
+      "quality_notes": [],
+      "images": [
+        {
+          "image_id": "IMG-078",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-078.png",
+          "original_asset_url": "/rag-assets/images/original/image74.png",
+          "anchor": "from R1C1 | to R26C15",
+          "caption": "Standard-design and HLT23 comparison showing the side angles of the cap-head glue area on a rendered head model.",
+          "observed_text": [
+            "STANDARD DESIGN",
+            "Angle glue area need standard as picture.",
+            "Why?",
+            "It is help during unload process.. IF angle less than standard... it will generate design call “undercut” and makes unload process difficult than STANDARD DESIGN.",
+            "Thanks",
+            "ANGLE HLT23"
+          ],
+          "uncertainties": [
+            "The image does not state a tolerance or formal acceptance range for the angles.",
+            "The exact meaning of the green point markers is not identified."
+          ]
+        },
+        {
+          "image_id": "IMG-079",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-079.png",
+          "original_asset_url": "/rag-assets/images/original/image75.png",
+          "anchor": "from R1C16 | to R26C31",
+          "caption": "Standard-design and HLT23 comparison of the cap-head diameter, with a distance measurement across the top feature.",
+          "observed_text": [
+            "STANDARD DESIGN",
+            "Dist: 22.23587mm",
+            "X: 11.21226mm",
+            "Y: 94.38717mm",
+            "Z: -39.05668mm",
+            "Diameter cap head should follow standard.",
+            "Why?",
+            "Having smaller than standard diameter makes not fit with STANDARD cap cover roto mold",
+            "DIAMETER HLT23"
+          ],
+          "uncertainties": [
+            "The distance and coordinate values in the HLT23 inset are too small to read reliably.",
+            "The image provides no dimensional tolerance or explicit acceptance range.",
+            "It is not explicitly stated whether the displayed distance is a true circular diameter or a point-to-point span."
+          ]
+        },
+        {
+          "image_id": "IMG-080",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-080.png",
+          "original_asset_url": "/rag-assets/images/original/image76.png",
+          "anchor": "from R27C1 | to R50C14",
+          "caption": "Comparison of two rendered head/cap geometries illustrating the requested rounded pool-proof hair form and a deformed output that may create an assembly gap.",
+          "observed_text": [
+            "Pool-proof Hair need round enough to prevent gap from deform output.",
+            "Why?",
+            "Output with deform head will make pool-proof with extreme rounded generate gap during assembly head",
+            "POOL-PROOF HLT23"
+          ],
+          "uncertainties": [
+            "The image does not explicitly label which rendering is acceptable and which is defective.",
+            "No radius, profile dimension, gap limit, or tolerance is provided.",
+            "The phrase “extreme rounded” is grammatically unclear, so no additional geometric limit can be inferred."
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "populated_cells": 0,
+        "drawing_text_items": 3,
+        "image_occurrences": 3,
+        "checkpoints": 3,
+        "checkpoints_requiring_review": 3
+      },
+      "reference_tables": []
+    },
+    {
+      "id": "tooling-marking-genuine",
+      "slug": "tooling-baseline-marking-genuine",
+      "title": "Marking & Genuine",
+      "source_sheet": "MARKING & GENUINE",
+      "source_workbook": "Copy of Standart Accesoris_Updated.xlsx",
+      "summary": "",
+      "checkpoints": [
+        {
+          "title": "Barbie torso legal marking",
+          "requirement": "Implement the specified standard legal marking on the Barbie torso.",
+          "category": "decoration_marking",
+          "verification_method": "Compare the tooling marking artwork with the specified text and measure the marking height.",
+          "acceptance_criteria": "Text: “©2022 MATTEL 1186 MJ, 1, NL MADE IN INDONESIA”; height must be “at least or >1.5mm”.",
+          "applicability": "Barbie torso",
+          "evidence": [
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-092",
+              "observation": "Specifies the standard legal marking text for the Barbie torso and states that the height must be at least or >1.5mm."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-d0b0339dac"
+        }
+      ],
+      "reference_notes": [],
+      "quality_notes": [],
+      "images": [],
+      "evidence_counts": {
+        "populated_cells": 0,
+        "drawing_text_items": 1,
+        "image_occurrences": 0,
+        "checkpoints": 1,
+        "checkpoints_requiring_review": 1
+      },
+      "reference_tables": []
+    },
+    {
+      "id": "tooling-c-clip-bottle",
+      "slug": "tooling-baseline-c-clip-bottle",
+      "title": "C Clip Bottle",
+      "source_sheet": "C clip bottle",
+      "source_workbook": "Copy of Standart Accesoris_Updated.xlsx",
+      "summary": "",
+      "checkpoints": [
+        {
+          "title": "C-clip standardization across listed sizes",
+          "requirement": "Use a standardized C-clip design for the Barbie, Skipper, Toddler, and Chelsea dimensions.",
+          "category": "assembly_fit",
+          "verification_method": "Compare the C-clip geometry across all four listed versions.",
+          "acceptance_criteria": "",
+          "applicability": "C-clip bottle versions for Barbie, Skipper, Toddler, and Chelsea.",
+          "evidence": [
+            {
+              "source_type": "drawing_text",
+              "reference": "TXT-093",
+              "observation": "Requests C-clip standardization for Barbie, Skipper, Toddler, and Chelsea dimensions."
+            },
+            {
+              "source_type": "image",
+              "reference": "IMG-081",
+              "observation": "The visual reference shows a C-shaped open clip projecting from the right side of the bottle body."
+            }
+          ],
+          "confidence": "low",
+          "review_required": true,
+          "id": "CHK-9c56603205"
+        }
+      ],
+      "reference_notes": [],
+      "quality_notes": [],
+      "images": [
+        {
+          "image_id": "IMG-081",
+          "asset_url": "/rag-assets/images/thumbnails/IMG-081.png",
+          "original_asset_url": "/rag-assets/images/original/image77.png",
+          "anchor": "from R1C1 | to R7C2",
+          "caption": "Stylized front-view illustration of a beige bottle-like accessory with an integrated C-shaped side clip.",
+          "observed_text": [],
+          "uncertainties": [
+            "No dimensions, labels, callouts, arrows, section views, or acceptance criteria are visible.",
+            "The function of the small green mark above the cap and the two lower projections is not identified."
+          ]
+        }
+      ],
+      "evidence_counts": {
+        "populated_cells": 0,
+        "drawing_text_items": 1,
+        "image_occurrences": 1,
+        "checkpoints": 1,
+        "checkpoints_requiring_review": 1
+      },
+      "reference_tables": []
+    }
+  ]
+}

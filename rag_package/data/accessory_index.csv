@@ -1,0 +1,19 @@
+﻿Accessory,Source_Sheet,Content_Type,Checklist_Rows,Rows_With_Text,Rows_Missing_Text,Reference_Rows,Image_Occurrences,Drawing_Text_Labels,Image_IDs,Notes
+EARRING,EARRING,Checklist standard,5,5,0,0,3,1,IMG-001; IMG-002; IMG-003,
+HANDRING,HANDRING,Reference table,0,0,0,13,2,0,IMG-004; IMG-005,
+HEADBAND,HEADBAND,Checklist standard,5,5,0,0,6,0,IMG-006; IMG-007; IMG-008; IMG-009; IMG-010; IMG-011,
+BELT,BELT,Checklist standard,5,4,1,0,4,0,IMG-012; IMG-013; IMG-014; IMG-015,Needs SME completion
+BRACELET,BRACELET,Checklist standard,5,0,5,0,2,0,IMG-016; IMG-017,Needs SME completion
+NECKLACE,NECKLACE,Checklist standard,5,4,1,0,9,6,IMG-018; IMG-019; IMG-020; IMG-021; IMG-022; IMG-023; IMG-024; IMG-025; IMG-026,Needs SME completion
+BACKPACK ASSY,Backpack assy,Checklist standard,5,3,2,0,5,2,IMG-027; IMG-028; IMG-029; IMG-030; IMG-031,Needs SME completion
+STD ELECTRODE PTMI,STD Electrode PTMI,Visual/text drawing only,0,0,0,0,1,4,IMG-032,
+GLASSES,GLASSES,Checklist standard,5,5,0,0,2,0,IMG-033; IMG-034,
+HAIR CLIP,Hair clip,Checklist standard,5,5,0,0,3,12,IMG-035; IMG-036; IMG-037,
+SHOES,SHOES,Checklist standard,9,9,0,0,17,17,IMG-038; IMG-039; IMG-040; IMG-041; IMG-042; IMG-043; IMG-044; IMG-045; IMG-046; IMG-047; IMG-048; IMG-049; IMG-050; IMG-051; IMG-052; IMG-053; IMG-054,
+PET(SEPARATE HEAD),PET(SEPARATE HEAD),Checklist standard,10,10,0,0,9,19,IMG-055; IMG-056; IMG-057; IMG-058; IMG-059; IMG-060; IMG-061; IMG-062; IMG-063,
+SHOULDER CONNECTOR,Shoulder connector,Checklist standard,4,4,0,0,9,20,IMG-064; IMG-065; IMG-066; IMG-067; IMG-068; IMG-069; IMG-070; IMG-071; IMG-072,
+ARM,Arm,Checklist standard,7,5,2,0,2,2,IMG-073; IMG-074,Needs SME completion
+VUM HOLDER,VUM Holder,Checklist standard,4,4,0,0,3,5,IMG-075; IMG-076; IMG-077,
+ROTOHEAD,ROTOHEAD,Visual/text drawing only,0,0,0,0,3,3,IMG-078; IMG-079; IMG-080,
+MARKING & GENUINE,MARKING & GENUINE,Visual/text drawing only,0,0,0,0,0,1,,
+C CLIP BOTTLE,C clip bottle,Visual/text drawing only,0,0,0,0,1,1,IMG-081,

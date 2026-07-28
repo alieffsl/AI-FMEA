@@ -1,0 +1,42 @@
+{
+  "name": "fmea-migration",
+  "version": "1.0.0",
+  "description": "Data migration from MS SQL Server to PostgreSQL with AI synthesis",
+  "type": "module",
+  "scripts": {
+    "deploy": "ts-node deploy_schema.ts",
+    "extract": "ts-node extract.ts",
+    "sample": "ts-node extract_sample.ts",
+    "test": "ts-node test_insert.ts",
+    "synthesize": "ts-node synthesize_all.ts",
+    "synthesize:openai": "ts-node synthesize_all_openai.ts",
+    "update": "ts-node update_schema_and_data.ts",
+    "compile": "tsc extract.ts --esModuleInterop --resolveJsonModule --skipLibCheck",
+    "add:base64column": "ts-node deploy_base64_column.ts",
+    "migrate:images": "ts-node migrate_images_to_base64.ts",
+    "retry:failed": "ts-node retry_failed_images.ts",
+    "retry:partial": "ts-node retry_partial_failed.ts",
+    "verify:migration": "ts-node verify_migration.ts",
+    "test:api": "ts-node test_api_base64.ts",
+    "find:base64": "ts-node find_base64_records.ts",
+    "analyze:skipped": "ts-node analyze_skipped.ts",
+    "show:examples": "ts-node show_examples.ts",
+    "check:quality": "ts-node check_test_quality.ts",
+    "show:new": "ts-node show_new_synthesis.ts",
+    "checklist:generate": "ts-node generate_checklist.ts"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "mssql": "^12.5.5",
+    "node-fetch": "^2.7.0",
+    "openai": "^6.45.0",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "@types/mssql": "^12.3.0",
+    "@types/node": "^26.0.0",
+    "@types/pg": "^8.11.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  }
+}
