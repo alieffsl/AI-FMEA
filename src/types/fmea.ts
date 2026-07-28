@@ -17,7 +17,7 @@ export type FmeaDraftRow = {
   recommendedAction: string;
   responsibleFunction: string;
   targetDate: string;
-  /** Historical checklist entries from PostgreSQL */
+  /** Combined historical FMEA and standards checklist entries from PostgreSQL. */
   checklistEntries?: Array<{
     id: string;
     tool_description_normalized: string;
@@ -29,6 +29,21 @@ export type FmeaDraftRow = {
     supporting_record_count: number;
     supporting_record_ids: string[];
     supporting_failure_ids: number[];
+    applicability_scope?: "exact_tool" | "global_process";
+    source_types?: Array<
+      "historical_fmea" | "product_standard" | "baseline_standard"
+    >;
+    historical_checklist_ids?: string[];
+    supporting_standard_refs?: Array<{
+      source_type: "product_standard" | "baseline_standard";
+      source_id: string;
+      slug?: string;
+      title: string;
+      source_file?: string | null;
+      section?: string;
+      reference?: string;
+      source_excerpt?: string;
+    }>;
     similarity?: number;
   }>;
 };

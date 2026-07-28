@@ -1,6 +1,7 @@
 import * as XLSX from "xlsx";
 import type { ProjectMetadata, ToolRow } from "../types/project";
 import type { FmeaDraftRow } from "../types/fmea";
+import { countChecklistSources } from "../utils/checklistSources";
 
 // ─── CSV Export ──────────────────────────────────────────────────────────────
 
@@ -33,9 +34,22 @@ const FMEA_CSV_HEADERS = [
 ];
 
 function fmeaToRow(item: FmeaDraftRow, index: number): (string | number)[] {
-  const checklistSummary = item.checklistEntries
-    ? `${item.checklistEntries.length} checklist entries`
-    : 'No checklist data';
+  const sourceCounts = item.checklistEntries?.length
+    ? countChecklistSources(item.checklistEntries)
+    : null;
+  const checklistSummary = sourceCounts
+    ? [
+        sourceCounts.historical_fmea
+          ? `${sourceCounts.historical_fmea} Previous FMEA`
+          : "",
+        sourceCounts.product_standard
+          ? `${sourceCounts.product_standard} MEC Product Standard`
+          : "",
+        sourceCounts.baseline_standard
+          ? `${sourceCounts.baseline_standard} Baseline Tooling Standard`
+          : "",
+      ].filter(Boolean).join("; ")
+    : "No checklist data";
   
   return [
     index + 1,

@@ -11,7 +11,7 @@ dotenv.config({ path: path.resolve(__dirname, '../migration/.env') });
 const { Client, Pool } = pg;
 
 const app = express();
-const port = 3001;
+const port = Number(process.env.PORT || 3001);
 
 // PostgreSQL connection pool for better performance
 let pgPool: pg.Pool | null = null;
@@ -187,7 +187,21 @@ app.post('/api/fmea/generate', async (req, res) => {
         ${FAILURE_FILTER}
     `, allDescArray);
 
-    // Group results by tool description
+    // Add exact, standards-backed failure modes. Global process controls are
+    // intentionally excluded here: they may enrich a known failure later, but
+    // must not create the same failure mode for every uploaded tool.
+    const standardFailureResult = await client.query(`
+      SELECT DISTINCT
+        tool_description_normalized,
+        failure_mode
+      FROM fmea_checklist_standard
+      WHERE LOWER(tool_description_normalized) IN (${placeholders})
+        AND applicability_scope = 'exact_tool'
+        AND source_types && ARRAY['product_standard', 'baseline_standard']::text[]
+        ${FAILURE_FILTER}
+    `, allDescArray);
+
+    // Group historical and standards-backed results by exact tool description.
     const failuresByTool = new Map<string, Set<string>>();
     for (const row of batchResult.rows) {
       const key = row.tool_description_normalized.toLowerCase();
@@ -196,6 +210,17 @@ app.post('/api/fmea/generate', async (req, res) => {
       }
       failuresByTool.get(key)!.add(row.failure_mode);
     }
+    for (const row of standardFailureResult.rows) {
+      const key = row.tool_description_normalized.toLowerCase();
+      if (!failuresByTool.has(key)) {
+        failuresByTool.set(key, new Set());
+      }
+      failuresByTool.get(key)!.add(row.failure_mode);
+    }
+    console.log(
+      `[Server] Failure-mode sources: ${batchResult.rowCount || 0} historical pairs + ` +
+      `${standardFailureResult.rowCount || 0} standards-backed pairs`,
+    );
 
     // Map results back to original tool descriptions
     for (const desc of uniqueDescriptions) {
@@ -330,6 +355,10 @@ app.post('/api/fmea/generate', async (req, res) => {
               supporting_record_count: 1,
               supporting_record_ids: [row.id],
               supporting_failure_ids: [row.failure_id],
+              applicability_scope: 'exact_tool' as const,
+              source_types: ['historical_fmea' as const],
+              historical_checklist_ids: [],
+              supporting_standard_refs: [],
               similarity: 1.0
             }));
 
@@ -1043,7 +1072,7 @@ app.get('/api/checklist/failure-modes', async (req, res) => {
 
     const result = await client.query(`
       SELECT DISTINCT failure_mode, COUNT(*) as entry_count
-      FROM fmea_checklist
+      FROM fmea_checklist_standard
       GROUP BY failure_mode
       ORDER BY failure_mode
     `);

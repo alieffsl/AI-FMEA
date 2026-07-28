@@ -1,11 +1,12 @@
 /**
- * Checklist Service - Semantic matching for historical FMEA checklist
+ * Checklist Service - matching for the combined historical + standards checklist
  */
 
 import pg from 'pg';
 import { normalizeToolDescription } from './normalizeToolDescription';
 
 const { Client } = pg;
+const CHECKLIST_TABLE = 'fmea_checklist_standard';
 
 // Position suffixes used for rejection check (tools with suffixes are DIFFERENT tools)
 const POSITION_SUFFIXES = ['LT', 'RT', 'FT', 'RR', 'LEFT', 'RIGHT', 'FRONT', 'REAR', 'BACK'];
@@ -21,6 +22,10 @@ export interface ChecklistEntry {
   supporting_record_count: number;
   supporting_record_ids: string[];
   supporting_failure_ids: number[];
+  applicability_scope: 'exact_tool' | 'global_process';
+  source_types: Array<'historical_fmea' | 'product_standard' | 'baseline_standard'>;
+  historical_checklist_ids: string[];
+  supporting_standard_refs: Array<Record<string, unknown>>;
   similarity?: number;
 }
 
@@ -172,11 +177,21 @@ export async function matchChecklistEntries(
         recommendation,
         supporting_record_count,
         supporting_record_ids,
-        supporting_failure_ids
-      FROM fmea_checklist
-      WHERE LOWER(tool_description_normalized) = LOWER($1)
+        supporting_failure_ids,
+        applicability_scope,
+        source_types,
+        historical_checklist_ids,
+        supporting_standard_refs
+      FROM ${CHECKLIST_TABLE}
+      WHERE (
+          LOWER(tool_description_normalized) = LOWER($1)
+          OR applicability_scope = 'global_process'
+        )
         AND LOWER(failure_mode) = LOWER($2)
-      ORDER BY supporting_record_count DESC, sub_concern_index ASC
+      ORDER BY
+        CASE WHEN LOWER(tool_description_normalized) = LOWER($1) THEN 0 ELSE 1 END,
+        supporting_record_count DESC,
+        sub_concern_index ASC
       LIMIT $3
     `, [normalizedTool, failureMode, maxResults]);
 
@@ -203,8 +218,12 @@ export async function matchChecklistEntries(
         recommendation,
         supporting_record_count,
         supporting_record_ids,
-        supporting_failure_ids
-      FROM fmea_checklist
+        supporting_failure_ids,
+        applicability_scope,
+        source_types,
+        historical_checklist_ids,
+        supporting_standard_refs
+      FROM ${CHECKLIST_TABLE}
       WHERE LOWER(failure_mode) = LOWER($1)
     `, [failureMode]);
 
@@ -237,6 +256,10 @@ export async function matchChecklistEntries(
           supporting_record_count: candidate.supporting_record_count,
           supporting_record_ids: candidate.supporting_record_ids,
           supporting_failure_ids: candidate.supporting_failure_ids,
+          applicability_scope: candidate.applicability_scope,
+          source_types: candidate.source_types,
+          historical_checklist_ids: candidate.historical_checklist_ids,
+          supporting_standard_refs: candidate.supporting_standard_refs,
           similarity
         });
       }
@@ -318,8 +341,12 @@ export async function matchChecklistBatch(
         recommendation,
         supporting_record_count,
         supporting_record_ids,
-        supporting_failure_ids
-      FROM fmea_checklist
+        supporting_failure_ids,
+        applicability_scope,
+        source_types,
+        historical_checklist_ids,
+        supporting_standard_refs
+      FROM ${CHECKLIST_TABLE}
       WHERE LOWER(failure_mode) IN (${placeholders})
       ORDER BY supporting_record_count DESC
     `, Array.from(allFailureModes));
@@ -334,11 +361,12 @@ export async function matchChecklistBatch(
       const exactMatches = candidates.filter(
         row => row.tool_description_normalized.toLowerCase() === tool.normalized.toLowerCase()
       );
+      const globalMatches = candidates.filter(row => row.applicability_scope === 'global_process');
 
       if (exactMatches.length > 0) {
-        results.set(tool.key, exactMatches.slice(0, maxResultsPerTool).map(row => ({
+        results.set(tool.key, [...exactMatches, ...globalMatches].slice(0, maxResultsPerTool).map(row => ({
           ...row,
-          similarity: 1.0
+          similarity: row.applicability_scope === 'global_process' ? 0.5 : 1.0
         })));
         continue;
       }
@@ -350,6 +378,7 @@ export async function matchChecklistBatch(
       const semanticMatches: (ChecklistEntry & { similarity: number })[] = [];
       
       for (const candidate of candidates) {
+        if (candidate.applicability_scope === 'global_process') continue;
         const candidateNorm = candidate.tool_description_normalized || '';
         
         // Only compare full normalized forms (no base-word stripping)
@@ -371,7 +400,8 @@ export async function matchChecklistBatch(
         return b.similarity - a.similarity;
       });
 
-      results.set(tool.key, semanticMatches.slice(0, maxResultsPerTool));
+      const globalWithSimilarity = globalMatches.map(row => ({ ...row, similarity: 0.5 }));
+      results.set(tool.key, [...semanticMatches, ...globalWithSimilarity].slice(0, maxResultsPerTool));
     }
     
     return results;
@@ -407,7 +437,7 @@ export async function getChecklistStats() {
         MAX(supporting_record_count) as max_supporting,
         COUNT(DISTINCT tool_description_normalized) as unique_tools,
         COUNT(DISTINCT failure_mode) as unique_failure_modes
-      FROM fmea_checklist
+      FROM ${CHECKLIST_TABLE}
     `);
 
     const topTools = await client.query(`
@@ -416,7 +446,7 @@ export async function getChecklistStats() {
         tool_category,
         COUNT(*) as entry_count,
         SUM(supporting_record_count) as total_records
-      FROM fmea_checklist
+      FROM ${CHECKLIST_TABLE}
       GROUP BY tool_description_normalized, tool_category
       ORDER BY COUNT(*) DESC
       LIMIT 10
@@ -427,7 +457,7 @@ export async function getChecklistStats() {
         failure_mode,
         COUNT(*) as entry_count,
         SUM(supporting_record_count) as total_records
-      FROM fmea_checklist
+      FROM ${CHECKLIST_TABLE}
       GROUP BY failure_mode
       ORDER BY COUNT(*) DESC
       LIMIT 10

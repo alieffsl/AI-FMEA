@@ -2,6 +2,13 @@ import { useMemo, useState } from "react";
 import { ChevronDown, Download, AlertTriangle, CheckCircle2 } from "lucide-react";
 import type { FmeaDraftRow, FmeaFilter } from "../types/fmea";
 import { exportFmeaToExcel } from "../utils/excelExport";
+import {
+  CHECKLIST_SOURCE_LABELS,
+  countChecklistSources,
+  getChecklistSourceKinds,
+  getStandardSourceTitles,
+  type ChecklistSourceKind,
+} from "../utils/checklistSources";
 
 type FmeaDraftTableProps = {
   rows: FmeaDraftRow[];
@@ -12,6 +19,22 @@ const FILTER_OPTIONS: { value: FmeaFilter; label: string }[] = [
   { value: "all", label: "All" },
   { value: "high-rpn", label: "High RPN" },
 ];
+
+const SOURCE_BADGE_STYLES: Record<ChecklistSourceKind, string> = {
+  historical_fmea: "border-steel-200 bg-steel-100 text-steel-700",
+  product_standard: "border-blue-200 bg-blue-50 text-blue-700",
+  baseline_standard: "border-violet-200 bg-violet-50 text-violet-700",
+};
+
+function SourceBadge({ source }: { source: ChecklistSourceKind }) {
+  return (
+    <span
+      className={`inline-flex rounded-full border px-2 py-1 text-[10px] font-semibold leading-none ${SOURCE_BADGE_STYLES[source]}`}
+    >
+      {CHECKLIST_SOURCE_LABELS[source]}
+    </span>
+  );
+}
 
 export function FmeaDraftTable({
   rows,
@@ -166,6 +189,9 @@ export function FmeaDraftTable({
                 {[...toolRows].sort((a, b) => (b.checklistEntries?.length || 0) - (a.checklistEntries?.length || 0)).map((row, modeIdx) => {
                   const hasChecklist = row.checklistEntries && row.checklistEntries.length > 0;
                   const isFailureModeExpanded = expandedFailureModes.has(row.id);
+                  const sourceCounts = hasChecklist
+                    ? countChecklistSources(row.checklistEntries!)
+                    : null;
 
                   return (
                     <div key={row.id} className="pt-4">
@@ -186,9 +212,23 @@ export function FmeaDraftTable({
                           </div>
                           <div className="flex items-center gap-3">
                             {hasChecklist && (
-                              <span className="text-[11px] font-semibold text-steel-400 uppercase tracking-wider">
-                                {row.checklistEntries!.length} recommendations
-                              </span>
+                              <div className="flex flex-wrap justify-end gap-1.5">
+                                {sourceCounts!.historical_fmea > 0 && (
+                                  <span className="rounded-full bg-steel-100 px-2 py-1 text-[10px] font-semibold text-steel-600">
+                                    {sourceCounts!.historical_fmea} Previous FMEA
+                                  </span>
+                                )}
+                                {sourceCounts!.product_standard > 0 && (
+                                  <span className="rounded-full bg-blue-50 px-2 py-1 text-[10px] font-semibold text-blue-700">
+                                    {sourceCounts!.product_standard} MEC
+                                  </span>
+                                )}
+                                {sourceCounts!.baseline_standard > 0 && (
+                                  <span className="rounded-full bg-violet-50 px-2 py-1 text-[10px] font-semibold text-violet-700">
+                                    {sourceCounts!.baseline_standard} Baseline
+                                  </span>
+                                )}
+                              </div>
                             )}
                             <ChevronDown 
                               size={16} 
@@ -202,7 +242,10 @@ export function FmeaDraftTable({
                       {isFailureModeExpanded && hasChecklist && (
                         <div className="space-y-2">
                           {/* Column headers */}
-                          <div className="grid grid-cols-2 gap-6 px-4 py-2.5 bg-steel-50 rounded-lg">
+                          <div className="hidden lg:grid lg:grid-cols-[180px_minmax(0,1fr)_minmax(0,1fr)] gap-6 px-4 py-2.5 bg-steel-50 rounded-lg">
+                            <div className="text-[10px] font-semibold text-steel-500 uppercase tracking-wider">
+                              Evidence source
+                            </div>
                             <div className="text-[10px] font-semibold text-steel-500 uppercase tracking-wider">
                               Concern
                             </div>
@@ -215,12 +258,29 @@ export function FmeaDraftTable({
                           {row.checklistEntries!.map((entry, entryIdx) => (
                             <div 
                               key={entry.id} 
-                              className={`grid grid-cols-2 gap-6 px-4 py-3.5 rounded-lg transition-colors duration-150 hover:bg-steel-50 ${
+                              className={`grid grid-cols-1 lg:grid-cols-[180px_minmax(0,1fr)_minmax(0,1fr)] gap-4 lg:gap-6 px-4 py-3.5 rounded-lg transition-colors duration-150 hover:bg-steel-50 ${
                                 entryIdx % 2 === 0 
                                   ? 'bg-white'
                                   : 'bg-steel-50/50'
                               }`}
                             >
+                              {/* Evidence source */}
+                              <div>
+                                <div className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-steel-400 lg:hidden">
+                                  Evidence source
+                                </div>
+                                <div className="flex flex-wrap gap-1.5">
+                                  {getChecklistSourceKinds(entry).map((source) => (
+                                    <SourceBadge key={source} source={source} />
+                                  ))}
+                                </div>
+                                {getStandardSourceTitles(entry).map((title) => (
+                                  <div key={title} className="mt-1.5 text-[11px] leading-snug text-steel-500">
+                                    {title}
+                                  </div>
+                                ))}
+                              </div>
+
                               {/* Concern */}
                               <div className="flex items-start gap-3">
                                 <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded font-mono text-[10px] font-semibold text-steel-400 bg-steel-100">

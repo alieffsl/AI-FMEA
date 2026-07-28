@@ -35,7 +35,7 @@ flowchart LR
     CDI[CDI / tool-plan workbook] --> UI[React browser application]
     UI -->|POST /api/fmea/generate| API[Express API]
     API --> KB[(PostgreSQL knowledge base)]
-    API --> CL[(Precomputed checklist)]
+    API --> CL[(Combined historical + standards checklist)]
     API --> UI
     API -. unavailable .-> LOCAL[Local deterministic engine]
     LOCAL --> UI
@@ -61,16 +61,17 @@ There are three separate execution areas:
 3. Tool descriptions are normalized; compatible duplicate rows are consolidated.
 4. `src/services/fmeaGenerator.ts` calls `POST /api/fmea/generate`.
 5. The API searches exact normalized tool descriptions in `fmea_knowledge_base`.
-6. Valid historical failure modes are matched to the precomputed `fmea_checklist`.
-7. The API retrieves historical severity, occurrence, and detection values, applies controlled defaults when required, and calculates:
+6. Exact Product/Baseline Standard matches add relevant failure modes that were not present in the historical records.
+7. Failure modes are matched to `fmea_checklist_standard`, which preserves the historical checklist and adds source-grounded standards controls.
+8. The API retrieves historical severity, occurrence, and detection values, applies controlled defaults when required, and calculates:
 
    ```text
    RPN = Severity × Occurrence × Detection
    ```
 
-8. The UI displays editable draft rows and supporting recommendations.
-9. If the API fails, `src/lib/fmeaEngine.ts` uses the bundled historical examples and baseline standards to produce a clearly local, deterministic draft.
-10. The engineer reviews and exports the result.
+9. The UI displays editable draft rows and supporting recommendations.
+10. If the API fails, `src/lib/fmeaEngine.ts` uses the bundled historical examples and baseline standards to produce a clearly local, deterministic draft.
+11. The engineer reviews and exports the result.
 
 Runtime drafting does not call OpenAI or another generative model. This keeps normal requests repeatable, traceable, faster, and available during model-provider outages.
 
@@ -128,6 +129,9 @@ Do not delete the following without understanding their consumers and regenerati
 | `src/data/fmeaMockData.ts` | Bundled local fallback evidence and taxonomy | Yes for offline fallback | Manually maintained |
 | `src/data/cdiMockData.ts` | Demo/fallback CDI project | Yes for demo mode | Manually maintained |
 | `migration/raw_fmea_data.json` | Historical migration source snapshot | Yes for replay/recovery | Re-extract from the legacy system |
+| `migration/create_checklist_standard_table.sql` | Schema for the combined runtime checklist | Yes for table structure | Apply through `checklist-standard:generate` |
+| `migration/generate_checklist_standard.ts` | Resumable historical + Product/Baseline Standards pipeline | Yes for generation behavior | `npm --prefix migration run checklist-standard:generate` |
+| `migration/verify_checklist_standard.ts` | Read-only preservation, provenance, and uniqueness audit | Yes for verification behavior | `npm --prefix migration run checklist-standard:verify` |
 | `rag_package/data/*` | Accessory RAG/checklist/index exports | Yes for downstream ingestion | Rebuild from accessory source workbook |
 | `rag_package/images/original/*` | Original embedded accessory images | Yes | Extract from source workbook |
 | `public/MEC/*` | Original Product Standards engineering documents | Yes | External controlled archive |
@@ -185,6 +189,10 @@ Runtime PostgreSQL and offline-pipeline configuration lives in `migration/.env`.
 | `ACCESSORY_REASONING_EFFORT` | Accessory synthesis | Current default: `medium` |
 | `PRODUCT_STANDARDS_OPENAI_MODEL` | Product Standards repair | Recommended: `gpt-5.6-sol` |
 | `PRODUCT_STANDARDS_REASONING_EFFORT` | Product Standards synthesis | Current default: `medium` |
+| `CHECKLIST_STANDARD_MODEL` | Combined checklist generation | Defaults to `gpt-5.6-terra` |
+| `CHECKLIST_STANDARD_REASONING_EFFORT` | Combined checklist generation | Defaults to `low` |
+| `CHECKLIST_STANDARD_EMBEDDING_MODEL` | Combined checklist embeddings | Defaults to `text-embedding-3-small` |
+| `CHECKLIST_STANDARD_CONCURRENCY` | Parallel offline API requests | Defaults to `3`; reduce for rate limits |
 
 The current Product Standards and Baseline Standards generators use the specialized model variables. The generic `OPENAI_MODEL` is retained only for the older historical-FMEA synthesis pipeline.
 
@@ -293,7 +301,7 @@ Example checklist query:
 GET /api/checklist/match?toolDescription=Headband&failureMode=Sharp%20point&threshold=0.75&limit=5
 ```
 
-Database statistics shown in historical documentation were snapshots. Query `/api/checklist/stats` for current values instead of hard-coding old totals.
+Database statistics shown in historical documentation were snapshots. Query `/api/checklist/stats` for current values instead of hard-coding old totals. The runtime endpoints now use `fmea_checklist_standard`; the original `fmea_checklist` remains preserved as the historical source.
 
 ## Product Standards maintenance
 
@@ -387,6 +395,52 @@ The `migration` workspace retains only reusable schema, synthesis, normalization
 | `checklist:create` | Create checklist structures | Yes |
 | `checklist:generate` | Generate/update AI-consolidated checklist entries | Yes and billable |
 | `checklist:verify` | Report checklist quality and coverage | No |
+| `checklist-standard:generate` | Rebuild `fmea_checklist_standard` from the existing checklist plus Product/Baseline Standards | Yes and billable |
+| `checklist-standard:verify` | Verify historical preservation, provenance, uniqueness, and coverage | No |
+
+### Combined historical + standards checklist
+
+`fmea_checklist_standard` is the runtime checklist for Draft FMEA. It is generated from:
+
+- every row in `fmea_checklist`, retained as a required historical anchor;
+- Product Standards in `src/data/mec_product_standard_v2.json`;
+- source-document mappings in `src/data/sourceMapping.json`;
+- high-confidence Baseline Standards checkpoints in `src/data/accessory_tooling_ai_database.json`.
+
+The generator uses `gpt-5.6-terra` with low reasoning by default. This is the intentional cost/quality tier for the high-volume extraction and consolidation job; it does not inherit the legacy `OPENAI_MODEL=gpt-4o-mini` setting. `text-embedding-3-small` is used for economical retrieval embeddings.
+
+Safety and quality controls:
+
+- A specific defect is accepted only when its name or direct synonym appears in cited evidence.
+- Dimensions and other numbers must occur in cited source text.
+- Product/family standards can only map to approved exact normalized tool names.
+- Global process controls cannot introduce new failure modes to every tool.
+- Each historical checklist ID must appear exactly once in the completed table.
+- Historical-only entries are copied verbatim in deterministic code.
+- Invalid AI merges fall back to validated historical and standard text without AI rewriting.
+- Duplicate keys, empty content, missing provenance, and missing historical IDs block completion.
+- Per-source extraction and merge caches are model/prompt versioned under the ignored `migration/checklist_standard_work/` directory.
+- The destination table is replaced only after validation and within one database transaction; `fmea_checklist` is never modified.
+
+Recommended workflow:
+
+```bash
+# Small, billable dry run; database is not changed
+npm --prefix migration run checklist-standard:generate -- --dry-run --limit 5
+
+# Optional focused source quality check
+npm --prefix migration run checklist-standard:generate -- --dry-run --source headband-design-guidelines
+
+# Full resumable generation and transactional table replacement
+npm --prefix migration run checklist-standard:generate
+
+# Required read-only post-generation audit
+npm --prefix migration run checklist-standard:verify
+```
+
+Useful flags are `--dry-run`, `--limit N`, `--source SLUG`, `--extract-only`, and `--force`. Avoid `--force` unless source, model, or prompt behavior intentionally changed because it bypasses the resumable cache and repeats billable calls.
+
+The generation report records the model, reasoning effort, embedding model, prompt version, source count, output counts, and run ID. The report is written to `migration/checklist_standard_work/gpt-5-6-terra/latest-report.json`. As of the 2026-07-28 verified run, the table contained 1,726 rows, all 1,330 historical entries were preserved, 428 rows carried standard references, and all uniqueness/provenance checks passed.
 
 Before any mutating or billable migration command:
 

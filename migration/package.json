@@ -14,7 +14,9 @@
     "synthesize:openai": "ts-node --esm synthesize_all_openai.ts",
     "checklist:create": "ts-node --esm create_checklist_table.ts",
     "checklist:generate": "ts-node --esm generate_checklist.ts",
-    "checklist:verify": "ts-node --esm verify_checklist.ts"
+    "checklist:verify": "ts-node --esm verify_checklist.ts",
+    "checklist-standard:generate": "ts-node --esm generate_checklist_standard.ts",
+    "checklist-standard:verify": "ts-node --esm verify_checklist_standard.ts"
   },
   "dependencies": {
     "dotenv": "^17.4.2",

@@ -17,6 +17,7 @@ server/.env
 *.log
 npm-debug.log*
 migration/accessory_baseline_ai_work/
+migration/checklist_standard_work/
 
 # OS and editor artifacts
 .DS_Store

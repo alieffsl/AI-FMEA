@@ -1,5 +1,9 @@
 import * as XLSX from 'xlsx';
 import type { FmeaDraftRow } from '../types/fmea';
+import {
+  getChecklistSourceLabel,
+  getStandardSourceTitles,
+} from './checklistSources';
 
 /**
  * Export FMEA draft rows to Excel file
@@ -13,13 +17,20 @@ export function exportFmeaToExcel(rows: FmeaDraftRow[]): void {
     const hasChecklist = row.checklistEntries && row.checklistEntries.length > 0;
     
     if (hasChecklist) {
-      // Add Previous FMEA entries
       row.checklistEntries!.forEach((entry) => {
+        const standardSections = Array.from(new Set(
+          (entry.supporting_standard_refs || [])
+            .map((reference) => reference.section || reference.reference)
+            .filter(Boolean),
+        )).join('; ');
+
         excelData.push({
           'Tool No': row.toolNo,
           'Part Description': row.partDescription,
           'Failure Mode': row.potentialFailureMode,
-          'Source': 'Previous FMEA',
+          'Source': getChecklistSourceLabel(entry),
+          'Standard Document': getStandardSourceTitles(entry).join('; '),
+          'Standard Section': standardSections,
           'Concern': entry.concern,
           'Recommendation': entry.recommendation,
           'Supporting Cases': entry.supporting_record_count,
@@ -36,8 +47,10 @@ export function exportFmeaToExcel(rows: FmeaDraftRow[]): void {
         'Tool No': row.toolNo,
         'Part Description': row.partDescription,
         'Failure Mode': row.potentialFailureMode,
-        'Source': 'Previous FMEA',
-        'Concern': 'No previous FMEA data available',
+        'Source': 'No matched evidence',
+        'Standard Document': '',
+        'Standard Section': '',
+        'Concern': 'No checklist evidence available',
         'Recommendation': '-',
         'Supporting Cases': 0,
         'Similarity': 'N/A',
@@ -48,21 +61,6 @@ export function exportFmeaToExcel(rows: FmeaDraftRow[]): void {
       });
     }
     
-    // Add MEC Standard placeholder row
-    excelData.push({
-      'Tool No': row.toolNo,
-      'Part Description': row.partDescription,
-      'Failure Mode': row.potentialFailureMode,
-      'Source': 'MEC & Tooling Standard',
-      'Concern': 'Coming soon',
-      'Recommendation': 'Coming soon',
-      'Supporting Cases': '-',
-      'Similarity': '-',
-      'S': row.severity,
-      'O': row.occurrence,
-      'D': row.detection,
-      'RPN': row.rpn
-    });
   });
   
   // Create worksheet
@@ -74,6 +72,8 @@ export function exportFmeaToExcel(rows: FmeaDraftRow[]): void {
     { wch: 20 }, // Part Description
     { wch: 20 }, // Failure Mode
     { wch: 25 }, // Source
+    { wch: 35 }, // Standard Document
+    { wch: 30 }, // Standard Section
     { wch: 40 }, // Concern
     { wch: 40 }, // Recommendation
     { wch: 15 }, // Supporting Cases
