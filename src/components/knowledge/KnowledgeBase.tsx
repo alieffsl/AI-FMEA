@@ -93,11 +93,11 @@ function ImageThumbnail({ src, alt, onClick, isBase64 = false }: { src: string; 
 
   // For base64, src is already in the correct format
   // For URL, prepend protocol if not present
-  const fullUrl = isBase64 
-    ? src 
-    : (src.startsWith('http://') || src.startsWith('https://') || src.startsWith('//') 
-        ? src 
-        : `http://${src}`);
+  // Protocol-relative rather than forcing http://, so evidence images are not
+  // blocked as mixed content once the site is served over TLS.
+  const fullUrl = isBase64
+    ? src
+    : (/^(https?:)?\/\//.test(src) ? src : `//${src}`);
 
   if (error) {
     return (
@@ -169,11 +169,11 @@ function ExpandableLearning({ text }: { text: string }) {
 function ImageZoomModal({ src, alt, onClose, isBase64 = false }: { src: string; alt: string; onClose: () => void; isBase64?: boolean }) {
   // For base64, src is already in the correct format
   // For URL, prepend protocol if not present
-  const fullUrl = isBase64 
-    ? src 
-    : (src.startsWith('http://') || src.startsWith('https://') || src.startsWith('//') 
-        ? src 
-        : `http://${src}`);
+  // Protocol-relative rather than forcing http://, so evidence images are not
+  // blocked as mixed content once the site is served over TLS.
+  const fullUrl = isBase64
+    ? src
+    : (/^(https?:)?\/\//.test(src) ? src : `//${src}`);
 
   return (
     <div 

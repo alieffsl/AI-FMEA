@@ -1,11 +1,13 @@
-import { useCallback, useState } from "react";
-import { WandSparkles, Download, FileText, FileSpreadsheet, Copy, AlertTriangle, FileDown, Database } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { WandSparkles, Download, FileText, FileSpreadsheet, Copy, AlertTriangle, CheckCircle2, FileDown, Database, X } from "lucide-react";
 import type { ProjectMetadata, ToolRow, ToolImage, DraftScope } from "./types/project";
 import type { FmeaDraftRow } from "./types/fmea";
 import { parseCdiFile, convertLegacyToolInput } from "./services/cdiParser";
 import { generateFmea } from "./services/fmeaGenerator";
 import { exportCsv, exportJson, exportExcel, copyFmeaToClipboard } from "./services/exportService";
+import { saveDraft, loadDraft } from "./services/draftStore";
 import { validateCdiFile } from "./lib/validation";
+import { fetchJson } from "./lib/http";
 import { AppShell, type AppView } from "./components/layout/AppShell";
 import { CdiUploadPanel } from "./components/CdiUploadPanel";
 import { ProjectSummaryCard } from "./components/ProjectSummaryCard";
@@ -16,9 +18,8 @@ import { EmptyState } from "./components/ui/EmptyState";
 
 // Legacy imports for demo mode and secondary views
 import { cdiNewTools, cdiProject } from "./data/cdiMockData";
-import { OverviewDashboard } from "./components/dashboard/OverviewDashboard";
+import { OverviewDashboard, type DashboardStats } from "./components/dashboard/OverviewDashboard";
 import { MecProductStandards } from "./components/standards/MecProductStandards";
-import { useEffect } from "react";
 
 export default function App() {
   // Read initial view from URL path (e.g., /knowledge or /dashboard)
@@ -50,14 +51,31 @@ export default function App() {
   // ── Export state ──
   const [copied, setCopied] = useState(false);
 
-  // ── Dashboard / Live Data State ──
-  const [liveProjects, setLiveProjects] = useState<any[]>([]);
-  const [liveHistoricalCases, setLiveHistoricalCases] = useState<any[]>([]);
+  // ── Draft persistence state ──
+  const [savedDraftId, setSavedDraftId] = useState<string | null>(null);
+  const [saveState, setSaveState] = useState<"idle" | "saving" | "saved" | "error">("idle");
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [isRestoring, setIsRestoring] = useState(false);
+  const [restoreError, setRestoreError] = useState<string | null>(null);
 
-  // Update URL path when view changes
+  // ── Dashboard / Live Data State ──
+  const [dashboardStats, setDashboardStats] = useState<DashboardStats | null>(null);
+  const [dashboardState, setDashboardState] = useState<"idle" | "loading" | "ready" | "error">("idle");
+  const [dashboardError, setDashboardError] = useState<string | null>(null);
+
+  // Update URL path when view changes.
+  // Skips the first run: the URL already matches the initial view, so pushing
+  // it again added a spurious history entry before the user did anything. Query
+  // params are dropped because they belong to the view that set them (the
+  // knowledge base writes ?page=N, which is meaningless on /dashboard).
+  const previousViewRef = useRef<AppView>(activeView);
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    window.history.pushState(null, '', `/${activeView}${params.toString() ? '?' + params.toString() : ''}`);
+    // Comparing the value is Strict Mode-safe. A one-time `didMount` flag is
+    // not: React replays mount effects in development while preserving refs,
+    // which made the replay strip `?draft=<id>` before restore could read it.
+    if (previousViewRef.current === activeView) return;
+    previousViewRef.current = activeView;
+    window.history.pushState(null, '', `/${activeView}`);
   }, [activeView]);
 
   // Listen for popstate (browser back/forward)
@@ -76,15 +94,89 @@ export default function App() {
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
+  // Restore a saved draft when the URL carries ?draft=<id>, so a refresh or a
+  // shared link brings the generated draft back instead of losing it.
+  const initialDraftIdRef = useRef(
+    new URLSearchParams(window.location.search).get('draft'),
+  );
   useEffect(() => {
-    fetch('/api/dashboard/stats')
-      .then(res => res.json())
-      .then(data => {
-        if (data.projects) setLiveProjects(data.projects);
-        if (data.historicalCases) setLiveHistoricalCases(data.historicalCases);
+    // Capture this during render so Strict Mode's effect replay cannot observe
+    // a URL changed by another mount effect.
+    const draftId = initialDraftIdRef.current;
+    if (!draftId) return;
+
+    let cancelled = false;
+    const restoreWatchdog = window.setTimeout(() => {
+      if (cancelled) return;
+      cancelled = true;
+      setIsRestoring(false);
+      setRestoreError(
+        "The saved draft did not finish loading. Check that the API is running, then reload or start a new draft.",
+      );
+    }, 15000);
+
+    setIsRestoring(true);
+    setRestoreError(null);
+
+    loadDraft(draftId)
+      .then((draft) => {
+        if (cancelled) return;
+        setFmeaRows(draft.drafts);
+        setMetadata(draft.metadata);
+        setSavedDraftId(draft.id);
+        setSaveState("saved");
       })
-      .catch(err => console.error('[Dashboard] Failed to fetch live stats:', err));
+      .catch((err: unknown) => {
+        if (cancelled) return;
+        // Surfaced through its own state: the upload screen does not render
+        // generateError, so a failed restore would otherwise look like a
+        // normal empty start with no explanation.
+        setRestoreError(
+          err instanceof Error ? err.message : "Could not restore the saved draft.",
+        );
+      })
+      .finally(() => {
+        window.clearTimeout(restoreWatchdog);
+        if (!cancelled) setIsRestoring(false);
+      });
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(restoreWatchdog);
+    };
   }, []);
+
+  // Fetch dashboard data only when the dashboard is actually opened, and only
+  // once. This used to run on every app start regardless of view, so everyone
+  // who just wanted to upload a CDI file still paid for an unbounded query over
+  // the whole knowledge base before the page settled.
+  //
+  // The "already started" guard is a ref, not state. Keeping `dashboardState`
+  // in the dependency list while the effect also *set* it made the effect
+  // re-run, and its own cleanup then cancelled the in-flight request, so the
+  // dashboard sat on the loading state forever.
+  const dashboardRequestedRef = useRef(false);
+
+  const loadDashboard = useCallback(async () => {
+    dashboardRequestedRef.current = true;
+    setDashboardState("loading");
+    setDashboardError(null);
+
+    try {
+      const data = await fetchJson<DashboardStats>('/api/dashboard/stats');
+      setDashboardStats(data);
+      setDashboardState("ready");
+    } catch (err) {
+      console.error('[Dashboard] Failed to fetch live stats:', err);
+      setDashboardError(err instanceof Error ? err.message : 'Failed to load dashboard data.');
+      setDashboardState("error");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (activeView !== "dashboard" || dashboardRequestedRef.current) return;
+    void loadDashboard();
+  }, [activeView, loadDashboard]);
 
   // ═══════════════════════════════════════════════════════════════════════════
   // CDI Upload handlers
@@ -142,13 +234,24 @@ export default function App() {
   }, []);
 
   const handleReset = useCallback(() => {
-    setMetadata(null);
+    // Release attachment object URLs. Only per-image removal used to revoke
+    // them, so resetting or re-uploading leaked every thumbnail for the life of
+    // the tab. Done here rather than inside the state updater, which React
+    // may invoke more than once.
+    for (const row of toolRows) {
+      for (const image of row.images) URL.revokeObjectURL(image.thumbnailUrl);
+    }
+
     setToolRows([]);
+    setMetadata(null);
     setParseWarnings([]);
     setUploadError(null);
     setFmeaRows([]);
     setGenerateError(null);
-  }, []);
+    setSavedDraftId(null);
+    setSaveState("idle");
+    setSaveError(null);
+  }, [toolRows]);
 
   // ═══════════════════════════════════════════════════════════════════════════
   // Tool row handlers
@@ -211,15 +314,49 @@ export default function App() {
         }));
       }
 
-      // Update draft status on tool rows
+      // Update draft status on tool rows.
+      // Matched on the row id the server echoes back, not on the description:
+      // descriptions are normalized server-side, so comparing them here marked
+      // the wrong rows. A row whose only result is the "No historical data"
+      // placeholder is reported separately so it is not mistaken for a draft.
+      const evidenceByRowId = new Map<string, boolean>();
+      for (const draft of result.drafts) {
+        const hasEvidence = draft.hasEvidence !== false;
+        evidenceByRowId.set(draft.toolRowId, (evidenceByRowId.get(draft.toolRowId) ?? false) || hasEvidence);
+      }
+
       setToolRows((prev) =>
         prev.map((r) => {
-          const hasResults = result.drafts.some(
-            (d) => d.toolNo === r.toolNo || d.partDescription === r.toolDescription,
-          );
-          return hasResults ? { ...r, draftStatus: "generated" as const } : r;
+          if (!evidenceByRowId.has(r.id)) return r;
+          return {
+            ...r,
+            draftStatus: evidenceByRowId.get(r.id) ? ("generated" as const) : ("no-evidence" as const),
+          };
         }),
       );
+
+      // Autosave. A failure here must not discard the draft the user is
+      // looking at, so it is reported separately from generation itself.
+      setSaveState("saving");
+      setSaveError(null);
+      try {
+        const draftId = await saveDraft(
+          { ...metadata, ...(result.metadata ?? {}) },
+          result.drafts,
+          savedDraftId,
+        );
+        setSavedDraftId(draftId);
+        setSaveState("saved");
+
+        const params = new URLSearchParams(window.location.search);
+        params.set("draft", draftId);
+        window.history.replaceState(null, "", `/${activeView}?${params.toString()}`);
+      } catch (err) {
+        setSaveState("error");
+        setSaveError(
+          err instanceof Error ? err.message : "The draft was generated but could not be saved.",
+        );
+      }
     } catch (err) {
       setGenerateError(err instanceof Error ? err.message : "FMEA generation failed.");
     } finally {
@@ -266,10 +403,43 @@ export default function App() {
   // ═══════════════════════════════════════════════════════════════════════════
 
   function renderGenerateView() {
+    // ── Restoring a saved draft ──
+    if (isRestoring) {
+      return (
+        <div className="mx-auto max-w-4xl py-10">
+          <LoadingState
+            title="Restoring saved draft..."
+            description="Loading the stored FMEA rows and project details."
+          />
+        </div>
+      );
+    }
+
     // ── Upload phase ──
     if (!metadata) {
       return (
         <div className="mx-auto max-w-4xl space-y-8 py-10">
+          {restoreError ? (
+            <div className="animate-fade-in flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800 shadow-sm">
+              <AlertTriangle size={18} className="mt-0.5 shrink-0 text-amber-500" />
+              <div className="flex-1">
+                <p className="font-bold">Could not reopen the saved draft</p>
+                <p className="mt-1">{restoreError}</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setRestoreError(null);
+                  window.history.replaceState(null, "", `/${activeView}`);
+                }}
+                className="rounded-lg p-1.5 text-amber-500 transition hover:bg-amber-100 hover:text-amber-800"
+                aria-label="Dismiss and start a new draft"
+                title="Dismiss"
+              >
+                <X size={16} />
+              </button>
+            </div>
+          ) : null}
           <div className="text-center animate-slide-down">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-accent-500">AI FMEA Tooling</p>
             <h2 className="mt-2 text-2xl font-bold text-steel-900 tracking-tight">Generate Draft FMEA</h2>
@@ -281,6 +451,7 @@ export default function App() {
             onFileSelected={handleFileSelected}
             isLoading={isUploading}
             error={uploadError}
+            onDismissError={() => setUploadError(null)}
             onLoadDemo={handleLoadDemo}
           />
         </div>
@@ -315,6 +486,32 @@ export default function App() {
           onToggleSelectAll={handleToggleSelectAll}
           onImagesChange={handleImagesChange}
         />
+
+        {/* Save status — persistence is otherwise invisible to the user */}
+        {saveState === "saved" && savedDraftId ? (
+          <div className="animate-fade-in flex items-start gap-3 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-800 shadow-sm">
+            <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-emerald-500" />
+            <div>
+              <p className="font-bold">Draft saved</p>
+              <p className="mt-1">
+                This draft is stored and will still be here if you refresh or return later.
+                Keep the current link to reopen it.
+              </p>
+            </div>
+          </div>
+        ) : null}
+
+        {saveState === "error" ? (
+          <div className="animate-fade-in flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800 shadow-sm">
+            <AlertTriangle size={18} className="mt-0.5 shrink-0 text-amber-500" />
+            <div>
+              <p className="font-bold">Draft generated but not saved</p>
+              <p className="mt-1">
+                {saveError} Export the draft before leaving this page, or it will be lost.
+              </p>
+            </div>
+          </div>
+        ) : null}
 
         {/* Generation loading */}
         {isGenerating ? (
@@ -410,7 +607,44 @@ export default function App() {
     }
 
     if (activeView === "dashboard") {
-      return <OverviewDashboard projects={liveProjects} historicalCases={liveHistoricalCases} />;
+      if (dashboardState === "loading" || dashboardState === "idle") {
+        return (
+          <LoadingState
+            title="Loading dashboard..."
+            description="Fetching historical FMEA cases from the knowledge base."
+          />
+        );
+      }
+
+      if (dashboardState === "error") {
+        return (
+          <EmptyState
+            icon={<AlertTriangle size={32} />}
+            title="Could not load the dashboard"
+            description={dashboardError ?? "The dashboard data could not be fetched."}
+            action={
+              <button
+                type="button"
+                onClick={() => void loadDashboard()}
+                className="inline-flex h-10 items-center justify-center rounded-xl bg-accent-500 px-6 text-sm font-semibold text-white transition hover:bg-accent-600"
+              >
+                Retry
+              </button>
+            }
+          />
+        );
+      }
+
+      if (!dashboardStats || dashboardStats.totals.cases === 0) {
+        return (
+          <EmptyState
+            title="No historical cases yet"
+            description="The knowledge base returned no records, so there is nothing to chart."
+          />
+        );
+      }
+
+      return <OverviewDashboard stats={dashboardStats} />;
     }
 
     if (activeView === "knowledge") {

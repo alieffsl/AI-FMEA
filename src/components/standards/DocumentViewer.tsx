@@ -1,4 +1,5 @@
 import { Download, FileText, FileImage, FileBarChart } from "lucide-react";
+import { SpreadsheetViewer, SPREADSHEET_EXTENSIONS } from "./SpreadsheetViewer";
 
 interface DocumentViewerProps {
   fileUrl: string;
@@ -7,10 +8,13 @@ interface DocumentViewerProps {
 
 export function DocumentViewer({ fileUrl, onClose }: DocumentViewerProps) {
   const extension = fileUrl.split('.').pop()?.toLowerCase();
-  
+
   const isImage = ["jpg", "jpeg", "png", "gif", "svg"].includes(extension || "");
   const isPdf = ["pdf"].includes(extension || "");
-  
+  // Workbooks are parsed and drawn in-page; only Office formats we cannot read
+  // (.pptx, .docx) still fall through to the download prompt.
+  const isSpreadsheet = SPREADSHEET_EXTENSIONS.includes(extension || "");
+
   const fileName = fileUrl.split('/').pop() || "Document";
 
   return (
@@ -51,8 +55,14 @@ export function DocumentViewer({ fileUrl, onClose }: DocumentViewerProps) {
       </div>
 
       {/* Viewer Content */}
-      <div className="flex-1 overflow-auto bg-steel-100 flex items-center justify-center p-4">
-        {isPdf ? (
+      <div
+        className={`flex-1 overflow-auto bg-steel-100 ${
+          isSpreadsheet ? "" : "flex items-center justify-center p-4"
+        }`}
+      >
+        {isSpreadsheet ? (
+          <SpreadsheetViewer fileUrl={fileUrl} />
+        ) : isPdf ? (
           <iframe
             src={fileUrl}
             className="w-full h-full rounded shadow-sm bg-white border-0"

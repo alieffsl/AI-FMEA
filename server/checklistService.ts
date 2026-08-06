@@ -5,8 +5,34 @@
 import pg from 'pg';
 import { normalizeToolDescription } from './normalizeToolDescription';
 
-const { Client } = pg;
+const { Pool } = pg;
 const CHECKLIST_TABLE = 'fmea_checklist_standard';
+
+/**
+ * Shared connection pool.
+ *
+ * Every exported function here used to open, connect, and tear down its own
+ * `Client`, so a single generate request performed several TLS handshakes
+ * against the database on top of the ones the API server was already making.
+ */
+let pool: pg.Pool | null = null;
+
+function getPool(): pg.Pool {
+  if (!pool) {
+    pool = new Pool({
+      host: process.env.PG_HOST,
+      port: parseInt(process.env.PG_PORT || '5432'),
+      user: process.env.PG_USER,
+      password: process.env.PG_PASSWORD,
+      database: process.env.PG_DATABASE,
+      ssl: { rejectUnauthorized: false },
+      max: 10,
+      idleTimeoutMillis: 30000,
+      connectionTimeoutMillis: 2000,
+    });
+  }
+  return pool;
+}
 
 // Position suffixes used for rejection check (tools with suffixes are DIFFERENT tools)
 const POSITION_SUFFIXES = ['LT', 'RT', 'FT', 'RR', 'LEFT', 'RIGHT', 'FRONT', 'REAR', 'BACK'];
@@ -150,18 +176,9 @@ export async function matchChecklistEntries(
   similarityThreshold: number = 0.75,
   maxResults: number = 10
 ): Promise<ChecklistEntry[]> {
-  const client = new Client({
-    host: process.env.PG_HOST,
-    port: parseInt(process.env.PG_PORT || '5432'),
-    user: process.env.PG_USER,
-    password: process.env.PG_PASSWORD,
-    database: process.env.PG_DATABASE,
-    ssl: { rejectUnauthorized: false },
-  });
+  const client = getPool();
 
-  await client.connect();
-
-  try {
+  {
     // Normalize the tool description
     const normalizedTool = normalizeToolDescription(toolDescription);
 
@@ -275,9 +292,6 @@ export async function matchChecklistEntries(
 
     console.log(`[Checklist] Semantic search found ${matches.length} matches (threshold: ${effectiveThreshold})`);
     return matches.slice(0, maxResults);
-    
-  } finally {
-    await client.end();
   }
 }
 
@@ -299,18 +313,9 @@ export async function matchChecklistBatch(
     return results;
   }
 
-  const client = new Client({
-    host: process.env.PG_HOST,
-    port: parseInt(process.env.PG_PORT || '5432'),
-    user: process.env.PG_USER,
-    password: process.env.PG_PASSWORD,
-    database: process.env.PG_DATABASE,
-    ssl: { rejectUnauthorized: false },
-  });
+  const client = getPool();
 
-  await client.connect();
-
-  try {
+  {
     // Step 1: Normalize all tool descriptions (no base-word stripping)
     const normalizedTools = tools.map(t => ({
       originalTool: t.toolDescription,
@@ -403,11 +408,8 @@ export async function matchChecklistBatch(
       const globalWithSimilarity = globalMatches.map(row => ({ ...row, similarity: 0.5 }));
       results.set(tool.key, [...semanticMatches, ...globalWithSimilarity].slice(0, maxResultsPerTool));
     }
-    
+
     return results;
-    
-  } finally {
-    await client.end();
   }
 }
 
@@ -415,18 +417,9 @@ export async function matchChecklistBatch(
  * Get checklist statistics
  */
 export async function getChecklistStats() {
-  const client = new Client({
-    host: process.env.PG_HOST,
-    port: parseInt(process.env.PG_PORT || '5432'),
-    user: process.env.PG_USER,
-    password: process.env.PG_PASSWORD,
-    database: process.env.PG_DATABASE,
-    ssl: { rejectUnauthorized: false },
-  });
+  const client = getPool();
 
-  await client.connect();
-
-  try {
+  {
     const stats = await client.query(`
       SELECT 
         COUNT(DISTINCT (tool_description_normalized, failure_mode)) as unique_groups,
@@ -468,7 +461,5 @@ export async function getChecklistStats() {
       topTools: topTools.rows,
       topFailureModes: topFailureModes.rows
     };
-  } finally {
-    await client.end();
   }
 }

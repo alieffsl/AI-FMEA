@@ -1,28 +1,27 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { FileSpreadsheet, UploadCloud, X, AlertCircle, ShieldCheck } from "lucide-react";
-import { validateCdiFile } from "../lib/validation";
 
 type CdiUploadPanelProps = {
   onFileSelected: (file: File) => void;
   isLoading: boolean;
   error: string | null;
+  onDismissError: () => void;
   onLoadDemo: () => void;
 };
 
-export function CdiUploadPanel({ onFileSelected, isLoading, error, onLoadDemo }: CdiUploadPanelProps) {
+export function CdiUploadPanel({
+  onFileSelected,
+  isLoading,
+  error,
+  onDismissError,
+  onLoadDemo,
+}: CdiUploadPanelProps) {
   const [isDragOver, setIsDragOver] = useState(false);
 
-  const handleFile = useCallback(
-    (file: File) => {
-      const validationError = validateCdiFile(file);
-      if (validationError) {
-        // Let parent handle display — but we can also set local state
-        return;
-      }
-      onFileSelected(file);
-    },
-    [onFileSelected],
-  );
+  // Validation lives entirely in the parent, which owns the error state. This
+  // component used to validate as well and silently `return` on failure, so
+  // dropping an invalid file produced no feedback at all.
+  const handleFile = onFileSelected;
 
   function onDrop(e: React.DragEvent) {
     e.preventDefault();
@@ -126,7 +125,8 @@ export function CdiUploadPanel({ onFileSelected, isLoading, error, onLoadDemo }:
           <button
             type="button"
             className="ml-auto rounded-lg p-1.5 text-red-400 transition hover:bg-red-100 hover:text-red-700"
-            onClick={() => {}}
+            onClick={onDismissError}
+            aria-label="Dismiss error"
             title="Dismiss"
           >
             <X size={16} />
@@ -137,7 +137,9 @@ export function CdiUploadPanel({ onFileSelected, isLoading, error, onLoadDemo }:
       {/* Privacy notice */}
       <div className="mt-5 flex items-center justify-center gap-2 text-xs text-steel-400">
         <ShieldCheck size={14} className="text-steel-400" />
-        <span>Parsed locally in your browser. No data is uploaded to any server.</span>
+        <span>
+          Parsed in your browser. Tool data is sent to the FMEA server only when you generate a draft.
+        </span>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { ChevronDown, Download, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { ChevronDown, Download, AlertTriangle, CheckCircle2, Eye, EyeOff } from "lucide-react";
 import type { FmeaDraftRow, FmeaFilter } from "../types/fmea";
 import { exportFmeaToExcel } from "../utils/excelExport";
 import {
@@ -19,6 +19,15 @@ const FILTER_OPTIONS: { value: FmeaFilter; label: string }[] = [
   { value: "all", label: "All" },
   { value: "high-rpn", label: "High RPN" },
 ];
+
+/**
+ * A placeholder row the generator emits for a tool with no historical match.
+ * Older saved drafts predate the `hasEvidence` flag, so the failure mode text
+ * is checked as a fallback.
+ */
+function isNoEvidenceRow(row: FmeaDraftRow) {
+  return row.hasEvidence === false || row.potentialFailureMode === "No historical data";
+}
 
 const SOURCE_BADGE_STYLES: Record<ChecklistSourceKind, string> = {
   historical_fmea: "border-steel-200 bg-steel-100 text-steel-700",
@@ -40,17 +49,23 @@ export function FmeaDraftTable({
   rows,
 }: FmeaDraftTableProps) {
   const [filter, setFilter] = useState<FmeaFilter>("all");
+  const [showNoEvidence, setShowNoEvidence] = useState(false);
   const [expandedTools, setExpandedTools] = useState<Set<string>>(new Set());
   const [expandedFailureModes, setExpandedFailureModes] = useState<Set<string>>(new Set());
 
+  const noEvidenceCount = useMemo(() => rows.filter(isNoEvidenceRow).length, [rows]);
+
   const filteredRows = useMemo(() => {
     return rows.filter((r) => {
+      if (!showNoEvidence && isNoEvidenceRow(r)) return false;
       if (filter === "high-rpn") return r.rpn >= 36;
       return true;
     });
-  }, [rows, filter]);
+  }, [rows, filter, showNoEvidence]);
 
-  // Group by toolNo
+  // Group by toolNo, heaviest parts first. Sorting on mode count puts the tools
+  // that need the most review at the top instead of leaving them scattered
+  // through the CDI row order; ties keep that original order (stable sort).
   const grouped = useMemo(() => {
     const map = new Map<string, FmeaDraftRow[]>();
     for (const row of filteredRows) {
@@ -58,7 +73,7 @@ export function FmeaDraftTable({
       if (!map.has(key)) map.set(key, []);
       map.get(key)!.push(row);
     }
-    return Array.from(map.entries());
+    return Array.from(map.entries()).sort((a, b) => b[1].length - a[1].length);
   }, [filteredRows]);
 
   function toggleTool(toolNo: string) {
@@ -138,7 +153,35 @@ export function FmeaDraftTable({
                 {opt.label}
               </button>
             ))}
-            
+
+            {noEvidenceCount > 0 && (
+              <button
+                type="button"
+                onClick={() => setShowNoEvidence((v) => !v)}
+                aria-pressed={showNoEvidence}
+                title={
+                  showNoEvidence
+                    ? "Hide tools with no historical match"
+                    : "Show tools with no historical match"
+                }
+                className={`flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                  showNoEvidence
+                    ? "bg-amber-500 text-white shadow-sm"
+                    : "bg-steel-50 text-steel-700 hover:bg-steel-100"
+                }`}
+              >
+                {showNoEvidence ? <Eye size={14} /> : <EyeOff size={14} />}
+                No historical data
+                <span
+                  className={`font-mono text-[11px] font-semibold rounded-full px-2 py-0.5 ${
+                    showNoEvidence ? "bg-white/20 text-white" : "bg-steel-200 text-steel-600"
+                  }`}
+                >
+                  {noEvidenceCount}
+                </span>
+              </button>
+            )}
+
             <button
               onClick={handleExport}
               className="flex items-center gap-2 rounded-xl border border-steel-200 bg-white px-4 py-2 text-sm font-medium text-steel-700 transition-all duration-200 hover:bg-steel-50 hover:border-steel-300"
@@ -150,10 +193,20 @@ export function FmeaDraftTable({
         </div>
       </div>
 
+      {/* Every row is filtered out — say so instead of showing a bare stats bar. */}
+      {grouped.length === 0 && (
+        <div className="rounded-2xl border-2 border-dashed border-steel-200 bg-white p-10 text-center text-sm text-steel-500">
+          {filter === "high-rpn"
+            ? "No modes above the high-RPN threshold."
+            : "Every tool in this draft is missing historical data. Turn on “No historical data” to see them."}
+        </div>
+      )}
+
       {/* Tool cards */}
       {grouped.map(([toolNo, toolRows], groupIdx) => {
         const isExpanded = expandedTools.has(toolNo);
         const firstRow = toolRows[0];
+        const allNoEvidence = toolRows.every(isNoEvidenceRow);
 
         return (
           <div key={toolNo} className="overflow-hidden bg-white rounded-2xl border border-steel-200 shadow-panel">
@@ -173,9 +226,15 @@ export function FmeaDraftTable({
               </div>
               
               <div className="flex items-center gap-3 text-sm text-steel-500">
-                <span className="font-mono text-[11px] font-semibold rounded-full bg-steel-100 px-3 py-1 text-steel-600">
-                  {toolRows.length} modes
-                </span>
+                {allNoEvidence ? (
+                  <span className="rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[11px] font-semibold text-amber-700">
+                    No historical data
+                  </span>
+                ) : (
+                  <span className="font-mono text-[11px] font-semibold rounded-full bg-steel-100 px-3 py-1 text-steel-600">
+                    {toolRows.length} modes
+                  </span>
+                )}
                 <ChevronDown 
                   size={18} 
                   className={`text-steel-400 transition-transform duration-200 ${isExpanded ? 'rotate-0' : '-rotate-90'}`}

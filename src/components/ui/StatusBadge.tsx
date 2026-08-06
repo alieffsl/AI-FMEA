@@ -13,6 +13,7 @@ export function StatusBadge({ status }: { status: DraftStatus | string }) {
     pending:   { bg: "bg-slate-100",   text: "text-slate-500",   dot: "bg-slate-300" },
     generating:{ bg: "bg-amber-50",    text: "text-amber-800",   dot: "bg-amber-500" },
     generated: { bg: "bg-emerald-50",  text: "text-emerald-800", dot: "bg-emerald-500" },
+    "no-evidence": { bg: "bg-amber-50", text: "text-amber-800",  dot: "bg-amber-500" },
     error:     { bg: "bg-red-50",      text: "text-red-800",     dot: "bg-red-500" },
     "Needs Engineer Review": { bg: "bg-amber-50",  text: "text-amber-900", dot: "bg-amber-500" },
     Draft:     { bg: "bg-slate-100",   text: "text-slate-700",   dot: "bg-slate-400" },
@@ -24,7 +25,8 @@ export function StatusBadge({ status }: { status: DraftStatus | string }) {
   };
 
   const s = styles[status] ?? { bg: "bg-slate-100", text: "text-slate-700", dot: "bg-slate-400" };
-  const label = status.charAt(0).toUpperCase() + status.slice(1);
+  const labels: Record<string, string> = { "no-evidence": "No evidence" };
+  const label = labels[status] ?? status.charAt(0).toUpperCase() + status.slice(1);
 
   return (
     <span className={`${badgeBase} ${s.bg} ${s.text}`}>

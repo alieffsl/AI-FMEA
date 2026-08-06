@@ -26,6 +26,15 @@ export type ToolRow = {
   sourceSheet: string;
   sourceRowNumber: number;
   toolNo: string;
+  /**
+   * The description exactly as it appears in the workbook. This is what gets
+   * sent to the API: `normalizeToolDescription` is not idempotent (for example
+   * "FP21009-TORSO FT" normalizes to "Fp21009 Torso FT" and then to
+   * "Torso FT"), and the database column was normalized once from the raw
+   * value, so the server must normalize once from the raw value too.
+   */
+  rawToolDescription: string;
+  /** Normalized form, used for display and local grouping only. */
   toolDescription: string;
   partDescription: string;
   partWeight: number | null;
@@ -50,7 +59,12 @@ export type ToolRow = {
   assembly: string;
   rawRowData: Record<string, unknown>;
   images: ToolImage[];
-  draftStatus: "pending" | "generating" | "generated" | "error";
+  /**
+   * "no-evidence" means the row was processed but no historical failure mode
+   * matched it, which is materially different from a draft having been
+   * generated for it.
+   */
+  draftStatus: "pending" | "generating" | "generated" | "no-evidence" | "error";
   selected: boolean;
 };
 

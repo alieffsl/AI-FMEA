@@ -17,6 +17,10 @@ export type FmeaDraftRow = {
   recommendedAction: string;
   responsibleFunction: string;
   targetDate: string;
+  /** False when no historical failure mode was found for the tool. */
+  hasEvidence?: boolean;
+  /** Whether S/O/D came from historical records or from keyword defaults. */
+  sodSource?: "historical" | "default";
   /** Combined historical FMEA and standards checklist entries from PostgreSQL. */
   checklistEntries?: Array<{
     id: string;

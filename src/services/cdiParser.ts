@@ -1,4 +1,4 @@
-import * as XLSX from "xlsx";
+import * as XLSX from "xlsx-js-style";
 import type { CdiParseResult, ProjectMetadata, ToolRow } from "../types/project";
 import { normalizeToolDescription } from "../utils/normalizeToolDescription";
 
@@ -289,7 +289,8 @@ function parseToolRows(
       sourceSheet: sheetName,
       sourceRowNumber: r + 1, // 1-indexed for display
       toolNo,
-      toolDescription: normalizedToolDescription, // Use normalized description
+      rawToolDescription: toolDescription, // sent to the API; normalized there exactly once
+      toolDescription: normalizedToolDescription, // display/grouping only
       partDescription: normalizedToolDescription, // alias - also normalized
       partWeight: toNumber(rawRowData.partWeight),
       material: toString(rawRowData.material),
@@ -352,14 +353,25 @@ export async function parseCdiFile(file: File): Promise<CdiParseResult> {
   }
 
   const allWarnings: string[] = [];
-  let allRows: ToolRow[] = [];
+  const allRows: ToolRow[] = [];
   let metadata: ProjectMetadata | null = null;
 
-  for (const sheetName of workbook.SheetNames) {
-    // Only process the TOOL PLAN sheet
-    const normalizedSheetName = sheetName.toUpperCase().replace(/[_]/g, " ").replace(/\s+/g, " ");
-    if (!normalizedSheetName.includes("TOOL PLAN")) continue;
+  const isToolPlanSheet = (sheetName: string) =>
+    sheetName.toUpperCase().replace(/[_]/g, " ").replace(/\s+/g, " ").includes("TOOL PLAN");
 
+  // Prefer sheets named "TOOL PLAN", but fall back to scanning every sheet so a
+  // workbook using a different tab name still parses instead of failing with a
+  // message about columns.
+  const toolPlanSheets = workbook.SheetNames.filter(isToolPlanSheet);
+  const sheetsToScan = toolPlanSheets.length > 0 ? toolPlanSheets : workbook.SheetNames;
+
+  if (toolPlanSheets.length === 0) {
+    allWarnings.push(
+      `No sheet named "TOOL PLAN" was found. Scanned all ${workbook.SheetNames.length} sheet(s) instead.`,
+    );
+  }
+
+  for (const sheetName of sheetsToScan) {
     const sheet = workbook.Sheets[sheetName];
     if (!sheet || !sheet["!ref"]) continue;
 
@@ -398,7 +410,9 @@ export async function parseCdiFile(file: File): Promise<CdiParseResult> {
   if (allRows.length === 0) {
     throw new Error(
       "No tool rows could be parsed from the uploaded file. " +
-      "Ensure the file has a sheet with columns like Tool No., Part Description, Material, etc."
+      "Ensure a sheet has a header row containing at least three recognised columns " +
+      "(for example Tool No., Part Description, Material) and that each tool row has a Tool No. " +
+      `Sheets checked: ${sheetsToScan.join(", ") || "none"}.`
     );
   }
 
@@ -450,6 +464,7 @@ export function convertLegacyToolInput(
     sourceSheet: input.cdiSource?.sheet ?? "manual",
     sourceRowNumber: input.cdiSource?.row ?? 0,
     toolNo: input.toolNo,
+    rawToolDescription: input.toolDescription,
     toolDescription: input.toolDescription,
     partDescription: input.toolDescription,
     partWeight: input.partWeightG,

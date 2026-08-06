@@ -1,4 +1,4 @@
-import * as XLSX from "xlsx";
+import * as XLSX from "xlsx-js-style";
 import type { ProjectMetadata, ToolRow } from "../types/project";
 import type { FmeaDraftRow } from "../types/fmea";
 import { countChecklistSources } from "../utils/checklistSources";

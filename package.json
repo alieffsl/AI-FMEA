@@ -29,7 +29,8 @@
     "react-dom": "^19.1.0",
     "recharts": "^2.15.0",
     "unzipper": "^0.12.5",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "xlsx-js-style": "^1.2.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

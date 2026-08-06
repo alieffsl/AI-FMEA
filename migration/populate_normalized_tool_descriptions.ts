@@ -4,7 +4,9 @@
 
 import pg from 'pg';
 import dotenv from 'dotenv';
-import { normalizeToolDescription } from './normalizeToolDescription.js';
+// Note the .ts extension: under this project's `ts-node --esm` setup the .js
+// specifier does not resolve, so this script could not run at all.
+import { normalizeToolDescription } from './normalizeToolDescription.ts';
 
 dotenv.config();
 

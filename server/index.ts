@@ -3,6 +3,7 @@ import cors from 'cors';
 import pg from 'pg';
 import dotenv from 'dotenv';
 import path from 'path';
+import { createHash, randomUUID } from 'crypto';
 import { matchChecklistEntries, matchChecklistBatch, getChecklistStats } from './checklistService';
 import { normalizeToolDescription } from './normalizeToolDescription';
 
@@ -10,7 +11,28 @@ dotenv.config({
   path: process.env.FMEA_ENV_FILE || path.resolve(process.cwd(), '../migration/.env'),
 });
 
-const { Client, Pool } = pg;
+const { Pool } = pg;
+
+/** Hard ceiling on tool rows accepted in one generate request. */
+const MAX_TOOLS_PER_REQUEST = 500;
+
+/**
+ * Parse a query-string integer, clamping into range and falling back on a
+ * default. Unclamped values previously allowed `?limit=10000000` and produced a
+ * negative OFFSET (a 500) for `?page=0`.
+ */
+function parseBoundedInt(value: unknown, fallback: number, min: number, max: number): number {
+  const parsed = Number.parseInt(String(value ?? ''), 10);
+  if (!Number.isFinite(parsed)) return fallback;
+  return Math.min(Math.max(parsed, min), max);
+}
+
+/** Parse a float, falling back when the value is absent or not a number. */
+function parseBoundedFloat(value: unknown, fallback: number, min: number, max: number): number {
+  const parsed = Number.parseFloat(String(value ?? ''));
+  if (!Number.isFinite(parsed)) return fallback;
+  return Math.min(Math.max(parsed, min), max);
+}
 
 const app = express();
 const port = Number(process.env.PORT || 3001);
@@ -75,76 +97,33 @@ function getDefaultSeverity(failureMode: string): number {
   return 6;
 }
 
-// Generic string normalization function for Tool Descriptions
-function cleanToolDescription(desc: string | null): string {
-  if (!desc) return 'Unknown';
-
-  // 1. Take everything before a dash or comma
-  let s = desc.split(/[-,]/)[0].trim();
-
-  // 2. Extract the very first word
-  let firstWord = s.split(' ')[0].trim();
-
-  // 3. Remove any symbols or numbers attached to the noun (e.g. "BELT#1" -> "BELT")
-  firstWord = firstWord.replace(/[^a-zA-Z]/g, '').toLowerCase();
-
-  // 4. Handle extreme typos
-  if (firstWord === 'bellt') firstWord = 'belt';
-  if (firstWord === 'bagg') firstWord = 'bag';
-
-  // Fallback if empty
-  if (!firstWord) {
-    firstWord = desc.replace(/[^a-zA-Z]/g, '').toLowerCase() || 'unknown';
-  }
-
-  // 5. Singularize common plurals safely
-  const knownPlurals: Record<string, string> = {
-    'shoes': 'shoe',
-    'earrings': 'earring',
-    'accessories': 'accessory',
-    'boxes': 'box',
-    'brushes': 'brush',
-    'watches': 'watch',
-    'glasses': 'glass',
-    'lenses': 'lens',
-    'cases': 'case',
-  };
-
-  if (knownPlurals[firstWord]) {
-    firstWord = knownPlurals[firstWord];
-  } else if (firstWord.endsWith('s') && !firstWord.endsWith('ss') && !firstWord.endsWith('es') && !firstWord.endsWith('us') && !firstWord.endsWith('is')) {
-    // Strip 's' only for simple plurals (e.g., bags -> bag).
-    // Avoid 'es' to prevent accidentally mangling words.
-    firstWord = firstWord.slice(0, -1);
-  }
-
-  // 6. Title Case
-  return firstWord.charAt(0).toUpperCase() + firstWord.slice(1);
-}
+// `cleanToolDescription` was removed here. It was a fourth tool-description
+// normalizer used only by the dashboard, and it truncated a description to its
+// first word ("Torso FT" -> "Torso", "Hair Clip" -> "Hair"), which merged tools
+// the rest of the system deliberately keeps distinct. The dashboard now groups
+// on `tool_description_normalized`, the same key the matcher uses.
 
 app.post('/api/fmea/generate', async (req, res) => {
   try {
     const tools = req.body.tools || [];
     const metadata = req.body.metadata || {};
 
-    if (!tools.length) {
+    if (!Array.isArray(tools) || tools.length === 0) {
       return res.status(400).json({ error: 'No tools provided.' });
     }
 
+    if (tools.length > MAX_TOOLS_PER_REQUEST) {
+      return res.status(413).json({
+        error: `Too many tools in one request (${tools.length}). The maximum is ${MAX_TOOLS_PER_REQUEST}.`,
+      });
+    }
+
     console.log(`[Server] Received ${tools.length} NEW tools (CDI format) for FMEA generation`);
-    console.log(`[Server] Project metadata:`, metadata);
 
-    // Step 1: Query PostgreSQL to find historical failures for similar tools
-    const client = new Client({
-      host: process.env.PG_HOST,
-      port: parseInt(process.env.PG_PORT || '5432'),
-      user: process.env.PG_USER,
-      password: process.env.PG_PASSWORD,
-      database: process.env.PG_DATABASE,
-      ssl: { rejectUnauthorized: false },
-    });
-
-    await client.connect();
+    // Step 1: Query PostgreSQL to find historical failures for similar tools.
+    // Uses the shared pool: this handler previously opened up to three separate
+    // one-off connections per request while the pool sat unused.
+    const client = getPgPool();
 
     // Normalize tool descriptions server-side for consistent matching
     const uniqueDescriptions = Array.from(
@@ -240,8 +219,6 @@ app.post('/api/fmea/generate', async (req, res) => {
       }
     }
 
-    await client.end();
-
     // Step 2: Generate FMEA rows with predicted failure modes
     const draftRows: any[] = [];
 
@@ -253,9 +230,13 @@ app.post('/api/fmea/generate', async (req, res) => {
         // Create one row per historical failure mode
         for (const failureMode of failures) {
           draftRows.push({
+            // Carry the client's row id so the UI can attribute results back to
+            // the exact uploaded row instead of guessing by description.
+            toolRowId: tool.id || '',
             toolNo: tool.toolNo || '',
             partDescription: toolDesc,
             potentialFailureMode: failureMode,
+            hasEvidence: true,
             material: tool.material || '',
             gateType: tool.gateType || '',
             cavity: tool.cavity || 1
@@ -265,9 +246,11 @@ app.post('/api/fmea/generate', async (req, res) => {
         // No historical data - create placeholder
         console.log(`[Server] No historical failures found for ${toolDesc} - creating placeholder`);
         draftRows.push({
+          toolRowId: tool.id || '',
           toolNo: tool.toolNo || '',
           partDescription: toolDesc,
           potentialFailureMode: 'No historical data',
+          hasEvidence: false,
           material: tool.material || '',
           gateType: tool.gateType || '',
           cavity: tool.cavity || 1
@@ -317,61 +300,83 @@ app.post('/api/fmea/generate', async (req, res) => {
     if (noMatchKeys.length > 0) {
       console.log(`[Server] Querying knowledge base directly for ${noMatchKeys.length} tools with no checklist data...`);
 
-      const pgClient = new pg.Client({
-        host: process.env.PG_HOST,
-        port: parseInt(process.env.PG_PORT || '5432'),
-        user: process.env.PG_USER,
-        password: process.env.PG_PASSWORD,
-        database: process.env.PG_DATABASE,
-        ssl: { rejectUnauthorized: false },
+      // One query for every unmatched pair, instead of one query per pair on a
+      // dedicated connection. The pairs are passed as a VALUES list and joined
+      // against, so this stays a single round-trip however many rows there are.
+      const pairs = noMatchKeys.map((key) => {
+        const separator = key.lastIndexOf('||');
+        return { toolDesc: key.slice(0, separator), failureMode: key.slice(separator + 2) };
       });
 
-      await pgClient.connect();
+      // Explicit ::text casts: parameters inside a VALUES list in a CTE have no
+      // inferable type, and Postgres rejects the statement without them.
+      const valuesClause = pairs
+        .map((_, i) => `($${i * 2 + 1}::text, $${i * 2 + 2}::text)`)
+        .join(', ');
+      const valuesParams = pairs.flatMap((pair) => [pair.toolDesc, pair.failureMode]);
 
-      try {
-        for (const key of noMatchKeys) {
-          const [toolDesc, failureMode] = key.split('||');
+      const kbResult = await client.query(`
+        WITH wanted(tool_description_normalized, failure_mode) AS (VALUES ${valuesClause}),
+        ranked AS (
+          SELECT
+            kb.id,
+            kb.learning,
+            kb.final_recommendation,
+            kb.failure_id,
+            kb.tool_description_normalized,
+            kb.failure_mode,
+            ROW_NUMBER() OVER (
+              PARTITION BY kb.tool_description_normalized, kb.failure_mode
+              ORDER BY kb.created_at DESC
+            ) AS rank
+          FROM fmea_knowledge_base kb
+          JOIN wanted w
+            ON w.tool_description_normalized = kb.tool_description_normalized
+           AND w.failure_mode = kb.failure_mode
+        )
+        SELECT id, learning, final_recommendation, failure_id,
+               tool_description_normalized, failure_mode
+        FROM ranked
+        WHERE rank <= 5
+        ORDER BY tool_description_normalized, failure_mode, rank
+      `, valuesParams);
 
-          // Query knowledge base for this exact combination
-          const kbResult = await pgClient.query(`
-            SELECT 
-              id,
-              learning,
-              final_recommendation,
-              failure_id
-            FROM fmea_knowledge_base
-            WHERE tool_description_normalized = $1
-              AND failure_mode = $2
-            LIMIT 5
-          `, [toolDesc, failureMode]);
-
-          if (kbResult.rows.length > 0) {
-            // Convert knowledge base records to checklist-like format
-            const syntheticEntries = kbResult.rows.map((row, idx) => ({
-              id: `kb-${row.id}`,
-              tool_description_normalized: toolDesc,
-              tool_category: null,
-              failure_mode: failureMode,
-              sub_concern_index: idx + 1,
-              concern: row.learning || 'Historical observation',
-              recommendation: row.final_recommendation || 'Review and address',
-              supporting_record_count: 1,
-              supporting_record_ids: [row.id],
-              supporting_failure_ids: [row.failure_id],
-              applicability_scope: 'exact_tool' as const,
-              source_types: ['historical_fmea' as const],
-              historical_checklist_ids: [],
-              supporting_standard_refs: [],
-              similarity: 1.0
-            }));
-
-            checklistMatches.set(key, syntheticEntries);
-            console.log(`  ✓ Found ${syntheticEntries.length} knowledge base records for ${toolDesc} / ${failureMode}`);
-          }
-        }
-      } finally {
-        await pgClient.end();
+      // Regroup the flat result set back into per-pair synthetic entries.
+      const byPair = new Map<string, any[]>();
+      for (const row of kbResult.rows) {
+        const key = `${row.tool_description_normalized}||${row.failure_mode}`;
+        if (!byPair.has(key)) byPair.set(key, []);
+        byPair.get(key)!.push(row);
       }
+
+      for (const [key, rows] of byPair) {
+        const [toolDesc, failureMode] = [
+          key.slice(0, key.lastIndexOf('||')),
+          key.slice(key.lastIndexOf('||') + 2),
+        ];
+
+        const syntheticEntries = rows.map((row, idx) => ({
+          id: `kb-${row.id}`,
+          tool_description_normalized: toolDesc,
+          tool_category: null,
+          failure_mode: failureMode,
+          sub_concern_index: idx + 1,
+          concern: row.learning || 'Historical observation',
+          recommendation: row.final_recommendation || 'Review and address',
+          supporting_record_count: 1,
+          supporting_record_ids: [row.id],
+          supporting_failure_ids: [row.failure_id],
+          applicability_scope: 'exact_tool' as const,
+          source_types: ['historical_fmea' as const],
+          historical_checklist_ids: [],
+          supporting_standard_refs: [],
+          similarity: 1.0
+        }));
+
+        checklistMatches.set(key, syntheticEntries);
+      }
+
+      console.log(`[Server] Knowledge base fallback matched ${byPair.size}/${noMatchKeys.length} pairs`);
 
       // Update stats
       totalMatches = 0;
@@ -385,9 +390,10 @@ app.post('/api/fmea/generate', async (req, res) => {
       console.log(`[Server] After knowledge base fallback: ${rowsWithMatches}/${matchRequests.length} tools have recommendations (${totalMatches} total entries)`);
     }
 
-    // Step 4: Query historical S/O/D values from PostgreSQL (batched)
-    const pgPoolForSod = getPgPool();
-    const historicalSOD = new Map<string, { severity: number; occurrence: number; detection: number }>();
+    // Step 4: Query historical S/O/D values from PostgreSQL.
+    // One GROUP BY query for every failure mode, instead of one serial query
+    // each. Keyed by failure mode, then applied to every draft row that uses it.
+    const sodByFailureMode = new Map<string, { severity: number; occurrence: number; detection: number }>();
 
     // Get unique failure modes to minimize queries
     const uniqueFailureModes = new Set<string>();
@@ -399,40 +405,30 @@ app.post('/api/fmea/generate', async (req, res) => {
 
     console.log(`[Server] Querying S/O/D for ${uniqueFailureModes.size} unique failure modes from PostgreSQL`);
 
-    for (const failureMode of uniqueFailureModes) {
-      try {
-        const sodResult = await pgPoolForSod.query(`
-          SELECT 
-            AVG(severity) as avg_severity,
-            AVG(occurrence) as avg_occurrence,
-            AVG(detection) as avg_detection
-          FROM fmea_knowledge_base
-          WHERE failure_mode = $1
-            AND severity IS NOT NULL
-        `, [failureMode]);
+    if (uniqueFailureModes.size > 0) {
+      const sodResult = await client.query(`
+        SELECT
+          failure_mode,
+          AVG(severity) as avg_severity,
+          AVG(occurrence) as avg_occurrence,
+          AVG(detection) as avg_detection
+        FROM fmea_knowledge_base
+        WHERE failure_mode = ANY($1::text[])
+          AND severity IS NOT NULL
+        GROUP BY failure_mode
+      `, [[...uniqueFailureModes]]);
 
-        if (sodResult.rows.length > 0 && sodResult.rows[0].avg_severity) {
-          const record = sodResult.rows[0];
-          const sod = {
-            severity: Math.round(Number(record.avg_severity)) || 6,
-            occurrence: Math.round(Number(record.avg_occurrence)) || 4,
-            detection: Math.round(Number(record.avg_detection)) || 4
-          };
-
-          // Store for ALL tools with this failure mode
-          for (const row of draftRows) {
-            if (row.potentialFailureMode === failureMode) {
-              const key = `${row.partDescription}||${row.potentialFailureMode}`;
-              historicalSOD.set(key, sod);
-            }
-          }
-        }
-      } catch (error) {
-        console.error(`[Server] Error querying S/O/D for ${failureMode}:`, error);
+      for (const record of sodResult.rows) {
+        if (!record.avg_severity) continue;
+        sodByFailureMode.set(record.failure_mode, {
+          severity: Math.round(Number(record.avg_severity)) || 6,
+          occurrence: Math.round(Number(record.avg_occurrence)) || 4,
+          detection: Math.round(Number(record.avg_detection)) || 4
+        });
       }
     }
 
-    console.log(`[Server] Retrieved S/O/D for ${historicalSOD.size} tool-failure combinations`);
+    console.log(`[Server] Retrieved S/O/D for ${sodByFailureMode.size} failure modes`);
 
     // Step 5: Build final FMEA rows with checklist data AND calculated S/O/D
     const finalRows = draftRows.map((draft: any) => {
@@ -443,32 +439,44 @@ app.post('/api/fmea/generate', async (req, res) => {
       const bestMatch = matches.length > 0 ? matches[0] : null;
 
       // Get historical S/O/D or use intelligent defaults
-      const sod = historicalSOD.get(key) || {
+      const sod = sodByFailureMode.get(draft.potentialFailureMode) || {
         severity: getDefaultSeverity(draft.potentialFailureMode),
         occurrence: 4,
         detection: 4
       };
+      const sodSource = sodByFailureMode.has(draft.potentialFailureMode) ? 'historical' : 'default';
 
       const rpn = sod.severity * sod.occurrence * sod.detection;
 
       return {
-        id: Math.random().toString(36).substring(7),
-        toolRowId: draft.toolNo,
+        // Collision-free and never empty. The previous
+        // `Math.random().toString(36).substring(7)` produced a variable-length
+        // suffix (empty for small values), so rows could share a React key and
+        // expand/collapse together.
+        id: randomUUID(),
+        toolRowId: draft.toolRowId,
         toolNo: draft.toolNo,
         partDescription: draft.partDescription,
-        processStep: 'Injection Molding',
+        // Fields below are the engineer's to fill in. They used to ship
+        // constant filler ("Injection Molding", "Design review", ...) that read
+        // as analysis in the exported workbook.
+        processStep: '',
         potentialFailureMode: draft.potentialFailureMode,
-        potentialEffect: bestMatch ? 'Part quality issue - see checklist' : 'Potential failure',
+        potentialEffect: '',
         severity: sod.severity,
-        potentialCause: bestMatch ? bestMatch.concern : 'Based on historical data',
+        potentialCause: bestMatch ? bestMatch.concern : '',
         occurrence: sod.occurrence,
-        currentPreventionControl: 'Design review',
-        currentDetectionControl: 'Visual inspection',
+        currentPreventionControl: '',
+        currentDetectionControl: '',
         detection: sod.detection,
         rpn: rpn,
-        recommendedAction: bestMatch ? bestMatch.recommendation : 'Review historical cases',
-        responsibleFunction: 'Tooling Engineer',
+        recommendedAction: bestMatch ? bestMatch.recommendation : '',
+        responsibleFunction: '',
         targetDate: '',
+        /** False when no historical failure mode was found for this tool. */
+        hasEvidence: Boolean(draft.hasEvidence),
+        /** Whether S/O/D came from historical records or from keyword defaults. */
+        sodSource,
         checklistEntries: matches // Clean PostgreSQL checklist tips
       };
     });
@@ -492,78 +500,524 @@ app.post('/api/fmea/generate', async (req, res) => {
   }
 });
 
+// =============================================================================
+// DRAFT PERSISTENCE
+// Requires migration/03_create_draft_tables.sql to have been applied.
+// =============================================================================
+
+/**
+ * Best-effort author attribution. The application has no authentication yet, so
+ * this trusts a header a fronting proxy may set. Replace with the authenticated
+ * principal once SSO lands — do not treat it as a security boundary.
+ */
+function getRequestUser(req: express.Request): string | null {
+  const header = req.header('X-FMEA-User');
+  return header ? header.slice(0, 150) : null;
+}
+
+let draftFingerprintSchemaReady: Promise<void> | null = null;
+
+async function ensureDraftFingerprintSchema(): Promise<void> {
+  if (!draftFingerprintSchemaReady) {
+    draftFingerprintSchemaReady = (async () => {
+      const pool = getPgPool();
+      await pool.query(
+        `ALTER TABLE fmea_draft
+         ADD COLUMN IF NOT EXISTS content_fingerprint VARCHAR(64)`,
+      );
+      await pool.query(
+        `CREATE UNIQUE INDEX IF NOT EXISTS idx_fmea_draft_content_fingerprint
+         ON fmea_draft(content_fingerprint)
+         WHERE content_fingerprint IS NOT NULL`,
+      );
+    })();
+  }
+
+  return draftFingerprintSchemaReady;
+}
+
+function stableJson(value: unknown): string {
+  if (Array.isArray(value)) {
+    return `[${value.map(stableJson).join(',')}]`;
+  }
+
+  if (value && typeof value === 'object') {
+    const record = value as Record<string, unknown>;
+    const keys = Object.keys(record).sort();
+    return `{${keys.map((key) => `${JSON.stringify(key)}:${stableJson(record[key])}`).join(',')}}`;
+  }
+
+  return JSON.stringify(value);
+}
+
+function draftFingerprint(metadata: any, drafts: any[]): string {
+  const stableDrafts = drafts.map((row) => {
+    const { id: _id, ...rest } = row ?? {};
+    return rest;
+  });
+
+  return createHash('sha256')
+    .update(stableJson({
+      metadata: {
+        projectName: metadata?.projectName || '',
+        sourceFilename: metadata?.sourceFilename || '',
+        toolMaker: metadata?.toolMaker || '',
+        vendor: metadata?.vendor || '',
+        quoteType: metadata?.quoteType || '',
+        toyYear: metadata?.toyYear || '',
+        revision: metadata?.revision || '',
+        toolPlan: metadata?.toolPlan || '',
+        setCount: metadata?.setCount || '',
+        leadTimeDays: metadata?.leadTimeDays ?? null,
+      },
+      drafts: stableDrafts,
+    }))
+    .digest('hex');
+}
+
+async function insertDraftRows(connection: pg.PoolClient, draftId: string, drafts: any[]): Promise<void> {
+  const columnsPerRow = 11;
+  const rowsPerStatement = Math.floor(60000 / columnsPerRow);
+
+  for (let start = 0; start < drafts.length; start += rowsPerStatement) {
+    const chunk = drafts.slice(start, start + rowsPerStatement);
+
+    const valuesClause = chunk
+      .map((_: unknown, i: number) => {
+        const base = i * columnsPerRow;
+        return `($${base + 1}::uuid, $${base + 2}::int, $${base + 3}, $${base + 4}, $${base + 5}, ` +
+          `$${base + 6}, $${base + 7}, $${base + 8}, $${base + 9}, $${base + 10}, $${base + 11}::jsonb)`;
+      })
+      .join(', ');
+
+    const values = chunk.flatMap((row: any, i: number) => [
+      draftId,
+      start + i,
+      row.toolRowId || null,
+      row.toolNo || null,
+      row.partDescription || null,
+      row.potentialFailureMode || null,
+      Number.isFinite(row.severity) ? row.severity : null,
+      Number.isFinite(row.occurrence) ? row.occurrence : null,
+      Number.isFinite(row.detection) ? row.detection : null,
+      Number.isFinite(row.rpn) ? row.rpn : null,
+      JSON.stringify(row),
+    ]);
+
+    await connection.query(
+      `INSERT INTO fmea_draft_row
+         (draft_id, row_index, tool_row_id, tool_no, part_description,
+          failure_mode, severity, occurrence, detection, rpn, payload)
+       VALUES ${valuesClause}`,
+      values,
+    );
+  }
+}
+
+/** Save a generated draft and its rows. */
+app.post('/api/fmea/draft', async (req, res) => {
+  const { metadata = {}, drafts = [], draftId: requestedDraftId = null } = req.body ?? {};
+
+  if (!Array.isArray(drafts) || drafts.length === 0) {
+    return res.status(400).json({ error: 'drafts array is required and must not be empty' });
+  }
+
+  const pool = getPgPool();
+  const connection = await pool.connect();
+
+  try {
+    await ensureDraftFingerprintSchema();
+
+    const fingerprint = draftFingerprint(metadata, drafts);
+
+    await connection.query('BEGIN');
+    await connection.query('SELECT pg_advisory_xact_lock(hashtext($1))', [fingerprint]);
+
+    let existingDraftId: string | null = null;
+    if (requestedDraftId) {
+      const existing = await connection.query(
+        `SELECT id FROM fmea_draft WHERE id = $1`,
+        [requestedDraftId],
+      );
+      existingDraftId = existing.rows[0]?.id ?? null;
+    }
+
+    if (!existingDraftId) {
+      const existing = await connection.query(
+        `SELECT id FROM fmea_draft WHERE content_fingerprint = $1`,
+        [fingerprint],
+      );
+      existingDraftId = existing.rows[0]?.id ?? null;
+    }
+
+    if (existingDraftId) {
+      const draftResult = await connection.query(
+        `UPDATE fmea_draft
+         SET project_name = $2,
+             source_filename = $3,
+             metadata = $4,
+             created_by = COALESCE(created_by, $5),
+             content_fingerprint = $6,
+             updated_at = NOW()
+         WHERE id = $1
+         RETURNING id, created_at, updated_at`,
+        [
+          existingDraftId,
+          metadata.projectName || null,
+          metadata.sourceFilename || null,
+          JSON.stringify(metadata),
+          getRequestUser(req),
+          fingerprint,
+        ],
+      );
+
+      await connection.query(`DELETE FROM fmea_draft_row WHERE draft_id = $1`, [existingDraftId]);
+      await insertDraftRows(connection, existingDraftId, drafts);
+
+      await connection.query('COMMIT');
+
+      console.log(`[Server] Updated draft ${existingDraftId} with ${drafts.length} rows`);
+
+      return res.status(200).json({
+        id: existingDraftId,
+        rowCount: drafts.length,
+        createdAt: draftResult.rows[0].created_at,
+        updatedAt: draftResult.rows[0].updated_at,
+        reused: true,
+      });
+    }
+
+    const draftResult = await connection.query(
+      `INSERT INTO fmea_draft (project_name, source_filename, metadata, created_by, content_fingerprint)
+       VALUES ($1, $2, $3, $4, $5)
+       RETURNING id, created_at, updated_at`,
+      [
+        metadata.projectName || null,
+        metadata.sourceFilename || null,
+        JSON.stringify(metadata),
+        getRequestUser(req),
+        fingerprint,
+      ],
+    );
+
+    const draftId = draftResult.rows[0].id;
+    await insertDraftRows(connection, draftId, drafts);
+
+    await connection.query('COMMIT');
+
+    console.log(`[Server] Saved draft ${draftId} with ${drafts.length} rows`);
+
+    res.status(201).json({
+      id: draftId,
+      rowCount: drafts.length,
+      createdAt: draftResult.rows[0].created_at,
+      updatedAt: draftResult.rows[0].updated_at,
+    });
+  } catch (error: any) {
+    await connection.query('ROLLBACK').catch(() => undefined);
+    console.error('[Server] Error saving draft:', error);
+    res.status(500).json({ error: error.message || 'Internal server error' });
+  } finally {
+    connection.release();
+  }
+});
+
+/** List saved drafts, most recently updated first. */
+app.get('/api/fmea/drafts', async (req, res) => {
+  try {
+    const limitNum = parseBoundedInt(req.query.limit, 50, 1, 200);
+
+    const result = await getPgPool().query(
+      `SELECT
+         d.id,
+         d.project_name  as "projectName",
+         d.source_filename as "sourceFilename",
+         d.created_by    as "createdBy",
+         d.created_at    as "createdAt",
+         d.updated_at    as "updatedAt",
+         COUNT(r.id)::int as "rowCount"
+       FROM fmea_draft d
+       LEFT JOIN fmea_draft_row r ON r.draft_id = d.id
+       GROUP BY d.id
+       ORDER BY d.updated_at DESC
+       LIMIT $1`,
+      [limitNum],
+    );
+
+    res.json({ drafts: result.rows });
+  } catch (error: any) {
+    console.error('[Server] Error listing drafts:', error);
+    res.status(500).json({ error: error.message || 'Internal server error' });
+  }
+});
+
+/** Load one saved draft with all of its rows. */
+app.get('/api/fmea/draft/:id', async (req, res) => {
+  try {
+    const pool = getPgPool();
+
+    const draftResult = await pool.query(
+      `SELECT id, project_name as "projectName", source_filename as "sourceFilename",
+              metadata, created_by as "createdBy",
+              created_at as "createdAt", updated_at as "updatedAt"
+       FROM fmea_draft
+       WHERE id = $1`,
+      [req.params.id],
+    );
+
+    if (draftResult.rows.length === 0) {
+      return res.status(404).json({ error: 'Draft not found' });
+    }
+
+    const rowsResult = await pool.query(
+      `SELECT payload FROM fmea_draft_row WHERE draft_id = $1 ORDER BY row_index ASC`,
+      [req.params.id],
+    );
+
+    res.json({
+      ...draftResult.rows[0],
+      drafts: rowsResult.rows.map((row: any) => row.payload),
+    });
+  } catch (error: any) {
+    // An id that is not a UUID reaches Postgres as a cast error rather than a
+    // miss, so report it as a bad request instead of a server fault.
+    if (error?.code === '22P02') {
+      return res.status(400).json({ error: 'Invalid draft id' });
+    }
+    console.error('[Server] Error loading draft:', error);
+    res.status(500).json({ error: error.message || 'Internal server error' });
+  }
+});
+
+/** Update a single row of a saved draft. */
+app.patch('/api/fmea/draft/:id/row/:rowIndex', async (req, res) => {
+  try {
+    const rowIndex = parseBoundedInt(req.params.rowIndex, -1, 0, 1_000_000);
+    if (rowIndex < 0) {
+      return res.status(400).json({ error: 'Invalid row index' });
+    }
+
+    const row = req.body?.row;
+    if (!row || typeof row !== 'object') {
+      return res.status(400).json({ error: 'row object is required' });
+    }
+
+    const pool = getPgPool();
+
+    const result = await pool.query(
+      `UPDATE fmea_draft_row
+       SET tool_no = $3,
+           part_description = $4,
+           failure_mode = $5,
+           severity = $6,
+           occurrence = $7,
+           detection = $8,
+           rpn = $9,
+           payload = $10,
+           updated_at = NOW()
+       WHERE draft_id = $1 AND row_index = $2
+       RETURNING id`,
+      [
+        req.params.id,
+        rowIndex,
+        row.toolNo || null,
+        row.partDescription || null,
+        row.potentialFailureMode || null,
+        Number.isFinite(row.severity) ? row.severity : null,
+        Number.isFinite(row.occurrence) ? row.occurrence : null,
+        Number.isFinite(row.detection) ? row.detection : null,
+        Number.isFinite(row.rpn) ? row.rpn : null,
+        JSON.stringify(row),
+      ],
+    );
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Draft row not found' });
+    }
+
+    await pool.query('UPDATE fmea_draft SET updated_at = NOW() WHERE id = $1', [req.params.id]);
+
+    res.json({ updated: true });
+  } catch (error: any) {
+    if (error?.code === '22P02') {
+      return res.status(400).json({ error: 'Invalid draft id' });
+    }
+    console.error('[Server] Error updating draft row:', error);
+    res.status(500).json({ error: error.message || 'Internal server error' });
+  }
+});
+
+/**
+ * Shared SQL fragments for the dashboard.
+ *
+ * Grouping is on `tool_description_normalized` exactly as stored, because a
+ * position suffix identifies a different tool: "Torso FT" and "Torso RR" are
+ * separate moulds with separate histories and must not be merged. This is the
+ * same key the matcher uses, so the dashboard and the generator finally agree.
+ */
+const DASHBOARD_RPN = `COALESCE(kb.rpn, 96)`;
+const DASHBOARD_FAMILY = `COALESCE(kb.tool_description_normalized, kb.tool_description, 'Unknown')`;
+const DASHBOARD_MATERIAL = `COALESCE(t.material, 'ABS')`;
+const DASHBOARD_GATE = `COALESCE(t.gate_type, 'Sub gate')`;
+
+/** RPN buckets. Thresholds intentionally match getRpnBucket() on the client. */
+const DASHBOARD_BUCKET = `
+  CASE
+    WHEN ${DASHBOARD_RPN} >= 36 THEN 'Critical'
+    WHEN ${DASHBOARD_RPN} >= 27 THEN 'High'
+    WHEN ${DASHBOARD_RPN} >= 9  THEN 'Medium'
+    ELSE 'Low'
+  END
+`;
+
 app.get('/api/dashboard/stats', async (req, res) => {
   try {
     const pool = getPgPool();
-    
-    // 1. Fetch Projects
-    const toysResult = await pool.query(`SELECT id, project_code as "projectCode", project_name as "projectName" FROM fmea_projects`);
-    const projects = toysResult.rows;
 
-    // 2. Fetch Historical Cases
-    const casesResult = await pool.query(`
-      SELECT 
-        kb.id as id,
-        p.project_code as "projectCode",
-        p.project_name as "projectName",
-        t.tool_no as "toolNo",
-        COALESCE(kb.tool_description_normalized, kb.tool_description) as "toolDescription",
-        COALESCE(t.material, 'ABS') as material,
-        COALESCE(t.mold_material, 'P20') as "moldMaterial",
-        COALESCE(t.gate_type, 'Sub gate') as "gateType",
-        COALESCE(t.cavity, 1) as cavity,
-        COALESCE(t.part_weight_g, 10) as "partWeightG",
-        kb.failure_mode as failure,
-        'Tool design' as stage,
-        COALESCE(kb.final_recommendation, 'No Recommendation') as recommendation,
-        'No first shot finding' as "firstShotFinding",
-        'No first shot action' as "firstShotRecommendation",
-        COALESCE(kb.severity, 6) as severity,
-        COALESCE(kb.occurrence, 4) as occurrence,
-        COALESCE(kb.detection, 4) as detection,
-        COALESCE(kb.rpn, 96) as rpn,
-        kb.status as status,
-        'Live DB' as "sourceTag",
-        1 as "sourcePage",
-        'Action' as "actionFamily",
-        '' as notes,
-        kb.created_at as "loggedAt",
-        kb.evidence_images as evidence_images
+    // Aggregated in SQL. This endpoint used to select every row of
+    // fmea_knowledge_base with no LIMIT and count them in JavaScript, so the
+    // payload and the latency grew linearly with the knowledge base forever.
+    const [failures, families, risk, status, materialGate, totals] = await Promise.all([
+      pool.query(`
+        SELECT kb.failure_mode AS name, COUNT(*)::int AS count
+        FROM fmea_knowledge_base kb
+        WHERE kb.failure_mode IS NOT NULL AND kb.failure_mode <> ''
+        GROUP BY kb.failure_mode
+        ORDER BY COUNT(*) DESC
+      `),
+      pool.query(`
+        SELECT
+          ${DASHBOARD_FAMILY} AS name,
+          COUNT(*)::int AS count,
+          COUNT(DISTINCT kb.failure_mode)::int AS "failureTypes"
+        FROM fmea_knowledge_base kb
+        GROUP BY ${DASHBOARD_FAMILY}
+        ORDER BY COUNT(*) DESC
+        LIMIT 15
+      `),
+      pool.query(`
+        SELECT ${DASHBOARD_BUCKET} AS name, COUNT(*)::int AS count
+        FROM fmea_knowledge_base kb
+        GROUP BY 1
+      `),
+      pool.query(`
+        SELECT COALESCE(kb.status, 'Unknown') AS name, COUNT(*)::int AS count
+        FROM fmea_knowledge_base kb
+        GROUP BY 1
+        ORDER BY COUNT(*) DESC
+      `),
+      pool.query(`
+        SELECT ${DASHBOARD_MATERIAL} || ' / ' || ${DASHBOARD_GATE} AS key, COUNT(*)::int AS count
+        FROM fmea_knowledge_base kb
+        LEFT JOIN fmea_tools t ON t.tool_no = kb.tool_num
+        GROUP BY 1
+        ORDER BY COUNT(*) DESC
+        LIMIT 8
+      `),
+      pool.query(`
+        SELECT
+          COUNT(*)::int AS cases,
+          COUNT(DISTINCT ${DASHBOARD_FAMILY})::int AS tools,
+          COUNT(DISTINCT kb.failure_mode)::int AS "failureModes"
+        FROM fmea_knowledge_base kb
+      `),
+    ]);
+
+    // "Low" is reported even at zero so the risk chart keeps four fixed bars.
+    const buckets = ['Low', 'Medium', 'High', 'Critical'];
+    const riskByName = new Map(risk.rows.map((r: any) => [r.name, r.count]));
+
+    res.json({
+      totals: totals.rows[0],
+      failureFrequency: failures.rows,
+      partGroups: families.rows,
+      riskDistribution: buckets.map((name) => ({ name, count: riskByName.get(name) ?? 0 })),
+      statusMix: status.rows,
+      materialGate: materialGate.rows,
+    });
+  } catch (error: any) {
+    console.error('[Server] Error fetching dashboard stats:', error);
+    res.status(500).json({ error: error.message || 'Internal server error' });
+  }
+});
+
+/**
+ * Paginated rows behind one dashboard segment, for the drill-down drawer.
+ * Replaces filtering a full in-memory copy of the knowledge base on the client.
+ */
+app.get('/api/dashboard/cases', async (req, res) => {
+  try {
+    const { dimension, value } = req.query;
+    const limitNum = parseBoundedInt(req.query.limit, 50, 1, 200);
+    const pageNum = parseBoundedInt(req.query.page, 1, 1, 100_000);
+    const offset = (pageNum - 1) * limitNum;
+
+    const predicates: Record<string, string> = {
+      failure: `kb.failure_mode = $1`,
+      family: `${DASHBOARD_FAMILY} = $1`,
+      risk: `${DASHBOARD_BUCKET} = $1`,
+      status: `COALESCE(kb.status, 'Unknown') = $1`,
+      materialGate: `${DASHBOARD_MATERIAL} || ' / ' || ${DASHBOARD_GATE} = $1`,
+    };
+
+    const predicate = predicates[String(dimension)];
+    if (!predicate) {
+      return res.status(400).json({
+        error: `dimension must be one of: ${Object.keys(predicates).join(', ')}`,
+      });
+    }
+    if (typeof value !== 'string' || value === '') {
+      return res.status(400).json({ error: 'value is required' });
+    }
+
+    const pool = getPgPool();
+
+    const countResult = await pool.query(`
+      SELECT COUNT(*)::int AS total
+      FROM fmea_knowledge_base kb
+      LEFT JOIN fmea_tools t ON t.tool_no = kb.tool_num
+      WHERE ${predicate}
+    `, [value]);
+
+    const rowsResult = await pool.query(`
+      SELECT
+        kb.id AS id,
+        kb.toy_num AS "projectCode",
+        COALESCE(p.project_name, kb.toy_name) AS "projectName",
+        COALESCE(kb.tool_num, 'Unknown') AS "toolNo",
+        ${DASHBOARD_FAMILY} AS "toolDescription",
+        ${DASHBOARD_FAMILY} AS "normalizedFamily",
+        ${DASHBOARD_MATERIAL} AS material,
+        ${DASHBOARD_GATE} AS "gateType",
+        kb.failure_mode AS failure,
+        COALESCE(kb.final_recommendation, 'No Recommendation') AS recommendation,
+        COALESCE(kb.severity, 6)::int AS severity,
+        COALESCE(kb.occurrence, 4)::int AS occurrence,
+        COALESCE(kb.detection, 4)::int AS detection,
+        ${DASHBOARD_RPN}::int AS rpn,
+        COALESCE(kb.status, 'Unknown') AS status,
+        kb.created_at AS "loggedAt"
       FROM fmea_knowledge_base kb
       LEFT JOIN fmea_tools t ON t.tool_no = kb.tool_num
       LEFT JOIN fmea_projects p ON p.project_code = kb.toy_num
-    `);
-    
-    const historicalCases = casesResult.rows.map((c: any) => {
-      const cleanDesc = cleanToolDescription(c.toolDescription);
-      
-      let imgUrl = undefined;
-      if (c.evidence_images && Array.isArray(c.evidence_images) && c.evidence_images.length > 0) {
-        const img = c.evidence_images[0];
-        if (typeof img === 'string') {
-          imgUrl = img.startsWith('http') ? img : `http://${img}`;
-        } else if (img && typeof img === 'object' && img.url) {
-          imgUrl = img.url;
-        }
-      }
+      WHERE ${predicate}
+      ORDER BY ${DASHBOARD_RPN} DESC, kb.created_at DESC
+      LIMIT $2 OFFSET $3
+    `, [value, limitNum, offset]);
 
-      return {
-        ...c,
-        id: c.id.toString(),
-        toolNo: c.toolNo ? c.toolNo.toString() : 'Unknown',
-        toolDescription: cleanDesc,
-        rpn: parseInt(c.rpn) || 0,
-        severity: parseInt(c.severity) || 0,
-        occurrence: parseInt(c.occurrence) || 0,
-        detection: parseInt(c.detection) || 0,
-        normalizedFamily: cleanDesc,
-        imageUrl: imgUrl
-      };
+    const total = countResult.rows[0].total;
+
+    res.json({
+      rows: rowsResult.rows.map((row: any) => ({ ...row, id: String(row.id) })),
+      pagination: {
+        page: pageNum,
+        limit: limitNum,
+        total,
+        totalPages: Math.ceil(total / limitNum),
+      },
     });
-
-    res.json({ projects, historicalCases });
   } catch (error: any) {
-    console.error('[Server] Error fetching dashboard stats:', error);
+    console.error('[Server] Error fetching dashboard cases:', error);
     res.status(500).json({ error: error.message || 'Internal server error' });
   }
 });
@@ -683,78 +1137,49 @@ app.get('/api/knowledge/search', async (req, res) => {
       paramCount++;
     }
 
-    let sql: string;
-    let countSql: string;
-    const pageNum = parseInt(page as string) || 1;
-    const limitNum = parseInt(limit as string) || 50;
+    const pageNum = parseBoundedInt(page, 1, 1, 100_000);
+    const limitNum = parseBoundedInt(limit, 50, 1, 200);
     const offset = (pageNum - 1) * limitNum;
 
-    // If no filters/query, return records in consistent order
-    if (conditions.length === 0) {
-      // Count total records
-      countSql = `
-        SELECT COUNT(*) as total
-        FROM fmea_knowledge_base
-        WHERE learning IS NOT NULL 
-          AND final_recommendation IS NOT NULL
-      `;
+    // A record without a learning or a recommendation carries nothing useful.
+    // This predicate is applied whether or not filters are present: it used to
+    // apply only to the unfiltered branch, so selecting any filter could make
+    // the reported total go *up* as empty records became visible.
+    const allConditions = [
+      'learning IS NOT NULL',
+      'final_recommendation IS NOT NULL',
+      ...conditions,
+    ];
+    const whereClause = `WHERE ${allConditions.join(' AND ')}`;
 
-      sql = `
-        SELECT 
-          id,
-          toy_num,
-          toy_name,
-          tool_num,
-          tool_description,
-          tool_category,
-          material_gate,
-          failure_mode,
-          learning,
-          final_recommendation,
-          status,
-          evidence_images,
-          created_at,
-          updated_at
-        FROM fmea_knowledge_base
-        WHERE learning IS NOT NULL 
-          AND final_recommendation IS NOT NULL
-        ORDER BY created_at DESC
-        LIMIT $${paramCount} OFFSET $${paramCount + 1}
-      `;
-      params.push(limitNum, offset);
-    } else {
-      // With filters/query, use standard search with pagination
-      const whereClause = `WHERE ${conditions.join(' AND ')}`;
+    const countSql = `
+      SELECT COUNT(*) as total
+      FROM fmea_knowledge_base
+      ${whereClause}
+    `;
 
-      countSql = `
-        SELECT COUNT(*) as total
-        FROM fmea_knowledge_base
-        ${whereClause}
-      `;
-
-      sql = `
-        SELECT 
-          id,
-          toy_num,
-          toy_name,
-          tool_num,
-          tool_description,
-          tool_category,
-          material_gate,
-          failure_mode,
-          learning,
-          final_recommendation,
-          status,
-          evidence_images,
-          created_at,
-          updated_at
-        FROM fmea_knowledge_base
-        ${whereClause}
-        ORDER BY created_at DESC
-        LIMIT $${paramCount} OFFSET $${paramCount + 1}
-      `;
-      params.push(limitNum, offset);
-    }
+    const sql = `
+      SELECT
+        id,
+        toy_num,
+        toy_name,
+        tool_num,
+        tool_description,
+        tool_category,
+        material_gate,
+        failure_mode,
+        learning,
+        final_recommendation,
+        status,
+        evidence_images,
+        created_at,
+        updated_at
+      FROM fmea_knowledge_base
+      ${whereClause}
+      ORDER BY created_at DESC
+      LIMIT $${paramCount} OFFSET $${paramCount + 1}
+    `;
+    params.push(limitNum, offset);
 
     // Get total count (exclude limit and offset params)
     const countParams = params.slice(0, -2);
@@ -885,7 +1310,7 @@ app.get('/api/knowledge/historical-for-failure', async (req, res) => {
     }
 
     const pool = getPgPool();
-    const limitNum = parseInt(limit as string) || 20;
+    const limitNum = parseBoundedInt(limit, 20, 1, 200);
 
     console.log(`[API] Fetching historical records for: ${toolDescription} / ${failureMode}`);
 
@@ -959,8 +1384,10 @@ app.get('/api/checklist/match', async (req, res) => {
       });
     }
 
-    const thresholdNum = parseFloat(threshold as string);
-    const limitNum = parseInt(limit as string);
+    // A NaN threshold made every similarity comparison false, so fuzzy matching
+    // silently returned nothing instead of erroring.
+    const thresholdNum = parseBoundedFloat(threshold, 0.75, 0, 1);
+    const limitNum = parseBoundedInt(limit, 10, 1, 100);
 
     console.log(`[API] Checklist match request: ${toolDescription} / ${failureMode}`);
 
@@ -1009,6 +1436,12 @@ app.post('/api/checklist/match-batch', async (req, res) => {
     if (!Array.isArray(tools) || tools.length === 0) {
       return res.status(400).json({
         error: 'tools array is required and must not be empty'
+      });
+    }
+
+    if (tools.length > MAX_TOOLS_PER_REQUEST) {
+      return res.status(413).json({
+        error: `Too many tools in one request (${tools.length}). The maximum is ${MAX_TOOLS_PER_REQUEST}.`,
       });
     }
 
@@ -1062,25 +1495,12 @@ app.get('/api/checklist/stats', async (req, res) => {
  */
 app.get('/api/checklist/failure-modes', async (req, res) => {
   try {
-    const client = new Client({
-      host: process.env.PG_HOST,
-      port: parseInt(process.env.PG_PORT || '5432'),
-      user: process.env.PG_USER,
-      password: process.env.PG_PASSWORD,
-      database: process.env.PG_DATABASE,
-      ssl: { rejectUnauthorized: false },
-    });
-
-    await client.connect();
-
-    const result = await client.query(`
+    const result = await getPgPool().query(`
       SELECT DISTINCT failure_mode, COUNT(*) as entry_count
       FROM fmea_checklist_standard
       GROUP BY failure_mode
       ORDER BY failure_mode
     `);
-
-    await client.end();
 
     res.json({
       failureModes: result.rows

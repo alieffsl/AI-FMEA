@@ -18,13 +18,45 @@ import {
 import {
   X,
 } from "lucide-react";
-import type { HistoricalFmeaCase, Project } from "../../data/fmeaMockData";
 import { getRpnBucket } from "../../lib/normalization";
+import { fetchJson } from "../../lib/http";
 import { RiskBadge, StatusBadge } from "../ui/StatusBadge"; // Note: Updated import path
 
+/** A drill-down row, fetched on demand from /api/dashboard/cases. */
+export type DashboardCase = {
+  id: string;
+  projectCode: string | null;
+  projectName: string | null;
+  toolNo: string;
+  toolDescription: string;
+  normalizedFamily: string;
+  material: string;
+  gateType: string;
+  failure: string;
+  recommendation: string;
+  severity: number;
+  occurrence: number;
+  detection: number;
+  rpn: number;
+  status: string;
+  loggedAt: string | null;
+};
+
+/** Pre-aggregated counts from /api/dashboard/stats. */
+export type DashboardStats = {
+  totals: { cases: number; tools: number; failureModes: number };
+  failureFrequency: Array<{ name: string; count: number }>;
+  partGroups: Array<{ name: string; count: number; failureTypes: number }>;
+  riskDistribution: Array<{ name: string; count: number }>;
+  statusMix: Array<{ name: string; count: number }>;
+  materialGate: Array<{ key: string; count: number }>;
+};
+
+/** Which dashboard segment a drill-down is showing. */
+type Dimension = "failure" | "family" | "risk" | "status" | "materialGate";
+
 type OverviewDashboardProps = {
-  projects: Project[];
-  historicalCases: HistoricalFmeaCase[];
+  stats: DashboardStats;
 };
 
 const bucketColors: Record<string, string> = {
@@ -36,16 +68,18 @@ const bucketColors: Record<string, string> = {
 
 // Updated status colors to match the industrial-refined palette
 const statusColors = ["#1a73e8", "#10b981", "#f59e0b", "#a152f9", "#0ea5e9", "#ef6c85"];
-function countBy<T extends string>(items: T[]): Record<T, number> {
-  return items.reduce<Record<T, number>>((acc, item) => {
-    acc[item] = (acc[item] ?? 0) + 1;
-    return acc;
-  }, {} as Record<T, number>);
-}
 
 type DrilldownState = {
   title: string;
-  rows: HistoricalFmeaCase[];
+  dimension: Dimension;
+  value: string;
+  /** Rows for the current page only; the full set stays in the database. */
+  rows: DashboardCase[];
+  total: number;
+  page: number;
+  totalPages: number;
+  loading: boolean;
+  error: string | null;
   expandedCaseId: string | null;
   caseDetails: Record<string, any>;
 } | null;
@@ -61,9 +95,21 @@ function getChartName(data: ChartClickPayload | undefined): string {
   return data?.payload?.name ?? data?.name ?? "";
 }
 
-function DrilldownDrawer({ drilldown, onClose, onUpdate }: { drilldown: DrilldownState; onClose: () => void; onUpdate: (update: Partial<DrilldownState>) => void }) {
+function DrilldownDrawer({
+  drilldown,
+  onClose,
+  onUpdate,
+  onPage,
+}: {
+  drilldown: DrilldownState;
+  onClose: () => void;
+  onUpdate: (update: Partial<NonNullable<DrilldownState>>) => void;
+  onPage: (page: number) => void;
+}) {
   if (!drilldown) return null;
 
+  // Scoped to the loaded page, and labelled as such: the full result set now
+  // lives in the database rather than in memory.
   const openCount = drilldown.rows.filter((item) => item.status === "Open").length;
   const criticalCount = drilldown.rows.filter((item) => getRpnBucket(item.rpn) === "Critical").length;
 
@@ -80,11 +126,22 @@ function DrilldownDrawer({ drilldown, onClose, onUpdate }: { drilldown: Drilldow
     
     if (!currentDrilldown.caseDetails[caseId]) {
       try {
-        const response = await fetch(`/api/dashboard/case/${caseId}/details`);
-        const details = await response.json();
+        const details = await fetchJson<Record<string, unknown>>(
+          `/api/dashboard/case/${caseId}/details`,
+        );
         onUpdate({ caseDetails: { ...currentDrilldown.caseDetails, [caseId]: details } });
       } catch (error) {
         console.error('Failed to fetch case details:', error);
+        // Recorded against the case so the expanded panel can say something,
+        // rather than silently staying blank forever.
+        onUpdate({
+          caseDetails: {
+            ...currentDrilldown.caseDetails,
+            [caseId]: {
+              loadError: error instanceof Error ? error.message : 'Could not load case history.',
+            },
+          },
+        });
       }
     }
   }
@@ -105,15 +162,15 @@ function DrilldownDrawer({ drilldown, onClose, onUpdate }: { drilldown: Drilldow
             <div className="mt-3 flex flex-wrap gap-2 text-xs font-semibold">
               <span className="flex items-center gap-1.5 rounded-full bg-steel-100 px-3 py-1 text-steel-700">
                 <span className="h-1.5 w-1.5 rounded-full bg-steel-400" />
-                {drilldown.rows.length} evidence rows
+                {drilldown.total.toLocaleString()} evidence rows
               </span>
               <span className="flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-blue-700">
                 <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
-                {openCount} open
+                {openCount} open on this page
               </span>
               <span className="flex items-center gap-1.5 rounded-full bg-red-50 px-3 py-1 text-red-700">
                 <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
-                {criticalCount} critical
+                {criticalCount} critical on this page
               </span>
             </div>
           </div>
@@ -127,7 +184,21 @@ function DrilldownDrawer({ drilldown, onClose, onUpdate }: { drilldown: Drilldow
           </button>
         </header>
         <div className="compact-scrollbar flex-1 overflow-y-auto p-5">
-          {drilldown.rows.length ? (
+          {drilldown.loading ? (
+            <div className="p-12 text-center text-sm text-steel-500">Loading evidence rows...</div>
+          ) : drilldown.error ? (
+            <div className="rounded-xl border border-red-200 bg-red-50 p-6 text-center">
+              <p className="text-sm font-semibold text-red-800">Could not load these rows</p>
+              <p className="mt-1 text-sm text-red-700">{drilldown.error}</p>
+              <button
+                type="button"
+                onClick={() => onPage(drilldown.page)}
+                className="mt-4 rounded-lg bg-red-600 px-4 py-2 text-xs font-semibold text-white hover:bg-red-700"
+              >
+                Retry
+              </button>
+            </div>
+          ) : drilldown.rows.length ? (
             <div className="grid gap-3">
               {drilldown.rows.map((item) => {
                 const logDate = item.loggedAt ? new Date(item.loggedAt).toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' }) : null;
@@ -172,7 +243,13 @@ function DrilldownDrawer({ drilldown, onClose, onUpdate }: { drilldown: Drilldow
                     </div>
                   </button>
                   
-                  {isExpanded && details && (
+                  {isExpanded && details?.loadError && (
+                    <div className="border-t border-steel-200 bg-red-50 p-5 text-sm text-red-800">
+                      {String(details.loadError)}
+                    </div>
+                  )}
+
+                  {isExpanded && details && !details.loadError && (
                     <div className="border-t border-steel-200 bg-steel-50/50 p-5 space-y-5">
                       {/* Potential Failure / Recommendation Actions */}
                       {details.recommendations && details.recommendations.length > 0 && (
@@ -297,6 +374,32 @@ function DrilldownDrawer({ drilldown, onClose, onUpdate }: { drilldown: Drilldow
             <div className="p-12 text-center text-sm text-steel-500 border-2 border-dashed border-steel-200 rounded-xl">No rows match this drill-down.</div>
           )}
         </div>
+
+        {drilldown.totalPages > 1 && !drilldown.loading && !drilldown.error ? (
+          <footer className="flex items-center justify-between border-t border-steel-200 px-5 py-3">
+            <p className="text-xs text-steel-500">
+              Page {drilldown.page} of {drilldown.totalPages}
+            </p>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => onPage(drilldown.page - 1)}
+                disabled={drilldown.page <= 1}
+                className="rounded-lg border border-steel-200 px-3 py-1.5 text-xs font-semibold text-steel-700 hover:bg-steel-50 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                Previous
+              </button>
+              <button
+                type="button"
+                onClick={() => onPage(drilldown.page + 1)}
+                disabled={drilldown.page >= drilldown.totalPages}
+                className="rounded-lg border border-steel-200 px-3 py-1.5 text-xs font-semibold text-steel-700 hover:bg-steel-50 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                Next
+              </button>
+            </div>
+          </footer>
+        ) : null}
       </section>
     </div>
   );
@@ -337,75 +440,118 @@ function DrillList({
   );
 }
 
-export function OverviewDashboard({ historicalCases }: OverviewDashboardProps) {
+export function OverviewDashboard({ stats }: OverviewDashboardProps) {
   const [drilldown, setDrilldown] = useState<DrilldownState>(null);
-  const failures = countBy(historicalCases.map((item) => item.failure));
-  const families = countBy(historicalCases.map((item) => item.normalizedFamily));
-  const totalFailures = Object.values(failures).reduce((a, b) => a + b, 0);
+
+  // All counts arrive pre-aggregated from SQL. The cumulative percentage is
+  // still derived here because it depends on how many bars we choose to show.
+  const totalFailures = stats.failureFrequency.reduce((sum, item) => sum + item.count, 0);
   let cumulativeCount = 0;
-  const failureFrequency = Object.entries(failures)
-    .map(([name, count]) => ({ name, count }))
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 8)
-    .map(item => {
-      cumulativeCount += item.count;
-      return { ...item, cumulativePercentage: totalFailures ? Math.round((cumulativeCount / totalFailures) * 100) : 0 };
-    });
-  const riskDistribution = ["Low", "Medium", "High", "Critical"].map((bucket) => ({
-    name: bucket,
-    count: historicalCases.filter((item) => getRpnBucket(item.rpn) === bucket).length,
-  }));
+  const failureFrequency = stats.failureFrequency.slice(0, 8).map((item) => {
+    cumulativeCount += item.count;
+    return {
+      ...item,
+      cumulativePercentage: totalFailures ? Math.round((cumulativeCount / totalFailures) * 100) : 0,
+    };
+  });
+
+  const riskDistribution = stats.riskDistribution;
+
   const statusMap: Record<string, string> = { "Close FS": "Close First Shot", "Close NS": "Close Next Shot" };
-  const rawStatusCounts = countBy(historicalCases.map((item) => statusMap[item.status] || item.status));
-  const totalStatusCount = Object.values(rawStatusCounts).reduce((a, b) => a + b, 0);
-  const statusData = Object.entries(rawStatusCounts).map(([name, value]) => ({
-    name,
-    value,
-    percentage: totalStatusCount ? Math.round((value / totalStatusCount) * 100) : 0,
+  const totalStatusCount = stats.statusMix.reduce((sum, item) => sum + item.count, 0);
+  const statusData = stats.statusMix.map((item) => ({
+    name: statusMap[item.name] || item.name,
+    rawName: item.name,
+    value: item.count,
+    percentage: totalStatusCount ? Math.round((item.count / totalStatusCount) * 100) : 0,
   }));
-  const allFamilyData = Object.entries(families)
-    .map(([name, count]) => ({
-      name,
-      count,
-      repeatedFailures: new Set(
-        historicalCases.filter((item) => item.normalizedFamily === name).map((item) => item.failure),
-      ).size,
-    }))
-    .sort((a, b) => b.count - a.count);
-  
-  const familyData = allFamilyData.slice(0, 15);
-  const materialGateRows = Object.entries(
-    historicalCases.reduce<Record<string, number>>((acc, item) => {
-      const key = `${item.material} / ${item.gateType}`;
-      acc[key] = (acc[key] ?? 0) + 1;
-      return acc;
-    }, {}),
-  )
-    .map(([key, count]) => ({ key, count }))
-    .sort((a, b) => b.count - a.count)
-    .slice(0, 8);
-  function openDrilldown(title: string, rows: HistoricalFmeaCase[]) {
-    setDrilldown({ title, rows, expandedCaseId: null, caseDetails: {} });
+
+  const familyData = stats.partGroups.map((item) => ({
+    name: item.name,
+    count: item.count,
+    repeatedFailures: item.failureTypes,
+  }));
+
+  const materialGateRows = stats.materialGate;
+  const maxMaterialGate = Math.max(1, ...materialGateRows.map((item) => item.count));
+
+  /** Opens the drawer, then fetches just that segment's rows. */
+  function openDrilldown(title: string, dimension: Dimension, value: string, page = 1) {
+    setDrilldown({
+      title,
+      dimension,
+      value,
+      rows: [],
+      total: 0,
+      page,
+      totalPages: 0,
+      loading: true,
+      error: null,
+      expandedCaseId: null,
+      caseDetails: {},
+    });
+    void fetchDrilldownPage(dimension, value, page);
+  }
+
+  async function fetchDrilldownPage(dimension: Dimension, value: string, page: number) {
+    try {
+      const params = new URLSearchParams({ dimension, value, page: String(page), limit: "50" });
+      const data = await fetchJson<{
+        rows: DashboardCase[];
+        pagination: { total: number; page: number; totalPages: number };
+      }>(`/api/dashboard/cases?${params}`);
+
+      setDrilldown((prev) =>
+        prev
+          ? {
+              ...prev,
+              rows: data.rows,
+              total: data.pagination.total,
+              page: data.pagination.page,
+              totalPages: data.pagination.totalPages,
+              loading: false,
+              error: null,
+              expandedCaseId: null,
+            }
+          : prev,
+      );
+    } catch (err) {
+      setDrilldown((prev) =>
+        prev
+          ? {
+              ...prev,
+              loading: false,
+              error: err instanceof Error ? err.message : "Failed to load rows.",
+            }
+          : prev,
+      );
+    }
+  }
+
+  function goToPage(page: number) {
+    setDrilldown((prev) => (prev ? { ...prev, loading: true, error: null, page } : prev));
+    const current = drilldown;
+    if (current) void fetchDrilldownPage(current.dimension, current.value, page);
   }
 
   function openFailureRows(failure: string) {
     if (!failure) return;
-    openDrilldown(`Failure frequency: ${failure}`, historicalCases.filter((item) => item.failure === failure));
+    openDrilldown(`Failure frequency: ${failure}`, "failure", failure);
   }
 
   function openRiskRows(bucket: string) {
     if (!bucket) return;
-    openDrilldown(`RPN bucket: ${bucket}`, historicalCases.filter((item) => getRpnBucket(item.rpn) === bucket));
+    openDrilldown(`RPN bucket: ${bucket}`, "risk", bucket);
   }
 
   function openStatusRows(status: string) {
     if (!status) return;
-    openDrilldown(`Status: ${status}`, historicalCases.filter((item) => item.status === status));
+    openDrilldown(`Status: ${status}`, "status", status);
   }
 
   function openFamilyRows(family: string, titlePrefix = "Part group") {
     if (!family) return;
-    openDrilldown(`${titlePrefix}: ${family}`, historicalCases.filter((item) => item.normalizedFamily === family));
+    openDrilldown(`${titlePrefix}: ${family}`, "family", family);
   }
 
   return (
@@ -541,8 +687,10 @@ export function OverviewDashboard({ historicalCases }: OverviewDashboardProps) {
                       nameKey="name"
                       cursor="pointer"
                       stroke="none"
-                      onClick={(data: { name?: string }) => {
-                        openStatusRows(data.name ?? "");
+                      onClick={(data: { payload?: { rawName?: string } }) => {
+                        // rawName, not the display label: "Close First Shot" is
+                        // shown to the user but stored as "Close FS".
+                        openStatusRows(data.payload?.rawName ?? "");
                       }}
                     >
                       {statusData.map((entry, index) => (
@@ -558,7 +706,7 @@ export function OverviewDashboard({ historicalCases }: OverviewDashboardProps) {
                   <button
                     type="button"
                     key={item.name}
-                    onClick={() => openStatusRows(item.name)}
+                    onClick={() => openStatusRows(item.rawName)}
                     className="group flex w-full items-center justify-between rounded-xl border border-transparent bg-steel-50 px-4 py-2.5 text-left text-sm transition-all hover:border-steel-200 hover:bg-white dark:bg-steel-900 dark:border-steel-700 hover:shadow-sm"
                   >
                     <span className="flex items-center gap-3">
@@ -586,10 +734,7 @@ export function OverviewDashboard({ historicalCases }: OverviewDashboardProps) {
                   key={item.key}
                   type="button"
                   onClick={() =>
-                    openDrilldown(
-                      `Material / gate: ${item.key}`,
-                      historicalCases.filter((row) => `${row.material} / ${row.gateType}` === item.key),
-                    )
+                    openDrilldown(`Material / gate: ${item.key}`, "materialGate", item.key)
                   }
                   className="group flex flex-col justify-center py-2.5 border-b border-steel-100 last:border-0 text-left transition-all hover:bg-steel-50 px-2"
                 >
@@ -599,8 +744,10 @@ export function OverviewDashboard({ historicalCases }: OverviewDashboardProps) {
                   </div>
                   <div className="w-full h-1 overflow-hidden rounded-full bg-steel-100">
                     <div
+                      // Scaled against the largest bar rather than a fixed
+                      // multiplier, so the bars stay meaningful at any volume.
                       className="h-full rounded-full bg-gradient-to-r from-steel-400 to-steel-500 group-hover:from-accent-400 group-hover:to-accent-500 transition-all"
-                      style={{ width: `${Math.min(100, item.count * 18)}%` }}
+                      style={{ width: `${Math.round((item.count / maxMaterialGate) * 100)}%` }}
                     />
                   </div>
                 </button>
@@ -611,10 +758,11 @@ export function OverviewDashboard({ historicalCases }: OverviewDashboardProps) {
 
       </section>
 
-      <DrilldownDrawer 
-        drilldown={drilldown} 
-        onClose={() => setDrilldown(null)} 
+      <DrilldownDrawer
+        drilldown={drilldown}
+        onClose={() => setDrilldown(null)}
         onUpdate={(update) => setDrilldown(prev => prev ? { ...prev, ...update } : null)}
+        onPage={goToPage}
       />
     </div>
   );

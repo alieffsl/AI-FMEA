@@ -121,8 +121,10 @@ export function ToolingTable({ toolRows, onToggleSelect, onToggleSelectAll, onIm
         ),
       },
       {
+        // Named "Attachments", not "Images": these are session-local reference
+        // files, not evidence that influences the generated draft.
         key: "images",
-        label: "Images",
+        label: "Attachments",
         minWidth: "min-w-[160px]",
         render: (row) => (
           <ToolImageUploader
@@ -170,6 +172,7 @@ export function ToolingTable({ toolRows, onToggleSelect, onToggleSelectAll, onIm
                 <input
                   type="checkbox"
                   checked={allSelected}
+                  aria-label={allSelected ? "Deselect all tool rows" : "Select all tool rows"}
                   ref={(el) => {
                     if (el) el.indeterminate = someSelected;
                   }}
@@ -209,6 +212,7 @@ export function ToolingTable({ toolRows, onToggleSelect, onToggleSelectAll, onIm
                   <input
                     type="checkbox"
                     checked={row.selected}
+                    aria-label={`Select tool ${row.toolNo || index + 1}${row.toolDescription ? ` (${row.toolDescription})` : ""}`}
                     onChange={() => onToggleSelect(row.id)}
                     className="h-4 w-4 rounded border-steel-300 accent-accent-500 cursor-pointer dark:border-steel-600 dark:bg-steel-800"
                   />
